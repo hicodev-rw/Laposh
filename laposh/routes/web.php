@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\categoryController;
+use App\Http\Controllers\roomController;
+use App\Http\Controllers\userController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('web.web.index');
 });
+Route::resource('/categories',categoryController::class);
+Route::resource('/rooms',roomController::class);
+Route::resource('/users',userController::class);

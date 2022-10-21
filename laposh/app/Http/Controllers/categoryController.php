@@ -13,7 +13,8 @@ class categoryController extends Controller
      */
     public function index()
     {
-        //
+        $Categories=Category::all();
+        return view('management.static.categories')->with('category',$Categories);
     }
 
     /**

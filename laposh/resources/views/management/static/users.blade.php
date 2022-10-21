@@ -36,7 +36,7 @@
             </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="rooms.html">
+						<a class="sidebar-link" href="/rooms">
               <i class="align-middle" data-feather="home"></i> <span class="align-middle">Rooms</span>
             </a>
 		</li>
@@ -44,8 +44,8 @@
 			<a class="sidebar-link" href="bookings.html">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
-<li class="sidebar-item active">
-	<a class="sidebar-link" href="categories.html">
+<li class="sidebar-item">
+	<a class="sidebar-link" href="/categories">
 <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
 </a>
 					</li>
@@ -67,8 +67,8 @@
 				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
 			</a>
 		</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="users.html">
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="/users">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
             </a>
 </li>
@@ -128,7 +128,7 @@ Administrator
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">hicode</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -140,7 +140,7 @@ Administrator
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Room Categories</strong></h1>
+					<h1 class="h3 mb-3"><strong>Users</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-8 col-xxl-2 d-flex">
@@ -148,22 +148,33 @@ Administrator
 								<div style="width: 90%;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Categories</h5>
+										<h5 class="card-title mb-0">Users</h5>
 									</div>
 									<table class="table table-hover my-0">
 										<thead>
 											<tr>
 												<th>#</th>
 												<th>Name</th>
-												<th class="d-none d-xl-table-cell">Size</th>
+                                                <th>Username</th>
+												<th class="d-none d-xl-table-cell">Role</th>
+                                                <th class="d-none d-xl-table-cell">Actions</th>
 											</tr>
 										</thead>
 										<tbody>
+											@forEach($users as $user)
 											<tr>
-												<td>1</td>
-												<td>Suite</td>
-												<td class="d-none d-xl-table-cell">60</td>
+												<td>{{$loop->iteration}}</td>
+												<td>{{$user->lastName}}</td>
+												<td>{{$user->email}}</td>
+												<td class="d-none d-xl-table-cell">{{$user->role}}</td>
+												<td class="d-none d-xl-table-cell"></td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-sm">Edit</button>    
+                                                    <button class="btn btn-danger btn-sm">Delete</button>
+
+                                                </td>
 											</tr>
+											@endforeach
 											
 										</tbody>
 									</table>
@@ -174,15 +185,24 @@ Administrator
 							<div class="card flex-fill">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Add New</h5>
+									<h5 class="card-title mb-0">Add New User</h5>
 								</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Name</h5>
 										<input type="text" name="name" class="form-control">
 									</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">Size</h5>
-										<input type="number" name="size" class="form-control">
+										<h5 class="card-title mb-0">Email</h5>
+										<input type="number" name="email" class="form-control">
+									</div>
+									<div class="card-body">
+										<h5 class="card-title mb-0">Role</h5>
+										<input type="text" name="description" class="form-control">
+									</div>
+
+									<div class="card-body">
+										<h5 class="card-title mb-0">Password</h5>
+										<input type="password" name="password" class="form-control">
 									</div>
 
 									<button class="btn btn-primary btn-md">Save</button>

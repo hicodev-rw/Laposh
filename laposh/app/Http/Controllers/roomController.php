@@ -13,7 +13,8 @@ class roomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms=Room::all();
+        return view('management.static.rooms')->with('rooms',$rooms);
     }
 
     /**

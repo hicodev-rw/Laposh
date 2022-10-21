@@ -13,7 +13,8 @@ class userController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::all();
+        return view('management.static.users')->with('users',$users);
     }
 
     /**
