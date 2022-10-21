@@ -41,7 +41,7 @@
             </a>
 		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="bookings.html">
+			<a class="sidebar-link" href="/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
 <li class="sidebar-item active">

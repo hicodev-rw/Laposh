@@ -35,7 +35,9 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input =$request->all();
+        User::create($input);
+        return redirect('users')->with('flash_message','student updated');
     }
 
     /**
@@ -80,6 +82,7 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect('users')->with('flash_message','student_deleted');
     }
 }

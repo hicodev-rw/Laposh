@@ -41,7 +41,7 @@
             </a>
 		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="bookings.html">
+			<a class="sidebar-link" href="/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
 <li class="sidebar-item">
@@ -169,9 +169,12 @@ Administrator
 												<td class="d-none d-xl-table-cell">{{$user->role}}</td>
 												<td class="d-none d-xl-table-cell"></td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm">Edit</button>    
+													<form action=' {{url('/users' . '/' .   $user->id)}}' method="post">
+													{{method_field('DELETE')}}
+													{{ csrf_field() }}
+                                                    <a class="btn btn-primary btn-sm">Edit</a>    
                                                     <button class="btn btn-danger btn-sm">Delete</button>
-
+													</form>
                                                 </td>
 											</tr>
 											@endforeach
@@ -183,30 +186,38 @@ Administrator
 							</div>
 						<div class="col-xl-4 col-l-7">
 							<div class="card flex-fill">
+							
 								<div class="card-header">
 
 									<h5 class="card-title mb-0">Add New User</h5>
 								</div>
+								<form action="{{ url('users') }}" method='post'>
+									{!! csrf_field() !!}
 									<div class="card-body">
-										<h5 class="card-title mb-0">Name</h5>
-										<input type="text" name="name" class="form-control">
+										<h5 class="card-title mb-0">fisrtName</h5>
+										<input type="text" name="firstName" class="form-control">
+									</div>
+									<div class="card-body">
+										<h5 class="card-title mb-0">LastName</h5>
+										<input type="text" name="lastName" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Email</h5>
-										<input type="number" name="email" class="form-control">
+										<input type="text" name="email" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Role</h5>
-										<input type="text" name="description" class="form-control">
+										<input type="number" name="role" class="form-control">
 									</div>
 
 									<div class="card-body">
 										<h5 class="card-title mb-0">Password</h5>
 										<input type="password" name="password" class="form-control">
-									</div>
-
-									<button class="btn btn-primary btn-md">Save</button>
+									<div class="card-body">
+									<button type="submit" class="btn btn-primary btn-md">Save</button>
+									</form>
 							</div>
+							
 						</div>
 					</div>
 
