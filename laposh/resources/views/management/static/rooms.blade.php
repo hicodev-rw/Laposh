@@ -192,6 +192,14 @@ Administrator
 										<input type="text" name="code" class="form-control">
 									</div>
 									<div class="card-body">
+										<h5 class="card-title mb-0">Category</h5>
+										<select name="category_id" class="form-control">
+											@foreach($category as $cat)
+										<option value="{{cat->id}}">{{cat->name}}</option>
+										@endforeach
+										</select>
+									</div>
+									<div class="card-body">
 										<h5 class="card-title mb-0">Price</h5>
 										<input type="number" name="price" class="form-control">
 									</div>

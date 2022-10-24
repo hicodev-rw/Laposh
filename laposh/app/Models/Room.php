@@ -9,5 +9,5 @@ class Room extends Model
 {
     protected $table='rooms';
     protected $primaryKey='id';
-    protected $fillable=['code','price','specifications','image'];
+    protected $fillable=['code','category_id','price','specifications','image'];
 }

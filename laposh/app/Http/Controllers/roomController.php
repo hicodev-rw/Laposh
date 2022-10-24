@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Category;
 class roomController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class roomController extends Controller
     public function index()
     {
         $rooms=Room::all();
-        return view('management.static.rooms')->with('rooms',$rooms);
+        $Category=Category::all();
+        return view('management.static.rooms')->with('rooms',$Category)->with('category',);
     }
 
     /**
