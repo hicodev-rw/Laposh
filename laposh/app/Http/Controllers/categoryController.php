@@ -82,6 +82,7 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id)
+        Category::destroy($id);
+        return redirect('categories')->with('flash_message','category removed succesfully!');
     }
 }

@@ -155,7 +155,8 @@ Administrator
 											<tr>
 												<th>#</th>
 												<th>Name</th>
-												<th class="d-none d-xl-table-cell">Size</th>
+												<th>Size</th>
+												<th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -164,6 +165,16 @@ Administrator
 												<td>{{$loop->iteration}}</td>
 												<td>{{$category->name}}</td>
 												<td class="d-none d-xl-table-cell">{{$category->size}}</td>
+												<td class="d-none d-xl-table-cell">
+												<form action=' {{url('/categories' . '/' .   $category->id)}}' method="post">
+													{{method_field('DELETE')}}
+													{{ csrf_field() }} 
+												<a class="btn btn-primary btn-sm">Edit</a>
+
+                                                    <button class="btn btn-danger btn-sm">Delete</button>
+													</form>
+
+												</td>
 											</tr>
 											@endforeach
 										</tbody>

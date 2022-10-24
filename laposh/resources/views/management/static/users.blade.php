@@ -169,10 +169,11 @@ Administrator
 												<td class="d-none d-xl-table-cell">{{$user->role}}</td>
 												<td class="d-none d-xl-table-cell"></td>
                                                 <td>
-													<form action=' {{url('/users' . '/' .   $user->id)}}' method="post">
+												<form action=' {{url('/users' . '/' .   $user->id)}}' method="post">
 													{{method_field('DELETE')}}
-													{{ csrf_field() }}
-                                                    <a class="btn btn-primary btn-sm">Edit</a>    
+													{{ csrf_field() }} 
+												<a class="btn btn-primary btn-sm">Edit</a>
+													
                                                     <button class="btn btn-danger btn-sm">Delete</button>
 													</form>
                                                 </td>
