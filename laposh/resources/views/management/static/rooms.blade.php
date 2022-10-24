@@ -155,25 +155,27 @@ Administrator
 											<tr>
 												<th>#</th>
 												<th>Code</th>
-												<th class="d-none d-xl-table-cell">Category</th>
 												<th class="d-none d-xl-table-cell">Price</th>
-												<th>Status</th>
 												<th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
+											@foreach($rooms as $room)
 											<tr>
-												<td>1</td>
-												<td>Suite-001</td>
-												<td class="d-none d-xl-table-cell">Suite</td>
-												<td class="d-none d-xl-table-cell">200$</td>
-												<td><span class="badge bg-success">Booked</span></td>
-												<td>
-													<button class="btn btn-primary btn-sm">View</button>  
-                                                    <button class="btn btn-primary btn-sm">Edit</button>    
-                                                    <button class="btn btn-danger btn-sm">Delete</button>
+												<td>{{$loop->iteration}}</td>
+												<td>{{$room->code}}</td>
+												<td class="d-none d-xl-table-cell">{{$room->price}}</td>
+												<td class="d-none d-xl-table-cell">
+												<form action=' {{url('/rooms' . '/' .   $room->id)}}' method="post">
+													{{method_field('DELETE')}}
+													{{ csrf_field() }} 
+												<a class="btn btn-primary btn-sm">Edit</a>
 
-                                                </td>
+                                                <button class="btn btn-danger btn-sm">Delete</button>
+													</form>
+
+												</td>
+												@endforeach
 											</tr>
 											
 										</tbody>
@@ -187,6 +189,8 @@ Administrator
 
 									<h5 class="card-title mb-0">Add New</h5>
 								</div>
+								<form action="{{url('rooms')}}"  method='post'>
+									{{csrf_field()}}
 									<div class="card-body">
 										<h5 class="card-title mb-0">Code</h5>
 										<input type="text" name="code" class="form-control">
@@ -195,7 +199,7 @@ Administrator
 										<h5 class="card-title mb-0">Category</h5>
 										<select name="category_id" class="form-control">
 											@foreach($category as $cat)
-										<option value="{{cat->id}}">{{cat->name}}</option>
+										<option value="{{$cat->id}}">{{$cat->name}}</option>
 										@endforeach
 										</select>
 									</div>
@@ -204,16 +208,17 @@ Administrator
 										<input type="number" name="price" class="form-control">
 									</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">Description</h5>
-										<input type="text" name="description" class="form-control">
+										<h5 class="card-title mb-0">Specifications</h5>
+										<input type="text" name="specifications" class="form-control">
 									</div>
 
 									<div class="card-body">
 										<h5 class="card-title mb-0">Image</h5>
-										<input type="file" name="Image" class="form-control">
+										<input type="file" name="image" class="form-control">
 									</div>
 
-									<button class="btn btn-primary btn-md">Save</button>
+									<button type="submit"class="btn btn-primary btn-md">Save</button>
+								</form>
 							</div>
 						</div>
 					</div>

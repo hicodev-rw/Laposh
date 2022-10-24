@@ -16,7 +16,7 @@ class roomController extends Controller
     {
         $rooms=Room::all();
         $Category=Category::all();
-        return view('management.static.rooms')->with('rooms',$Category)->with('category',);
+        return view('management.static.rooms')->with('rooms',$rooms)->with('category',$Category);
     }
 
     /**
@@ -37,7 +37,9 @@ class roomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        Room::create($input);
+        return redirect('rooms')->with('flash_message','room added succesfully!');
     }
 
     /**
@@ -82,6 +84,7 @@ class roomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Room::destroy($id);
+        return redirect('rooms')->with('flash_message','Roomd deleted successfully');
     }
 }
