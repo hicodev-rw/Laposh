@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
-    protected $table='bookingd';
+    protected $table='bookings';
     protected $primaryKey='id';
     protected $fillable=['checkInDate','checkOutDate','special_info','reference','status'];
 }

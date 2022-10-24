@@ -31,12 +31,12 @@
             </a>
 					</li>
 					<li class="sidebar-item active">
-						<a class="sidebar-link" href="rooms.html">
+						<a class="sidebar-link" href="/rooms">
               <i class="align-middle" data-feather="home"></i> <span class="align-middle">Rooms</span>
             </a>
 		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="bookings.html">
+			<a class="sidebar-link" href="/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
 <li class="sidebar-item">
@@ -52,13 +52,13 @@
 
 									</li>
 			<li class="sidebar-item">
-					<a class="sidebar-link" href="checkout.html">
+					<a class="sidebar-link" href="/checkout">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="settings.html">
+				<a class="sidebar-link" href="/settings">
 				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
 			</a>
 		</li>

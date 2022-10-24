@@ -26,44 +26,44 @@
 				<ul class="sidebar-nav">
 
 					<li class="sidebar-item active">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="/dashbord">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="rooms.html">
+						<a class="sidebar-link" href="/rooms">
               <i class="align-middle" data-feather="home"></i> <span class="align-middle">Rooms</span>
             </a>
 		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="bookings.html">
+			<a class="sidebar-link" href="/reservations">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
 <li class="sidebar-item">
-	<a class="sidebar-link" href="categories.html">
+	<a class="sidebar-link" href="/categories">
 <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
 </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="checkin.html">
+						<a class="sidebar-link" href="/check-in">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
 					</a>
 										</li>
 
 									</li>
 			<li class="sidebar-item">
-					<a class="sidebar-link" href="checkout.html">
+					<a class="sidebar-link" href="/checkout">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="settings.html">
+				<a class="sidebar-link" href="/settings">
 				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
 			</a>
 		</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="users.html">
+						<a class="sidebar-link" href="/users">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
             </a>
 </li>
@@ -76,7 +76,7 @@
 Administrator
 						</div>
 						<div class="d-grid">
-							<a href="logout.html" class="btn btn-primary">Sign Out</a>
+							<a href="/logout" class="btn btn-primary">Sign Out</a>
 						</div>
 					</div>
 				</div>
@@ -155,7 +155,7 @@ Administrator
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">2.382</h1>
+												<h1 class="mt-1 mb-3">{{$bookings}}</h1>
 												<div class="mb-0">
 													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
 													<span class="text-muted">Since last week</span>
@@ -217,10 +217,10 @@ Administrator
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">$21.300</h1>
+												<h1 class="mt-1 mb-3">{{$rooms}}</h1>
 												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
-													<span class="text-muted">Since last week</span>
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{$categories}} </span>
+													<span class="text-muted">Categories</span>
 												</div>
 											</div>
 										</div>
