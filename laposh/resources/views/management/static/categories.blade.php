@@ -159,12 +159,13 @@ Administrator
 											</tr>
 										</thead>
 										<tbody>
+											@foreach($categories as $category)
 											<tr>
-												<td>1</td>
-												<td>Suite</td>
-												<td class="d-none d-xl-table-cell">60</td>
+												<td>{{$loop->iteration}}</td>
+												<td>{{$category->name}}</td>
+												<td class="d-none d-xl-table-cell">{{$category->size}}</td>
 											</tr>
-											
+											@endforeach
 										</tbody>
 									</table>
 								</div>
@@ -176,6 +177,8 @@ Administrator
 
 									<h5 class="card-title mb-0">Add New</h5>
 								</div>
+								<form action="{{ url('categories') }}" method='post'>
+									{{ csrf_field() }}
 									<div class="card-body">
 										<h5 class="card-title mb-0">Name</h5>
 										<input type="text" name="name" class="form-control">
@@ -185,7 +188,8 @@ Administrator
 										<input type="number" name="size" class="form-control">
 									</div>
 
-									<button class="btn btn-primary btn-md">Save</button>
+									<button type="submit" class="btn btn-primary btn-md">Save</button>
+								</form>
 							</div>
 						</div>
 					</div>

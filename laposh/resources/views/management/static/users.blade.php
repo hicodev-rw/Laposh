@@ -194,25 +194,25 @@ Administrator
 								<form action="{{ url('users') }}" method='post'>
 									{!! csrf_field() !!}
 									<div class="card-body">
-										<h5 class="card-title mb-0">fisrtName</h5>
-										<input type="text" name="firstName" class="form-control">
+										<h5 class="card-title mb-0">firstName</h5>
+										<input type="text" name="firstName" class="form-control" required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">LastName</h5>
-										<input type="text" name="lastName" class="form-control">
+										<input type="text" name="lastName" class="form-control" required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Email</h5>
-										<input type="text" name="email" class="form-control">
+										<input type="email" name="email" class="form-control" required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Role</h5>
-										<input type="number" name="role" class="form-control">
+										<input type="number" name="role" class="form-control"required>
 									</div>
 
 									<div class="card-body">
 										<h5 class="card-title mb-0">Password</h5>
-										<input type="password" name="password" class="form-control">
+										<input type="password" name="password" class="form-control"required>
 									<div class="card-body">
 									<button type="submit" class="btn btn-primary btn-md">Save</button>
 									</form>

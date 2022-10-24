@@ -14,7 +14,7 @@ class categoryController extends Controller
     public function index()
     {
         $Categories=Category::all();
-        return view('management.static.categories')->with('category',$Categories);
+        return view('management.static.categories')->with('categories',$Categories);
     }
 
     /**
@@ -35,7 +35,9 @@ class categoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        Category::create($input);
+        return redirect('categories')->with('flash_message','category added succesfully!');
     }
 
     /**
@@ -80,6 +82,6 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::destroy($id)
     }
 }
