@@ -31,7 +31,7 @@
 				<ul class="sidebar-nav">
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="/dashboard">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
@@ -128,7 +128,7 @@ Administrator
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="images/avatar.jpg'" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">hicode</span>
+                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -249,6 +249,7 @@ Administrator
 	</div>
 
 	<script src="js/app.js"></script>
+	<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 </body>
 
 </html>
