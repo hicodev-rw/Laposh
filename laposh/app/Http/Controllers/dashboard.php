@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\Category;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class dashboard extends Controller
@@ -18,7 +19,8 @@ class dashboard extends Controller
         $bookings=count(Reservation::all());
         $rooms=count(Room::all());
         $categories=count(Category::all());
-        return view('management.static.index')->with('bookings',$bookings)->with('rooms',$rooms)->with('categories',$categories);
+        $clients=count(Customer::all());
+        return view('management.static.index')->with('bookings',$bookings)->with('rooms',$rooms)->with('categories',$categories)->with('clients',$clients);
     }
 
     /**

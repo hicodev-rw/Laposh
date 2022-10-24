@@ -12,6 +12,7 @@
 	<title>La Posh Hotel</title>
 
 	<link href="css/app.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -123,7 +124,7 @@ Administrator
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -141,7 +142,9 @@ Administrator
 						<div class="col-xl-6 col-xxl-5 d-flex">
 							<div class="w-100">
 								<div class="row">
+									
 									<div class="col-sm-6">
+									
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -195,7 +198,7 @@ Administrator
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
+												<h1 class="mt-1 mb-3">{{$clients}}</h1>
 												<div class="mb-0">
 													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
 													<span class="text-muted">Since last week</span>
