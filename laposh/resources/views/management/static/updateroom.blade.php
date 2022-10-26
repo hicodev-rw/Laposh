@@ -11,7 +11,7 @@
 
 	<title>La Posh Hotel</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href="../../../css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -135,7 +135,7 @@ Administrator
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Rooms</strong></h1>
+					<h1 class="h3 mb-3"><strong>Update Room Information</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-8 col-xxl-2 d-flex">
@@ -143,40 +143,27 @@ Administrator
 								<div style="width: 90%;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Rooms</h5>
+										<h5 class="card-title mb-0">Room Image</h5>
 									</div>
-									<table class="table table-hover my-0">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>Code</th>
-												<th class="d-none d-xl-table-cell">Price</th>
-												<th>Actions</th>
-											</tr>
-										</thead>
-										<tbody>
-											@foreach($room as $room)
-											<tr>
-												
-												@endforeach
-											</tr>
-											
-										</tbody>
-									</table>
+                                    <div class="card">
+									<img class="card-img-top" src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cm9vbXN8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Unsplash">
+                                    </div>
 								</div>
 							</div>
 							</div>
 						<div class="col-xl-4 col-l-7">
 							<div class="card flex-fill">
-								<div class="card-header">
+                            <div class="card-header">
 
-									<h5 class="card-title mb-0">Add New</h5>
-								</div>
-								<form action="{{url('rooms')}}"  method='post'>
+<h5 class="card-title mb-0">Room information</h5>
+</div>
+								<form action="{{url('rooms/'.$room->id)}}"  method='post'>
 									{{csrf_field()}}
+                                    @method('PATCH')
 									<div class="card-body">
 										<h5 class="card-title mb-0">Code</h5>
-										<input type="text" name="code" class="form-control">
+										<input type="text" name="code" class="form-control"
+                                        value="{{$room->code}}">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Category</h5>
@@ -187,12 +174,13 @@ Administrator
 										</select>
 									</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">Price</h5>
-										<input type="number" name="price" class="form-control">
+										<h5 class="card-title mb-0">Price ($)</h5>
+										<input type="number" name="price" class="form-control"
+                                        value="{{$room->price}}">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Specifications</h5>
-										<input type="text" name="specifications" class="form-control">
+										<input type="text" name="specifications" class="form-control" value="{{$room->specifications}}">
 									</div>
 
 									<div class="card-body">
@@ -231,6 +219,6 @@ Administrator
 		</div>
 	</div>
 
-	<script src="js/app.js"></script>
+	<script src="../../../js/app.js"></script>
 </body>
 </html>

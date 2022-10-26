@@ -50,7 +50,8 @@ class roomController extends Controller
      */
     public function show($id)
     {
-
+        $room=Room::find($id);
+         return view('management.static.viewroom')->with('room',$room);
     }
 
     /**
@@ -61,9 +62,9 @@ class roomController extends Controller
      */
     public function edit($id)
     {
-        $room=Room::find($id);
-        $Category=Category::all();
-        return view('management.static.updateroom')->with('room',$room)->with('category',$Category);
+       $room=Room::find($id);
+       $category=Category::all();
+        return view('management.static.updateroom')->with('room',$room)->with('category',$category);
     }
 
     /**
@@ -75,7 +76,10 @@ class roomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $room=Room::find($id);
+        $input =$request->all();
+        $room->update($input);
+        return redirect('categories')->with('flash_message','room added succesfully!');
     }
 
     /**
@@ -87,6 +91,6 @@ class roomController extends Controller
     public function destroy($id)
     {
         Room::destroy($id);
-        return redirect('rooms')->with('flash_message','Roomd deleted successfully');
+        return redirect('categories')->with('flash_message','Roomd deleted successfully');
     }
 }

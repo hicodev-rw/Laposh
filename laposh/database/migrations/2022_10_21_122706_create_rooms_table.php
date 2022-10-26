@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('specifications');
             $table->string('image');
             $table->timestamps();
+            
         });
     }
 

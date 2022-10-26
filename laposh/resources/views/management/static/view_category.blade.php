@@ -11,7 +11,7 @@
 
 	<title>La Posh Hotel</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href="../../../css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -26,7 +26,7 @@
 				<ul class="sidebar-nav">
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="/dashboard">
+						<a class="sidebar-link" href="index.html">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
@@ -135,7 +135,7 @@ Administrator
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Room Categories</strong></h1>
+					<h1 class="h3 mb-3"><strong>{{$category->name}}</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-8 col-xxl-2 d-flex">
@@ -143,7 +143,7 @@ Administrator
 								<div style="width: 90%;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Categories</h5>
+										<h5 class="card-title mb-0">Rooms</h5>
 									</div>
 									<table class="table table-hover my-0">
 										<thead>
@@ -154,22 +154,25 @@ Administrator
 											</tr>
 										</thead>
 										<tbody>
-											@foreach($categories as $category)
-											<tr>
-												<td>{{$loop->iteration}}</td>
-												<td>{{$category->name}}</td>
-												<td class="d-none d-xl-table-cell">
-												<form action=' {{url('/categories' . '/' .   $category->id)}}' method="post">
-													{{method_field('DELETE')}}
-													{{ csrf_field() }} 
-												<a href="{{url('categories/' .$category->id .'/edit')}}"class="btn btn-primary btn-sm">Edit</a>
-												<a href="{{url('categories/'.$category->id)}}"class="btn btn-primary btn-sm">View</a>
-                                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                            @foreach($rooms as $room)
+                                            <tr>
+                                        <td>{{$loop->iteration}}</td>
+					<td>{{$room->code}}</td>
+					<td class="d-none d-xl-table-cell">{{$room->price}}</td>
+					<td class="d-none d-xl-table-cell">
+					<form action=' {{url('/rooms' . '/' .   $room->id)}}' method="post">
+					{{method_field('DELETE')}}
+					{{ csrf_field() }} 
+					<a href="{{ url('/rooms/'. $room->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
+					<a href="{{ url('/rooms/'. $room->id) }}" class="btn a btn-primary btn-sm">View</a>
+
+                                                <button class="btn btn-danger btn-sm">Delete</button>
 													</form>
 
 												</td>
-											</tr>
-											@endforeach
+</tr>
+												@endforeach
+											<!-- {{$category->rooms}} -->
 										</tbody>
 									</table>
 								</div>
@@ -179,21 +182,12 @@ Administrator
 							<div class="card flex-fill">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Add New</h5>
+									<h5 class="card-title mb-0">Information</h5>
 								</div>
-								<form action="{{ url('categories') }}" method='post'>
-									{{ csrf_field() }}
 									<div class="card-body">
 										<h5 class="card-title mb-0">Name</h5>
-										<input type="text" name="name" class="form-control">
+										<input type="text" name="name" class="form-control" value="{{$category->name}}" readonly>
 									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Size</h5>
-										<input type="number" name="size" class="form-control">
-									</div>
-
-									<button type="submit" class="btn btn-primary btn-md">Save</button>
-								</form>
 							</div>
 						</div>
 					</div>
@@ -223,7 +217,7 @@ Administrator
 		</div>
 	</div>
 
-	<script src="js/app.js"></script>
+	<script src="../../../js/app.js"></script>
 </body>
 
 </html>

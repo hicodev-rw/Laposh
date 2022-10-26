@@ -150,7 +150,8 @@ Administrator
 											<tr>
 												<th>#</th>
 												<th>Code</th>
-												<th class="d-none d-xl-table-cell">Price</th>
+												<th>Category</th>
+												<th class="d-none d-xl-table-cell">Price ($)</th>
 												<th>Actions</th>
 											</tr>
 										</thead>
@@ -159,12 +160,14 @@ Administrator
 			<tr>
 				<td>{{$loop->iteration}}</td>
 					<td>{{$room->code}}</td>
+					<td>{{$room->category->name}}</td>
 					<td class="d-none d-xl-table-cell">{{$room->price}}</td>
 					<td class="d-none d-xl-table-cell">
 					<form action=' {{url('/rooms' . '/' .   $room->id)}}' method="post">
 					{{method_field('DELETE')}}
 					{{ csrf_field() }} 
-					<a href="{{ url('/rooms/'.$room->id.'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
+					<a href="{{ url('/rooms/'. $room->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
+					<a href="{{ url('/rooms/'. $room->id) }}" class="btn a btn-primary btn-sm">View</a>
 
                                                 <button class="btn btn-danger btn-sm">Delete</button>
 													</form>
@@ -199,7 +202,7 @@ Administrator
 										</select>
 									</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">Price</h5>
+										<h5 class="card-title mb-0">Price ($)</h5>
 										<input type="number" name="price" class="form-control">
 									</div>
 									<div class="card-body">

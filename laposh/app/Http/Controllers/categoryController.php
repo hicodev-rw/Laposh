@@ -48,7 +48,9 @@ class categoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category=Category::find($id);
+        $rooms=$category->rooms;
+        return view('management.static.view_category')->with('category',$category)->with('rooms',$rooms);
     }
 
     /**
