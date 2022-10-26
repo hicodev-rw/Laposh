@@ -50,7 +50,7 @@ class roomController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -61,7 +61,9 @@ class roomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room=Room::find($id);
+        $Category=Category::all();
+        return view('management.static.updateroom')->with('room',$room)->with('category',$Category);
     }
 
     /**

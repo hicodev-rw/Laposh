@@ -5,12 +5,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
 
 	<title>La Posh Hotel</title>
 
@@ -33,7 +30,7 @@
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
-					<li class="sidebar-item">
+					<li class="sidebar-item active">
 						<a class="sidebar-link" href="/rooms">
               <i class="align-middle" data-feather="home"></i> <span class="align-middle">Rooms</span>
             </a>
@@ -55,17 +52,17 @@
 
 									</li>
 			<li class="sidebar-item">
-					<a class="sidebar-link" href="checkout.html">
+					<a class="sidebar-link" href="/checkout">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="settings.html">
+				<a class="sidebar-link" href="/settings">
 				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
 			</a>
 		</li>
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="/users">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
             </a>
@@ -126,7 +123,7 @@ Administrator
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">hicode</span>
+                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -138,7 +135,7 @@ Administrator
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Users</strong></h1>
+					<h1 class="h3 mb-3"><strong>Rooms</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-8 col-xxl-2 d-flex">
@@ -146,37 +143,23 @@ Administrator
 								<div style="width: 90%;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Users</h5>
+										<h5 class="card-title mb-0">Rooms</h5>
 									</div>
 									<table class="table table-hover my-0">
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Name</th>
-                                                <th>Username</th>
-												<th class="d-none d-xl-table-cell">Role</th>
-                                                <th class="d-none d-xl-table-cell">Actions</th>
+												<th>Code</th>
+												<th class="d-none d-xl-table-cell">Price</th>
+												<th>Actions</th>
 											</tr>
 										</thead>
 										<tbody>
-											@forEach($users as $user)
+											@foreach($room as $room)
 											<tr>
-												<td>{{$loop->iteration}}</td>
-												<td>{{$user->lastName}}</td>
-												<td>{{$user->email}}</td>
-												<td class="d-none d-xl-table-cell">{{$user->role}}</td>
-												<td class="d-none d-xl-table-cell"></td>
-                                                <td>
-												<form action=' {{url('/users' . '/' .   $user->id)}}' method="post">
-													{{method_field('DELETE')}}
-													{{ csrf_field() }} 
-												<a class="btn btn-primary btn-sm">Edit</a>
-													
-                                                    <button class="btn btn-danger btn-sm">Delete</button>
-													</form>
-                                                </td>
+												
+												@endforeach
 											</tr>
-											@endforeach
 											
 										</tbody>
 									</table>
@@ -185,38 +168,41 @@ Administrator
 							</div>
 						<div class="col-xl-4 col-l-7">
 							<div class="card flex-fill">
-							
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Add New User</h5>
+									<h5 class="card-title mb-0">Add New</h5>
 								</div>
-								<form action="{{ url('users') }}" method='post'>
-									{!! csrf_field() !!}
+								<form action="{{url('rooms')}}"  method='post'>
+									{{csrf_field()}}
 									<div class="card-body">
-										<h5 class="card-title mb-0">firstName</h5>
-										<input type="text" name="firstName" class="form-control" required>
+										<h5 class="card-title mb-0">Code</h5>
+										<input type="text" name="code" class="form-control">
 									</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">LastName</h5>
-										<input type="text" name="lastName" class="form-control" required>
+										<h5 class="card-title mb-0">Category</h5>
+										<select name="category_id" class="form-control">
+											@foreach($category as $cat)
+										<option value="{{$cat->id}}">{{$cat->name}}</option>
+										@endforeach
+										</select>
 									</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">Email</h5>
-										<input type="email" name="email" class="form-control" required>
+										<h5 class="card-title mb-0">Price</h5>
+										<input type="number" name="price" class="form-control">
 									</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">Role</h5>
-										<input type="number" name="role" class="form-control"required>
+										<h5 class="card-title mb-0">Specifications</h5>
+										<input type="text" name="specifications" class="form-control">
 									</div>
 
 									<div class="card-body">
-										<h5 class="card-title mb-0">Password</h5>
-										<input type="password" name="password" class="form-control"required>
-									<div class="card-body">
-									<button type="submit" class="btn btn-primary btn-md">Save</button>
-									</form>
+										<h5 class="card-title mb-0">Image</h5>
+										<input type="file" name="image" class="form-control">
+									</div>
+
+									<button type="submit"class="btn btn-primary btn-md">Save</button>
+								</form>
 							</div>
-							
 						</div>
 					</div>
 
@@ -247,5 +233,4 @@ Administrator
 
 	<script src="js/app.js"></script>
 </body>
-
 </html>

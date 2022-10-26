@@ -154,17 +154,17 @@ Administrator
 												<th>Actions</th>
 											</tr>
 										</thead>
-										<tbody>
-											@foreach($rooms as $room)
-											<tr>
-												<td>{{$loop->iteration}}</td>
-												<td>{{$room->code}}</td>
-												<td class="d-none d-xl-table-cell">{{$room->price}}</td>
-												<td class="d-none d-xl-table-cell">
-												<form action=' {{url('/rooms' . '/' .   $room->id)}}' method="post">
-													{{method_field('DELETE')}}
-													{{ csrf_field() }} 
-												<a class="btn btn-primary btn-sm">Edit</a>
+		<tbody>
+		@foreach($rooms as $room)
+			<tr>
+				<td>{{$loop->iteration}}</td>
+					<td>{{$room->code}}</td>
+					<td class="d-none d-xl-table-cell">{{$room->price}}</td>
+					<td class="d-none d-xl-table-cell">
+					<form action=' {{url('/rooms' . '/' .   $room->id)}}' method="post">
+					{{method_field('DELETE')}}
+					{{ csrf_field() }} 
+					<a href="{{ url('/rooms/'.$room->id.'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
 
                                                 <button class="btn btn-danger btn-sm">Delete</button>
 													</form>
