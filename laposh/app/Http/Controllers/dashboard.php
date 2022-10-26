@@ -17,10 +17,13 @@ class dashboard extends Controller
     public function index()
     {
         $bookings=count(Reservation::all());
+        $ongoing=count(Reservation::all()->where('status_id','=',2));
+        $canceled=count(Reservation::all()->where('status_id','=',4));
+        $closed=count(Reservation::all()->where('status_id','=',3));
         $rooms=count(Room::all());
         $categories=count(Category::all());
         $clients=count(Customer::all());
-        return view('management.static.index')->with('bookings',$bookings)->with('rooms',$rooms)->with('categories',$categories)->with('clients',$clients);
+        return view('management.static.index')->with('bookings',$bookings)->with('rooms',$rooms)->with('categories',$categories)->with('clients',$clients)->with('ongoing',$ongoing)->with('closed',$closed)->with('canceled',$canceled);
     }
 
     /**

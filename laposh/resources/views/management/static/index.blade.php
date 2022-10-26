@@ -183,7 +183,7 @@ Administrator
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">64</h1>
+												<h1 class="mt-1 mb-3">{{$ongoing}}</h1>
 												<div class="mb-0">
 													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
 													<span class="text-muted">Since last week</span>
@@ -245,7 +245,7 @@ Administrator
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">64</h1>
+												<h1 class="mt-1 mb-3">{{$closed}}</h1>
 												<div class="mb-0">
 													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
 													<span class="text-muted">Since last week</span>
@@ -265,7 +265,7 @@ Administrator
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">64</h1>
+												<h1 class="mt-1 mb-3">{{$canceled}}</h1>
 												<div class="mb-0">
 													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
 													<span class="text-muted">Since last week</span>
