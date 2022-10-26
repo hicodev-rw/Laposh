@@ -187,10 +187,6 @@ Administrator
 										<h5 class="card-title mb-0">Name</h5>
 										<input type="text" name="name" class="form-control">
 									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Size</h5>
-										<input type="number" name="size" class="form-control">
-									</div>
 
 									<button type="submit" class="btn btn-primary btn-md">Save</button>
 								</form>

@@ -157,7 +157,7 @@ Administrator
                                             @foreach($rooms as $room)
                                             <tr>
                                         <td>{{$loop->iteration}}</td>
-					<td>{{$room->code}}</td>
+					<td>{{$room->name}}</td>
 					<td class="d-none d-xl-table-cell">{{$room->price}}</td>
 					<td class="d-none d-xl-table-cell">
 					<form action=' {{url('/rooms' . '/' .   $room->id)}}' method="post">

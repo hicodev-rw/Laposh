@@ -9,7 +9,7 @@ class Category extends Model
 {
     protected $table='categories';
     protected $primaryKey='id';
-    protected $fillable=['name','size'];
+    protected $fillable=['name'];
 
     public function rooms(){
         return $this->hasMany(Room::class);

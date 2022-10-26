@@ -159,7 +159,7 @@ Administrator
 		@foreach($rooms as $room)
 			<tr>
 				<td>{{$loop->iteration}}</td>
-					<td>{{$room->code}}</td>
+					<td>{{$room->name}}</td>
 					<td>{{$room->category->name}}</td>
 					<td class="d-none d-xl-table-cell">{{$room->price}}</td>
 					<td class="d-none d-xl-table-cell">
@@ -185,13 +185,13 @@ Administrator
 							<div class="card flex-fill">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Add New</h5>
+									<h5 class="card-title mb-0">Add New Room</h5>
 								</div>
 								<form action="{{url('rooms')}}"  method='post'>
 									{{csrf_field()}}
 									<div class="card-body">
-										<h5 class="card-title mb-0">Code</h5>
-										<input type="text" name="code" class="form-control">
+										<h5 class="card-title mb-0">Name</h5>
+										<input type="text" name="name" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Category</h5>

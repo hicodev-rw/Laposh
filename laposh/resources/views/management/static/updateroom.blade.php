@@ -161,9 +161,9 @@ Administrator
 									{{csrf_field()}}
                                     @method('PATCH')
 									<div class="card-body">
-										<h5 class="card-title mb-0">Code</h5>
-										<input type="text" name="code" class="form-control"
-                                        value="{{$room->code}}">
+										<h5 class="card-title mb-0">Name</h5>
+										<input type="text" name="name" class="form-control"
+                                        value="{{$room->name}}">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Category</h5>
