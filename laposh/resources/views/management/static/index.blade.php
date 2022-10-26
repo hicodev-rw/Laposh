@@ -59,6 +59,11 @@
 			</li>
 
 			<li class="sidebar-item">
+				<a class="sidebar-link" href="/config">
+				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Configurations</span>
+			</a>
+		</li>
+		<li class="sidebar-item">
 				<a class="sidebar-link" href="/settings">
 				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
 			</a>

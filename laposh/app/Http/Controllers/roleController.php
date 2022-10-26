@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
-use App\Models\Permission;
-class configController extends Controller
+class roleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class configController extends Controller
      */
     public function index()
     {
-        $permissions=Permission::all();
-        $roles=Role::all();
-        return view('management.static.config')->with('permission',$permissions)->with('role',$roles);
+        //
     }
 
     /**
@@ -37,7 +34,9 @@ class configController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        Role::create($input);
+        return redirect('config')->with('flash_message','role added succesfully!');
     }
 
     /**

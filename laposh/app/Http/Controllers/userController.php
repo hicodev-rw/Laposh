@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 class userController extends Controller
 {
     public function index()
     {
         $users=User::all();
-        return view('management.static.users')->with('users',$users);
+        $roles=Role::all();
+        return view('management.static.users')->with('users',$users)->with('roles',$roles);
     }
     public function create()
     {
