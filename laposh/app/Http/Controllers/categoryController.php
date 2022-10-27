@@ -49,6 +49,7 @@ class categoryController extends Controller
     public function destroy($id)
     {
         Category::destroy($id);
-        return 'category removed successfully';
+        $message='category removed successfully';
+        return $message;
     }
 }

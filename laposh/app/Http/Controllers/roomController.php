@@ -87,6 +87,7 @@ class roomController extends Controller
     public function destroy($id)
     {
         Room::destroy($id);
-        return 'Room was removed Succesfully!';
+        $message='Room was removed Succesfully!';
+        return $message;
     }
 }
