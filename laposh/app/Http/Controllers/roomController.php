@@ -50,6 +50,8 @@ class roomController extends Controller
     public function show($id)
     {
         $room=Room::find($id);
+        $images=$room->images;
+        $room->images=explode(',',$images);
         return $room;
     }
 
