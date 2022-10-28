@@ -6,9 +6,36 @@ use Illuminate\Http\Request;
 
 class categoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories=Category::all();
+        $cat_query=Category::with(['rooms']);
+
+        if($request->sortBy && in_array($request->sortBy,['name','created_at'])){
+            $sortBy=$request->sortBy;
+        }
+        else{
+            $sortBy='name'; 
+        }
+
+        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
+            $sortOrder=$request->sortOrder;
+        }
+        else{
+            $sortOrder='desc'; 
+        }
+
+        if($request->perPage){
+            $perPage=$request->perPage;
+        }
+        else{
+            $perPage=8;
+        }
+        if($request->paginate){
+            $categories=$cat_query->orderBy($sortBy,$sortOrder)->paginate($perPage);
+        }
+        else{
+            $categories=$cat_query->orderBy($sortBy,$sortOrder)->get();
+        }
         return $categories;
     }
     public function create()

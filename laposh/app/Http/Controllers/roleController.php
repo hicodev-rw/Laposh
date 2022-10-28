@@ -9,7 +9,8 @@ class roleController extends Controller
 
     public function index()
     {
-        $roles=Role::all();
+        $roles_query=Role::with(['permission']);
+        $roles=$roles_query->get();
         return $roles;
     }
 

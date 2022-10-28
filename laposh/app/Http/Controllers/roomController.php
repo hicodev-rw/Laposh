@@ -8,10 +8,50 @@ use App\Models\Category;
 class roomController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $rooms=Room::all();
+        $room_query=Room::with('category');
+
+        if($request->keyword){
+            $room_query->where('name','LIKE','%'.$request->keyword.'%');
+        }
+        if($request->category){
+            $room_query->whereHas('category',function($query) use($request){
+                $query->where('name',$request->category);
+            });
+        }
+
+        if($request->sortBy && in_array($request->sortBy,['name','price','created_at'])){
+            $sortBy=$request->sortBy;
+        }
+        else{
+            $sortBy='id'; 
+        }
+
+        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
+            $sortOrder=$request->sortOrder;
+        }
+        else{
+            $sortOrder='desc'; 
+        }
+
+        if($request->perPage){
+            $perPage=$request->perPage;
+        }
+        else{
+            $perPage=5;
+        }
+        if($request->paginate){
+            $rooms=$room_query->orderBy($sortBy,$sortOrder)->paginate($perPage);
+        }
+        else{
+            $rooms=$room_query->orderBy($sortBy,$sortOrder)->get();
+        }
+
         return $rooms;
+    }
+public function list(){
+
     }
 
     public function create()

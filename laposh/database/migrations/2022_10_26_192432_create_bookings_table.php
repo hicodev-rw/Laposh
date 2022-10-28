@@ -17,13 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('room_id');
-            $table->Date('check_In_date');
+            $table->Date('check_in_date');
             $table->Date('check_out_date');
             $table->string('special_info');
             $table->string('reference');
-            $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->timestamps();
-
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('status_id')->references('id')->on('status');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');

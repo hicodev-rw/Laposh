@@ -9,9 +9,9 @@ class Reservation extends Model
 {
     protected $table='bookings';
     protected $primaryKey='id';
-    protected $fillable=['checkInDate','checkOutDate','special_info','reference','status'];
+    protected $fillable=['customer_id','room_id','check_in_date','check_out_date','special_info','reference','status_id'];
 
-    public function customer(){
+    public function owner(){
         return $this->belongsTo(Customer::class);
     }
     public function room(){

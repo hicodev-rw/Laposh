@@ -7,9 +7,15 @@ use App\Models\User;
 use App\Models\Role;
 class userController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users=User::all();
+        $user_query=User::with(['role']);
+        if($request->role){
+            $user_query->whereHas('role',function($query) use($request){
+                $query->where('name',$request->role);
+            });
+        }
+        $users=$user_query->get();
         return $users;
     }
     public function create()

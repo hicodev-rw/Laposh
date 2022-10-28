@@ -29,6 +29,7 @@ Route::resource('/users/manage/permissions',permissionController::class);
 Route::resource('/users/manage/roles',roleController::class);
 Route::resource('/customers',customerController::class);
 Route::resource('/rooms',roomController::class);
+Route::get('/list',[roomController::class,'list']);
 Route::resource('/categories',categoryController::class);
 Route::resource('/reservations',reservationController::class);
 Route::resource('/reservations/status',statusController::class);
