@@ -11,6 +11,6 @@ class Permission extends Model
     protected $primaryKey='id';
     protected $fillable=['allowed','name'];
     public function role(){
-        return $this->hasMany(User::class);
+        return $this->hasMany(Role::class);
     }
 }

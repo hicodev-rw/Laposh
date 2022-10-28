@@ -6,82 +6,46 @@ use Illuminate\Http\Request;
 use App\Models\Permission;
 class permissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $permissions=Permission::all();
-        return view('management.static.config')->with('permission',$permissions);
+        return $permissions;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $input=$request->all();
-        Permission::create($input);
-        return redirect('config')->with('flash_message','data added succesfully!');
+        $permission=Permission::create($input);
+        return $permission;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $permission=Permission::find($id);
+        $role=$permission->role;
+        return $permission;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $permission=Permission::find($id);
+        $input =$request->all();
+        $permission->update($input);
+        return $permission;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Permission::destroy($id);
+        $message="permission removed succesfully!";
+        return $message;
     }
 }

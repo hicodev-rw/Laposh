@@ -13,7 +13,6 @@ class categoryController extends Controller
     }
     public function create()
     {
-        //
     }
 
     public function store(Request $request)
@@ -33,7 +32,6 @@ class categoryController extends Controller
 
     public function edit($id)
     {
-        //
     }
 
 

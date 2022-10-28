@@ -10,45 +10,41 @@ class userController extends Controller
     public function index()
     {
         $users=User::all();
-        $roles=Role::all();
-        return view('management.static.users')->with('users',$users)->with('roles',$roles);
+        return $users;
     }
     public function create()
     {
-        //
     }
 
     public function store(Request $request)
     {
-        $input =$request->all();
-        User::create($input);
-        return redirect('users')->with('flash_message','student updated');
+        $input = $request->all();
+        $user = User::create($input);
+        return $user;
     }
 
     public function show($id)
     {
-        //
+        $user=User::find($id);
+        $role=$user->role->permission;
+        return $user;
     }
 
     public function edit($id)
     {
-        //
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $user=User::find($id);
+        $input =$request->all();
+        $user->update($input);
+        return $user;
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect('users')->with('flash_message','student_deleted');
+        $message="User removed successfully";
+        return $message;
     }
 }

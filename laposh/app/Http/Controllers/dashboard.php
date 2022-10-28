@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class dashboard extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $bookings=count(Reservation::all());
@@ -23,25 +18,13 @@ class dashboard extends Controller
         $rooms=count(Room::all());
         $categories=count(Category::all());
         $clients=count(Customer::all());
-        return view('management.static.index')->with('bookings',$bookings)->with('rooms',$rooms)->with('categories',$categories)->with('clients',$clients)->with('ongoing',$ongoing)->with('closed',$closed)->with('canceled',$canceled);
+        $response=['bookings'=>$bookings,'rooms'=>$rooms,'categories'=>$categories,'clients'=>$clients,'ongoing deals'=>$ongoing,'closed deals'=>$closed,'canceled deals'=>$canceled];
+        return $response;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
