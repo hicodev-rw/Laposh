@@ -8,7 +8,8 @@ class reservationController extends Controller
 {
     public function index()
     {
-        //
+        $reservations=Reservation::all();
+        return $reservations;
     }
 
     public function create()
@@ -18,7 +19,9 @@ class reservationController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        $reservation=Reservation::create($input);
+        
     }
 
     public function show($id)
@@ -33,7 +36,7 @@ class reservationController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     public function destroy($id)
