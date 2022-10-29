@@ -45,8 +45,8 @@ class statusController extends Controller
 
     public function update(Request $request, $id)
     {
-        $status=Status::find($id);
         $input=$request->all();
+        $status=Status::find($id);
         if($status){
             $status->update($input);
             $message="status was updated succesfully!";

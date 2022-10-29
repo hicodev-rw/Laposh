@@ -15,6 +15,37 @@ class userController extends Controller
                 $query->where('name',$request->role);
             });
         }
+
+        if($request->keyword){
+            $user_query->where('name','LIKE','%'.$request->keyword.'%');
+        }
+
+        if($request->sortBy && in_array($request->sortBy,['id','firstName','lastName','created_at'])){
+            $sortBy=$request->sortBy;
+        }
+        else{
+            $sortBy='id'; 
+        }
+
+        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
+            $sortOrder=$request->sortOrder;
+        }
+        else{
+            $sortOrder='asc'; 
+        }
+
+        if($request->perPage){
+            $perPage=$request->perPage;
+        }
+        else{
+            $perPage=8;
+        }
+        if($request->paginate){
+            $users=$user_query->orderBy($sortBy,$sortOrder)->paginate($perPage);
+        }
+        else{
+            $users=$user_query->orderBy($sortBy,$sortOrder)->get();
+        }
         $users=$user_query->get();
         return $users;
     }
@@ -31,8 +62,8 @@ class userController extends Controller
 
     public function show($id)
     {
-        $user=User::find($id);
-        $role=$user->role->permission;
+        $user=User::with(['role'])->find($id);
+        $permissions=$user->role->permission;
         return $user;
     }
 

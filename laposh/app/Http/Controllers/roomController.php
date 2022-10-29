@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Reservation;
 use App\Models\Category;
 class roomController extends Controller
 {
@@ -50,9 +51,55 @@ class roomController extends Controller
 
         return $rooms;
     }
-public function list(){
+    public function list(Request $request){
+        $from=date($request->check_in_date);
+        $to=date($request->check_out_date);
+        $blocked=Reservation::distinct()->where('check_in_date', '=', $from)->orWhere('check_out_date', '=', $to)->orWhere([['check_in_date', '<', $from],['check_out_date', '>', $to]])->orWhere(function($query)use ($request){
+            $query->whereBetween('check_in_date',array($request->check_in_date,$request->check_out_date))
+                ->orWhereBetween('check_out_date',array($request->check_in_date,$request->check_out_date));
+        })->get('room_id');
 
+        $keys=array();
+        for ($x = 0; $x < count($blocked); $x++) {
+        array_push($keys,$blocked[$x]['room_id']);
+        }
+
+        $room_query = Room::with('category');
+        if($request->category){
+            $room_query->whereHas('category',function($query) use($request,$keys){
+                $query->where('name',$request->category);
+            });
+        }
+
+        if($request->sortBy && in_array($request->sortBy,['name','price','created_at'])){
+            $sortBy=$request->sortBy;
+        }
+        else{
+            $sortBy='price'; 
+        }
+
+        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
+            $sortOrder=$request->sortOrder;
+        }
+        else{
+            $sortOrder='desc'; 
+        }
+
+        if($request->perPage){
+            $perPage=$request->perPage;
+        }
+        else{
+            $perPage=5;
+        }
+        if($request->paginate){
+            $rooms=$room_query->whereNotIn('id', $keys)->orderBy($sortBy,$sortOrder)->paginate($perPage);
+        }
+        else{
+            $rooms=$room_query->whereNotIn('id', $keys)->orderBy($sortBy,$sortOrder)->get();
+        }
+            return $rooms;
     }
+
 
     public function create()
     {
