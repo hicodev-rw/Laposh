@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Configuration extends Model
+class Hotel_info extends Model
 {
-    protected $table='configurations';
+    protected $table='hotel-info';
     protected $primaryKey='id';
     protected $fillable=['name','email','address','about-us','logo'];
 }

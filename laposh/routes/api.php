@@ -6,7 +6,7 @@ use App\Http\Controllers\categoryController;
 use App\Http\Controllers\roomController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\dashboard;
-use App\Http\Controllers\configController;
+use App\Http\Controllers\infoController; 
 use App\Http\Controllers\permissionController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\customerController;
@@ -52,6 +52,10 @@ Route::patch('/reservations/checkin/{id}',[reservationController::class,'checkin
 Route::patch('/reservations/checkout/{id}',[reservationController::class,'checkout']);
 Route::resource('/reservations/status',statusController::class);
 
+
+//hotel info
+Route::resource('/hotel/info',infoController::class);
+Route::post('/info/logo',[infoController::class,'uploadLogo']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
