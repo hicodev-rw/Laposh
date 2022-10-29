@@ -9,5 +9,5 @@ class Configuration extends Model
 {
     protected $table='configurations';
     protected $primaryKey='id';
-    protected $fillable=['name','email','address','logo'];
+    protected $fillable=['name','email','address','about-us','logo'];
 }

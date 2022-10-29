@@ -104,65 +104,118 @@ class reservationController extends Controller
         }
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $reservation=Reservation::find($id);
-    //     $input=$request->all();
-    //     if($reservation){
-    //         $reservation->update($input);
-    //         $message="reservation was updated succesfully!";
-    //         return $message;
-    //     }
-    //     else{
-    //         $message="reservation not Found";
-    //         return $message;  
-    //     }
-    // }
+    public function readForCheckIn(Request $request)
+    {
+        $date = date('Y-m-d');
+        $reservations_query=Reservation::with('room','customer');
+        if($request->keyword){
+            $reservations_query->where('reference','LIKE','%'.$request->keyword.'%')->where('check_in_date',$date);
+        }
+        if($request->owner){
+            $reservations_query->whereHas('customer',function($query) use($request){
+                $query->where('firstName',$request->owner)->where('check_in_date',$date);
+            });
+        }
+        if($request->sortBy && in_array($request->sortBy,['reference','created_at',])){
+            $sortBy=$request->sortBy;
+        }
+        else{
+            $sortBy='created_at'; 
+        }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $reservation=Reservation::find($id);
-    //     $input=$request->all();
-    //     if($reservation){
-    //         $reservation->update($input);
-    //         $message="reservation was updated succesfully!";
-    //         return $message;
-    //     }
-    //     else{
-    //         $message="reservation not Found";
-    //         return $message;  
-    //     }
-    // }
+        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
+            $sortOrder=$request->sortOrder;
+        }
+        else{
+            $sortOrder='asc'; 
+        }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $reservation=Reservation::find($id);
-    //     $input=$request->all();
-    //     if($reservation){
-    //         $reservation->update($input);
-    //         $message="reservation was updated succesfully!";
-    //         return $message;
-    //     }
-    //     else{
-    //         $message="reservation not Found";
-    //         return $message;  
-    //     }
-    // }
+        if($request->perPage){
+            $perPage=$request->perPage;
+        }
+        else{
+            $perPage=8;
+        }
+        if($request->paginate){
+            $reservations=$reservations_query->where('check_in_date',$date)->orderBy($sortBy,$sortOrder)->paginate($perPage);
+        }
+        else{
+            $reservations=$reservations_query->where('check_in_date',$date)->orderBy($sortBy,$sortOrder)->get();
+        }
+        return $reservations;
+    }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $reservation=Reservation::find($id);
-    //     $input=$request->all();
-    //     if($reservation){
-    //         $reservation->update($input);
-    //         $message="reservation was updated succesfully!";
-    //         return $message;
-    //     }
-    //     else{
-    //         $message="reservation not Found";
-    //         return $message;  
-    //     }
-    // }
+    
+    public function readForCheckOut(Request $request)
+    {
+        $reservations_query=Reservation::with('room','customer');
+        if($request->keyword){
+            $reservations_query->where('reference','LIKE','%'.$request->keyword.'%')->where('status_id',2);
+        }
+        if($request->owner){
+            $reservations_query->whereHas('customer',function($query) use($request){
+                $query->where('firstName',$request->owner)->where('check_in_date',$date);
+            });
+        }
+        if($request->sortBy && in_array($request->sortBy,['reference','created_at',])){
+            $sortBy=$request->sortBy;
+        }
+        else{
+            $sortBy='created_at'; 
+        }
+
+        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
+            $sortOrder=$request->sortOrder;
+        }
+        else{
+            $sortOrder='asc'; 
+        }
+
+        if($request->perPage){
+            $perPage=$request->perPage;
+        }
+        else{
+            $perPage=8;
+        }
+        if($request->paginate){
+            $reservations=$reservations_query->where('status_id',2)->orderBy($sortBy,$sortOrder)->paginate($perPage);
+        }
+        else{
+            $reservations=$reservations_query->where('status_id',2)->orderBy($sortBy,$sortOrder)->get();
+        }
+        return $reservations;
+    }
+
+
+    public function checkin(Request $request, $id)
+    {
+    $reservation=Reservation::find($id);
+    $input=array('status_id'=>2);
+    if($reservation){
+        $reservation->update($input);
+        $message="reservation was checked in succesfully!";
+        return $message;
+    }
+    else{
+        $message="reservation not Found";
+        return $message;  
+    }
+}
+
+    public function checkout(Request $request, $id)
+    {
+        $reservation=Reservation::find($id);
+        $input=array('status_id'=>3);
+        if($reservation){
+            $reservation->update($input);
+            $message="reservation was closed succesfully!";
+            return $message;
+        }
+        else{
+            $message="reservation not Found";
+            return $message;  
+        }
+    }
 
     public function cancelBooking(Request $request, $id)
     {
@@ -179,6 +232,7 @@ class reservationController extends Controller
         }
     }
 
+    //if needed to delete
     public function destroy($id)
     {
         $data=Reservation::find($id);

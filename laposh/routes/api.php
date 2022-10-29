@@ -23,19 +23,37 @@ use App\Http\Controllers\reservationController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//analytics
 Route::resource('/dashboard',dashboard::class);
+
+//users
 Route::resource('/users',userController::class);
 Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
 Route::resource('/users/manage/permissions',permissionController::class);
 Route::resource('/users/manage/roles',roleController::class);
+
+//customers
 Route::resource('/customers',customerController::class);
+
+//rooms
 Route::resource('/rooms',roomController::class);
 Route::get('/list',[roomController::class,'list']);
 Route::POST('/room/avatar/save/{id}',[roomController::class,'addRoomImages']);
 Route::resource('/categories',categoryController::class);
+Route::get('/room/popular',[roomController::class,'popular']);
+
+//bookings
 Route::resource('/reservations',reservationController::class);
 Route::patch('/reservations/cancel/{id}',[reservationController::class,'cancelBooking']);
+Route::get('/reservations/checkin/list',[reservationController::class,'readForCheckIn']);
+Route::get('/reservations/checkout/list',[reservationController::class,'readForCheckOut']);
+Route::patch('/reservations/checkin/{id}',[reservationController::class,'checkin']);
+Route::patch('/reservations/checkout/{id}',[reservationController::class,'checkout']);
 Route::resource('/reservations/status',statusController::class);
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

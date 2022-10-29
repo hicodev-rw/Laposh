@@ -1,17 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Models\Role;
-use App\Models\Permission;
+use App\Models\Configuration;
 class configController extends Controller
 {
     public function index()
     {
-        $permissions=Permission::all();
-        $roles=Role::all();
-        return view('management.static.config')->with('permission',$permissions)->with('role',$roles);
+
     }
 
     public function create()

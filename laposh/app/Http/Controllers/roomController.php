@@ -146,6 +146,9 @@ class roomController extends Controller
         $message='Room was removed Succesfully!';
         return $message;
     }
+
+
+    //upload room images
     public function addRoomImages(Request $request,$id){
         $images=array();
         $room=Room::find($id);
@@ -162,5 +165,11 @@ class roomController extends Controller
             $message='Room not found';
             return $message;
         }
+    }
+
+    //popular booked room
+    public function popular()
+    {
+
     }
 }
