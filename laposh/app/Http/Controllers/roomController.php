@@ -122,10 +122,7 @@ class roomController extends Controller
     
     public function show($id)
     {
-        $room=Room::find($id);
-        $images=$room->images;
-        $room->images=explode(',',$images);
-        $category=$room->category;
+        $room=Room::with('category')->find($id);
         return $room;
     }
 

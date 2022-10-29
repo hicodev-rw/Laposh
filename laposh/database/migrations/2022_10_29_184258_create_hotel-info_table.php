@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('email');
-            $table->string('phone')->nullable();
+            $table->string('phone');
             $table->string('logo')->nullable();
             $table->string('about-us');
+            $table->timestamps();
+
         });
     }
 

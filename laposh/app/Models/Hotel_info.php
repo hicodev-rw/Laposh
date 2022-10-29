@@ -9,5 +9,5 @@ class Hotel_info extends Model
 {
     protected $table='hotel-info';
     protected $primaryKey='id';
-    protected $fillable=['name','email','address','about-us','logo'];
+    protected $fillable=['name','email','address','about-us','phone','logo'];
 }

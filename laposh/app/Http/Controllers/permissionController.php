@@ -19,7 +19,10 @@ class permissionController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
-        $permission=Permission::create($input);
+        $permissions = explode(',',$request->allowed);
+        $permissions=array('allowed'=>$permissions);
+        $merge=array_merge($input,$permissions);
+        $permission=Permission::create($merge);
         return $permission;
     }
 
