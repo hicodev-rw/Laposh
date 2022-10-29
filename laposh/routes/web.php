@@ -9,9 +9,6 @@ use App\Http\Controllers\configController;
 use App\Http\Controllers\permissionController;
 use App\Http\Controllers\roleController;
 
-Route::get('/', function () {
-    return view('web.web.index');
-});
 Route::resource('/categories',categoryController::class);
 Route::resource('/rooms',roomController::class);
 Route::resource('/users',userController::class);

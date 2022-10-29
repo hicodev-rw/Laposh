@@ -107,10 +107,19 @@ class roomController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
-        $room=Room::create($input);
-        return $room;
+        $isUnique=count(Room::where('name',$input['name'])->get());
+        if($isUnique==0){
+            $room=Room::create($input); 
+            return $room;
+        }
+        else{
+       $message='the name of room must be unique';
+       return $message;
+        }
     }
-
+            
+            
+    
     public function show($id)
     {
         $room=Room::find($id);
@@ -136,5 +145,22 @@ class roomController extends Controller
         Room::destroy($id);
         $message='Room was removed Succesfully!';
         return $message;
+    }
+    public function addRoomImages(Request $request,$id){
+        $images=array();
+        $room=Room::find($id);
+        if($room){
+            foreach($request->file('file') as $file){
+                $image = cloudinary()->upload($file->getRealPath())->getSecurePath();
+                array_push($images,$image);
+                }
+                $roomImages = array('images' => $images);
+                $room->update($roomImages);
+                return $room;
+        }
+        else{
+            $message='Room not found';
+            return $message;
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Hash;
 class customerController extends Controller
 {
     public function index()
@@ -20,19 +21,31 @@ class customerController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
-        $customer=Customer::create($input);
+        $isUnique = count(Customer::where('email',$request->email)->get());
+        if($isUnique==0){
+        $password=$request->password;
+        $hashed = Hash::make($password, [
+            'rounds' => 12,
+        ]);
+        $password = array('password' => $hashed);
+        $merge = array_merge($input, $password);
+        $customer = Customer::create($merge);
         return $customer;
+    }
+    else{
+        $message='User is already registered';
+        return $message;
+    }
     }
 
     public function show($id)
     {
-        $customer=Customer::find($id);
+        $customer=Customer::with('reservations')->find($id);
         if($customer){
-            $reservations=$customer->reservations;
             return $customer;
         }
         else{
-            $message="user not Found";
+            $message="customer not Found";
             return $message;  
         }
     }
@@ -45,12 +58,18 @@ class customerController extends Controller
 
     public function update(Request $request, $id)
     {
-        $customer=Customer::find($id);
         $input=$request->all();
+        $customer=Customer::find($id);
         if($customer){
-            $customer->update($input);
-            $message="client was updated succesfully!";
-            return $message;
+        $password=$request->password;
+        $hashed = Hash::make($password, [
+            'rounds' => 12,
+        ]);
+        $password = array('password' => $hashed);
+        $merge = array_merge($input, $password);
+        $customer->update($merge);
+        $message="Profile was updated succesfully!";
+        return $message;
         }
         else{
             $message="user not Found";

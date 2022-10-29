@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 class userController extends Controller
 {
     public function index(Request $request)
@@ -55,9 +56,22 @@ class userController extends Controller
 
     public function store(Request $request)
     {
-        $input = $request->all();
-        $user = User::create($input);
+        $input=$request->all();
+        $isUnique = count(User::where('email',$request->email)->get());
+        if($isUnique==0){
+        $password=$request->password;
+        $hashed = Hash::make($password, [
+            'rounds' => 12,
+        ]);
+        $password = array('password' => $hashed);
+        $merge = array_merge($input, $password);
+        $user = User::create($merge);
         return $user;
+    }
+    else{
+        $message='User is already registered';
+        return $message;
+    }
     }
 
     public function show($id)
@@ -73,15 +87,47 @@ class userController extends Controller
 
     public function update(Request $request, $id)
     {
+        $input=$request->all();
         $user=User::find($id);
-        $input =$request->all();
-        $user->update($input);
-        return $user;
+        if($user){
+        $password=$request->password;
+        $hashed = Hash::make($password, [
+            'rounds' => 12,
+        ]);
+        $password = array('password' => $hashed);
+        $merge = array_merge($input, $password);
+        $user->update($merge);
+        $message="User was updated succesfully!";
+        return $message;
+        }
+        else{
+            $message="user not Found";
+            return $message;  
+        }
     }
     public function destroy($id)
     {
         User::destroy($id);
         $message="User removed successfully";
         return $message;
+    }
+
+    public function showUploadForm()
+    {
+        //
+    }
+
+
+    public function storeAvatar(Request $request,$id)
+    {
+        $user=User::find($id);
+        if($user){
+            $link = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
+        $avatar=array('avatar'=>$link);
+        $user->update($avatar);
+        return $user;
+        }
+        
+
     }
 }

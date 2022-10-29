@@ -25,13 +25,16 @@ use App\Http\Controllers\reservationController;
 */
 Route::resource('/dashboard',dashboard::class);
 Route::resource('/users',userController::class);
+Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
 Route::resource('/users/manage/permissions',permissionController::class);
 Route::resource('/users/manage/roles',roleController::class);
 Route::resource('/customers',customerController::class);
 Route::resource('/rooms',roomController::class);
 Route::get('/list',[roomController::class,'list']);
+Route::POST('/room/avatar/save/{id}',[roomController::class,'addRoomImages']);
 Route::resource('/categories',categoryController::class);
 Route::resource('/reservations',reservationController::class);
+Route::patch('/reservations/cancel/{id}',[reservationController::class,'cancelBooking']);
 Route::resource('/reservations/status',statusController::class);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
