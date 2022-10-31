@@ -32,6 +32,7 @@ Route::resource('/users',userController::class);
 Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
 Route::resource('/users/manage/permissions',permissionController::class);
 Route::resource('/users/manage/roles',roleController::class);
+Route::post('/login',[userController::class,'login']);
 
 //customers
 Route::resource('/customers',customerController::class);
