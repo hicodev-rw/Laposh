@@ -32,10 +32,11 @@ Route::resource('/users',userController::class);
 Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
 Route::resource('/users/manage/permissions',permissionController::class);
 Route::resource('/users/manage/roles',roleController::class);
+Route::POST('/login',[userController::class,'login']);
 
 //customers
 Route::resource('/customers',customerController::class);
-
+Route::POST('customer/login',[customerController::class,'login']);
 //rooms
 Route::resource('/rooms',roomController::class);
 Route::get('/list',[roomController::class,'list']);
@@ -50,7 +51,7 @@ Route::get('/reservations/checkin/list',[reservationController::class,'readForCh
 Route::get('/reservations/checkout/list',[reservationController::class,'readForCheckOut']);
 Route::patch('/reservations/checkin/{id}',[reservationController::class,'checkin']);
 Route::patch('/reservations/checkout/{id}',[reservationController::class,'checkout']);
-Route::resource('/reservations/status',statusController::class);
+Route::resource('/reservation/status',statusController::class);
 
 
 //hotel info
@@ -58,6 +59,10 @@ Route::resource('/hotel/info',infoController::class);
 Route::post('/info/logo',[infoController::class,'uploadLogo']);
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware'=>['auth:sanctum']], function () {
+    Route::resource('/reservations',reservationController::class);
 });
+Route::middleware('admin')->group(function () {
+    Route::resource('/rooms',roomController::class);
+ });
+

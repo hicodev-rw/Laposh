@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+ 
 class userController extends Controller
 {
     public function index(Request $request)
@@ -127,7 +130,29 @@ class userController extends Controller
         $user->update($avatar);
         return $user;
         }
-        
+    }
 
+    public function login(Request $request)
+    {
+        $user=User::where('email',$request->email)->first();
+        if($user){
+            $hashed=$user['password'];
+            $password=$request->password;
+            if(Hash::check($password,$hashed)){
+                $token = $user->createToken('myapitoken');
+ 
+             return ['token' => $token->plainTextToken];
+            }
+            else{
+                $message='Incorrect password';
+                return $message;
+            }
+        
+        }
+        else{
+            $message='User Not found';
+            return $message;
+        }
+    
     }
 }

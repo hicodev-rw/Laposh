@@ -90,4 +90,28 @@ class customerController extends Controller
             return $message;  
         }
     }
+
+    public function login(Request $request)
+    {
+        $user=Customer::where('email',$request->email)->first();
+        if($user){
+            $hashed=$user['password'];
+            $password=$request->password;
+            if(Hash::check($password,$hashed)){
+                $token = $user->createToken('myapitoken');
+ 
+             return ['token' => $token->plainTextToken];
+            }
+            else{
+                $message='Incorrect password';
+                return $message;
+            }
+        
+        }
+        else{
+            $message='User Not found';
+            return $message;
+        }
+    
+    }
 }
