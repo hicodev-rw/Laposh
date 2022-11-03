@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
@@ -97,6 +98,7 @@ class userController extends Controller
         $hashed = Hash::make($password, [
             'rounds' => 12,
         ]);
+        $check=Hash::check($password, $hashed);
         $password = array('password' => $hashed);
         $merge = array_merge($input, $password);
         $user->update($merge);
@@ -154,5 +156,28 @@ class userController extends Controller
             return $message;
         }
     
+    }
+
+    public function login(Request $request)
+    {
+    //     $token = Str::random(60);
+    //     $input=$request->all();
+    //     $user = User::where('email',$request->email)->get();
+    //     if($user){
+    //     $password=$request->password;
+    //     $hashed=$user[0]['password'];
+    //     $check=Hash::check($password, $hashed);
+    //     if($check) {
+    //     }
+    //     else{
+    //         $message='Incorrect password';
+    //         return $message;
+    //     }
+        
+    // }
+    // else{
+    //     $message='User not found';
+    //     return $message;
+    // }
     }
 }
