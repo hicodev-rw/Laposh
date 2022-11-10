@@ -41,20 +41,18 @@ Route::get('/dashboard',[dashboard::class,'index'])->middleware(['auth:sanctum',
 
 
 //users
-
- Route::group(['middleware'=>['auth:sanctum',]], function () {
-    Route::resource('/users',userController::class); 
+Route::post('/login',[userController::class,'login']);
+ Route::group(['middleware'=>['auth:sanctum','role:sdmin']], function () {
+     Route::resource('/users',userController::class); 
      Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
      Route::resource('/users/manage/permissions',permissionController::class);
      Route::resource('/users/manage/roles',roleController::class);
  });
 
-
-
-Route::post('/login',[userController::class,'login']);
-
 //customers
+
 Route::resource('/customers',customerController::class);
+
 Route::POST('customer/login',[customerController::class,'login']);
 //rooms
 // Route::resource('/rooms',roomController::class);

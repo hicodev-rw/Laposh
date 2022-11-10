@@ -172,7 +172,6 @@ Administrator
 												</td>
 </tr>
 												@endforeach
-											<!-- {{$category->rooms}} -->
 										</tbody>
 									</table>
 								</div>
@@ -185,7 +184,7 @@ Administrator
 									<h5 class="card-title mb-0">Information</h5>
 								</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">Name</h5>
+										<h5 class="card-title mb-0">Category Name</h5>
 										<input type="text" name="name" class="form-control" value="{{$category->name}}" readonly>
 									</div>
 							</div>

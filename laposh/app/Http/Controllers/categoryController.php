@@ -36,7 +36,8 @@ class categoryController extends Controller
         else{
             $categories=$cat_query->orderBy($sortBy,$sortOrder)->get();
         }
-        return $categories;
+        //return $categories;
+        return view('management.static.categories')->with('categories',$categories);
     }
     public function create()
     {
@@ -46,19 +47,25 @@ class categoryController extends Controller
     {
         $input=$request->all();
         $category=Category::create($input);
-        return $category;
+       // return $category;
+        return redirect('/categories')->with('message','category created successfully');
     }
 
     public function show($id)
     {
         $category=Category::find($id);
         $rooms=$category->rooms;
-        return $category;
+        // return $category;
+        return view('management.static.view_category')->with('category',$category)->with('rooms',$rooms);
+
     }
 
 
     public function edit($id)
     {
+        $categories=Category::all();
+        $category=Category::find($id);
+        return view('management.static.edit_category')->with('category',$category)->with('categories',$categories);;
     }
 
 
@@ -67,7 +74,8 @@ class categoryController extends Controller
         $category=Category::find($id);
         $input =$request->all();
         $category->update($input);
-        return $category;
+        //return $category;
+        return redirect('/categories')->with('message','category updated successfully');
     }
 
 
@@ -75,6 +83,7 @@ class categoryController extends Controller
     {
         Category::destroy($id);
         $message='category removed successfully';
-        return $message;
+       // return $message;
+       return redirect('/categories')->with('message','category removed successfully');
     }
 }

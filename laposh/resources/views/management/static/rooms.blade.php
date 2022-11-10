@@ -212,7 +212,7 @@ Administrator
 
 									<div class="card-body">
 										<h5 class="card-title mb-0">Image</h5>
-										<input type="file" name="image" class="form-control">
+										<input type="file" name="file[]" class="form-control">
 									</div>
 
 									<button type="submit"class="btn btn-primary btn-md">Save</button>

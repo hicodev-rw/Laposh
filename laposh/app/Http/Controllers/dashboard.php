@@ -19,6 +19,6 @@ class dashboard extends Controller
         $categories=count(Category::all());
         $clients=count(Customer::all());
         $response=['bookings'=>$bookings,'rooms'=>$rooms,'categories'=>$categories,'clients'=>$clients,'ongoing deals'=>$ongoing,'closed deals'=>$closed,'canceled deals'=>$canceled];
-        return $response;
+        return view('management.static.index')->with('bookings',$bookings)->with('ongoing',$ongoing)->with('clients',$clients)->with('rooms',$rooms)->with('categories',$categories)->with('closed',$closed)->with('canceled',$canceled) ;
     }
 }

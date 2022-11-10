@@ -5,9 +5,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-
 
 	<title>La Posh Hotel</title>
 
@@ -30,7 +30,7 @@
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="/rooms">
               <i class="align-middle" data-feather="home"></i> <span class="align-middle">Rooms</span>
             </a>
@@ -39,26 +39,26 @@
 			<a class="sidebar-link" href="/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
-<li class="sidebar-item">
+<li class="sidebar-item active">
 	<a class="sidebar-link" href="/categories">
 <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
 </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="checkin.html">
+						<a class="sidebar-link" href="/checkin">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
 					</a>
 										</li>
 
 									</li>
 			<li class="sidebar-item">
-					<a class="sidebar-link" href="/checkout">
+					<a class="sidebar-link" href="checkout.html">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="/settings">
+				<a class="sidebar-link" href="settings.html">
 				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
 			</a>
 		</li>
@@ -121,12 +121,12 @@ Administrator
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                 <i class="align-middle" data-feather="settings"></i>
               </a>
-
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
+                <img src="images/avatar.jpg" 
+				class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 						</li>
 					</ul>
 				</div>
@@ -134,8 +134,7 @@ Administrator
 
 			<main class="content">
 				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3"><strong>Room information</strong></h1>
+					<h1 class="h3 mb-3"><strong>Room Categories</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-8 col-xxl-2 d-flex">
@@ -143,40 +142,76 @@ Administrator
 								<div style="width: 90%;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Room Image</h5>
+										<h5 class="card-title mb-0">Categories</h5>
 									</div>
-                                    <div class="card">
-									<img class="card-img-top" src="{{$room->images[0]}}" alt="Unsplash">
-                                    </div>
+									<table class="table table-hover my-0">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Name</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach($categories as $category)
+											<tr>
+												<td>{{$loop->iteration}}</td>
+												<td>{{$category->name}}</td>
+												<td class="d-none d-xl-table-cell">
+												<form action=' {{url('/categories' . '/' .   $category->id)}}' method="post">
+													{{method_field('DELETE')}}
+													{{ csrf_field() }} 
+												<a href="{{url('categories/' .$category->id .'/edit')}}"class="btn btn-primary btn-sm">Edit</a>
+												<a href="{{url('categories/'.$category->id)}}"class="btn btn-primary btn-sm">View</a>
+                                                    <button class="btn btn-danger btn-sm">Delete</button>
+													</form>
+
+												</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
 								</div>
 							</div>
 							</div>
 						<div class="col-xl-4 col-l-7">
+							<div class="card flex-fill" style="background-color:#dee2e6">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Update {{$category->name}} Category</h5>
+								</div>
+								<form action="{{ url('categories/'.$category->id) }}" method='post'>
+									{{ csrf_field() }}
+									@method("PATCH")
+									<div class="card-body">
+										<h5 class="card-title mb-0">Name</h5>
+										<input type="text" name="name" 
+										value="{{$category->name}}"
+										class="form-control">
+									</div>
+
+									<button type="submit" class="btn btn-primary btn-md">Update</button>
+								</form>
+							</div>
 							<div class="card flex-fill">
-                            <div class="card-header">
+								<div class="card-header">
 
-<h5 class="card-title mb-0">Room information</h5>
-</div>
-								
+									<h5 class="card-title mb-0">Add New</h5>
+								</div>
+								<form action="{{ url('categories') }}" method='post'>
+									{{ csrf_field() }}
 									<div class="card-body">
-										<h5 class="card-title mb-0">Code</h5>
-										<input type="text" name="code" class="form-control"
-                                        value="{{$room->name}}" readonly>
-									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Category</h5>
-										<input type="text" name="code" class="form-control"
-                                        value="{{$room->category->name}}" readonly>
-									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Price ($)</h5>
-										<input type="number" name="price" class="form-control"
-                                        value="{{$room->price}}" readonly>
+										<h5 class="card-title mb-0">Name</h5>
+										<input type="text" name="name" 
+										class="form-control">
 									</div>
 
+									<button type="submit" class="btn btn-primary btn-md">Save</button>
+								</form>
 							</div>
 						</div>
 					</div>
+
 			
 
 					<div class="row">
@@ -204,4 +239,5 @@ Administrator
 
 	<script src="../../../js/app.js"></script>
 </body>
+
 </html>

@@ -11,6 +11,7 @@ class roomController extends Controller
 
     public function index(Request $request)
     {
+        $categories=Category::all();
         $room_query=Room::with('category');
 
         if($request->keyword){
@@ -48,8 +49,8 @@ class roomController extends Controller
         else{
             $rooms=$room_query->orderBy($sortBy,$sortOrder)->get();
         }
-
-        return $rooms;
+        //return $rooms;
+        return view('management.static.rooms')->with('rooms',$rooms)->with('category',$categories);
     }
     public function list(Request $request){
         $from=date($request->check_in_date);
@@ -123,7 +124,8 @@ class roomController extends Controller
     public function show($id)
     {
         $room=Room::with('category')->find($id);
-        return $room;
+        // return $room;
+        return view('management.static.viewroom')->with('room',$room);
     }
 
     public function edit($id)
