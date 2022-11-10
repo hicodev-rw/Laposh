@@ -24,6 +24,9 @@ use App\Http\Controllers\reservationController;
 |
 */
 
+Route::group(['middleware'=>['auth:sanctum','can:create-room']], function () {
+    Route::post('/rooms/create',[roomController::class,'store']);
+});
 //analytics
 Route::resource('/dashboard',dashboard::class);
 
@@ -32,17 +35,13 @@ Route::resource('/users',userController::class);
 Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
 Route::resource('/users/manage/permissions',permissionController::class);
 Route::resource('/users/manage/roles',roleController::class);
-<<<<<<< HEAD
-Route::POST('/login',[userController::class,'login']);
-=======
 Route::post('/login',[userController::class,'login']);
->>>>>>> d9df943a00714b1e74a8512d2a142a2ce020ce01
 
 //customers
 Route::resource('/customers',customerController::class);
 Route::POST('customer/login',[customerController::class,'login']);
 //rooms
-Route::resource('/rooms',roomController::class);
+// Route::resource('/rooms',roomController::class);
 Route::get('/list',[roomController::class,'list']);
 Route::POST('/room/avatar/save/{id}',[roomController::class,'addRoomImages']);
 Route::resource('/categories',categoryController::class);
@@ -63,10 +62,9 @@ Route::resource('/hotel/info',infoController::class);
 Route::post('/info/logo',[infoController::class,'uploadLogo']);
 
 
-Route::group(['middleware'=>['auth:sanctum']], function () {
-    Route::resource('/reservations',reservationController::class);
-});
-Route::middleware('admin')->group(function () {
-    Route::resource('/rooms',roomController::class);
- });
+// Route::group(['middleware'=>['auth:sanctum' AND 'can:create-reservation']], function () {
+
+// });
+
+
 

@@ -5,18 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\User;
-use App\Models\Role;
+use App\Models\RoleModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
  
 class userController extends Controller
 {
     public function index(Request $request)
     {
-        $user_query=User::with(['role']);
+        $user_query=User::with('roles');
         if($request->role){
-            $user_query->whereHas('role',function($query) use($request){
+            $user_query->whereHas('roles',function($query) use($request){
                 $query->where('name',$request->role);
             });
         }
@@ -70,6 +72,7 @@ class userController extends Controller
         $password = array('password' => $hashed);
         $merge = array_merge($input, $password);
         $user = User::create($merge);
+        $user->assignRole($input['role']);
         return $user;
     }
     else{
@@ -142,7 +145,6 @@ class userController extends Controller
             $password=$request->password;
             if(Hash::check($password,$hashed)){
                 $token = $user->createToken('myapitoken');
- 
              return ['token' => $token->plainTextToken];
             }
             else{
@@ -158,26 +160,5 @@ class userController extends Controller
     
     }
 
-    public function login(Request $request)
-    {
-    //     $token = Str::random(60);
-    //     $input=$request->all();
-    //     $user = User::where('email',$request->email)->get();
-    //     if($user){
-    //     $password=$request->password;
-    //     $hashed=$user[0]['password'];
-    //     $check=Hash::check($password, $hashed);
-    //     if($check) {
-    //     }
-    //     else{
-    //         $message='Incorrect password';
-    //         return $message;
-    //     }
-        
-    // }
-    // else{
-    //     $message='User not found';
-    //     return $message;
-    // }
-    }
+
 }
