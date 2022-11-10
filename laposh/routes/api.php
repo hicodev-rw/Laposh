@@ -24,17 +24,33 @@ use App\Http\Controllers\reservationController;
 |
 */
 
-Route::group(['middleware'=>['auth:sanctum','can:create-room']], function () {
-    Route::post('/rooms/create',[roomController::class,'store']);
-});
+
+//room routes
+Route::get('/rooms',[roomController::class,'index']);
+Route::get('/rooms/{id}',[roomController::class,'show']);
+Route::post('/rooms',[roomController::class,'store'])->middleware(['auth:sanctum','can:create-room']);
+Route::patch('/rooms/{id}',[roomController::class,'update'])->middleware(['auth:sanctum','can:edit-room']);
+Route::patch('/rooms/edit',[roomController::class,'edit'])->middleware(['auth:sanctum','can:edit-room']);
+Route::delete('/rooms',[roomController::class,'destroy'])->middleware(['auth:sanctum','can:delete-room']);
+
+
+
+
 //analytics
-Route::resource('/dashboard',dashboard::class);
+Route::get('/dashboard',[dashboard::class,'index'])->middleware(['auth:sanctum','can:dashbord']);
+
 
 //users
-Route::resource('/users',userController::class);
-Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
-Route::resource('/users/manage/permissions',permissionController::class);
-Route::resource('/users/manage/roles',roleController::class);
+
+ Route::group(['middleware'=>['auth:sanctum',]], function () {
+    Route::resource('/users',userController::class); 
+     Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
+     Route::resource('/users/manage/permissions',permissionController::class);
+     Route::resource('/users/manage/roles',roleController::class);
+ });
+
+
+
 Route::post('/login',[userController::class,'login']);
 
 //customers

@@ -15,6 +15,7 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'edit-room']);
         Permission::create(['name' => 'delete-room']);
         Permission::create(['name' => 'view-room']);
+        Permission::create(['name' => 'dashboard']);
 
         Permission::create(['name' => 'create-user']);
         Permission::create(['name' => 'update-user']);
