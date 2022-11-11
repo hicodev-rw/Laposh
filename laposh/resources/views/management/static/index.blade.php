@@ -37,7 +37,7 @@
             </a>
 		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="/reservations">
+			<a class="sidebar-link" href="/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
 <li class="sidebar-item">
@@ -46,7 +46,7 @@
 </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="/check-in">
+						<a class="sidebar-link" href="/reservations/checkin/list">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
 					</a>
 										</li>

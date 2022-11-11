@@ -11,7 +11,7 @@
 
 	<title>La Posh Hotel</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href="../../../css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -19,7 +19,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="/dashboard">
           <span class="align-middle">La Posh Hotel</span>
         </a>
 
@@ -39,19 +39,19 @@
 			<a class="sidebar-link" href="/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
-<li class="sidebar-item active">
+<li class="sidebar-item">
 	<a class="sidebar-link" href="/categories">
 <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
 </a>
 					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="/reservations/checkout/list9">
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="/reservations/checkin/list">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
 					</a>
 										</li>
 
 									</li>
-			<li class="sidebar-item">
+			<li class="sidebar-item ">
 					<a class="sidebar-link" href="/reservations/checkout/list">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
@@ -121,12 +121,12 @@ Administrator
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                 <i class="align-middle" data-feather="settings"></i>
               </a>
+
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="images/avatar.jpg" 
-				class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
+                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 						</li>
 					</ul>
 				</div>
@@ -134,39 +134,42 @@ Administrator
 
 			<main class="content">
 				<div class="container-fluid p-0">
-					<h1 class="h3 mb-3"><strong>Room Categories</strong></h1>
+
+					<h1 class="h3 mb-3"><strong>Bookings</strong></h1>
 
 					<div class="row">
-						<div class="col-xl-8 col-xxl-2 d-flex">
+						<div class="col-xl-12 col-xxl-2 d-flex">
 							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
 								<div style="width: 90%;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Categories</h5>
+										<h5 class="card-title mb-0">Bookings to check in today</h5>
 									</div>
 									<table class="table table-hover my-0">
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Name</th>
-												<th>Actions</th>
+												<th>Reference</th>
+												<th class="d-none d-xl-table-cell">Room</th>
+												<th class="d-none d-xl-table-cell">Status</th>
+												<th class="d-none d-xl-table-cell">Actions</th>
 											</tr>
 										</thead>
 										<tbody>
-											@foreach($categories as $category)
+											@foreach($bookings as $booking)
 											<tr>
 												<td>{{$loop->iteration}}</td>
-												<td>{{$category->name}}</td>
-												<td class="d-none d-xl-table-cell">
-												<form action=' {{url('/categories' . '/' .   $category->id)}}' method="post">
-													{{method_field('DELETE')}}
-													{{ csrf_field() }} 
-												<a href="{{url('categories/' .$category->id .'/edit')}}"class="btn btn-primary btn-sm">Edit</a>
-												<a href="{{url('categories/'.$category->id)}}"class="btn btn-primary btn-sm">View</a>
-                                                    <button class="btn btn-danger btn-sm">Delete</button>
-													</form>
+												<td>{{$booking->reference}}</td>
+												<td class="d-none d-xl-table-cell">{{$booking->room->name}}</td>
+												<td class="d-none d-xl-table-cell">{{$booking->status->name}}</td>
+												<td><form action=' {{url('/reservations/checkin/'.   $booking->id)}}' method="post">
+					@method('patch')
+					{{ csrf_field() }} 
+					<a href="{{ url('/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
 
-												</td>
+                                                <button class="btn a btn-primary btn-sm">Check-in</button>
+													</form>
+</td>
 											</tr>
 											@endforeach
 										</tbody>
@@ -174,27 +177,6 @@ Administrator
 								</div>
 							</div>
 							</div>
-						<div class="col-xl-4 col-l-7">
-							<div class="card flex-fill">
-								<div class="card-header">
-
-									<h5 class="card-title mb-0">Add New</h5>
-								</div>
-								<form action="{{ url('categories') }}" method='post'>
-									{{ csrf_field() }}
-									<div class="card-body">
-										<h5 class="card-title mb-0">Name</h5>
-										<input type="text" name="name" class="form-control">
-									</div>
-
-									<button type="submit" class="btn btn-primary btn-md">Save</button>
-								</form>
-							</div>
-						</div>
-					</div>
-
-			
-
 					<div class="row">
 
 						
@@ -218,7 +200,7 @@ Administrator
 		</div>
 	</div>
 
-	<script src="js/app.js"></script>
+	<script src="../../../js/app.js"></script>
 </body>
 
 </html>

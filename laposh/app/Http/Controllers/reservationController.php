@@ -60,6 +60,7 @@ class reservationController extends Controller
         else{
             $reservations=$reservations_query->orderBy($sortBy,$sortOrder)->get();
         }
+        //return $reservations;
         return view('management.static.bookings')->with('bookings',$reservations);
     }
 
@@ -138,12 +139,13 @@ class reservationController extends Controller
             $perPage=8;
         }
         if($request->paginate){
-            $reservations=$reservations_query->where('check_in_date',$date)->orderBy($sortBy,$sortOrder)->paginate($perPage);
+            $reservations=$reservations_query->where('check_in_date',$date)->where('status_id',1)->orderBy($sortBy,$sortOrder)->paginate($perPage);
         }
         else{
-            $reservations=$reservations_query->where('check_in_date',$date)->orderBy($sortBy,$sortOrder)->get();
+            $reservations=$reservations_query->where('check_in_date',$date)->where('status_id',1)->orderBy($sortBy,$sortOrder)->get();
         }
-        return $reservations;
+        //return $reservations;
+        return view('management.static.checkinList')->with('bookings',$reservations);
     }
 
     
@@ -184,7 +186,8 @@ class reservationController extends Controller
         else{
             $reservations=$reservations_query->where('status_id',2)->orderBy($sortBy,$sortOrder)->get();
         }
-        return $reservations;
+        // return $reservations;
+        return view('management.static.checkoutList')->with('bookings',$reservations);
     }
 
 
@@ -194,8 +197,9 @@ class reservationController extends Controller
     $input=array('status_id'=>2);
     if($reservation){
         $reservation->update($input);
-        $message="reservation was checked in succesfully!";
-        return $message;
+       // $message="reservation was checked in succesfully!";
+       // return $message;
+        return redirect('/reservations/checkin/list')->with('message','room checked in successfully');
     }
     else{
         $message="reservation not Found";
@@ -209,8 +213,9 @@ class reservationController extends Controller
         $input=array('status_id'=>3);
         if($reservation){
             $reservation->update($input);
-            $message="reservation was closed succesfully!";
-            return $message;
+            // $message="reservation was closed succesfully!";
+            // return $message;
+            return redirect('/reservations/checkout/list')->with('message','room checked out successfully');
         }
         else{
             $message="reservation not Found";

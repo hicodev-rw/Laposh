@@ -26,26 +26,26 @@
 				<ul class="sidebar-nav">
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="/dashboard">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="rooms.html">
+						<a class="sidebar-link" href="/rooms">
               <i class="align-middle" data-feather="home"></i> <span class="align-middle">Rooms</span>
             </a>
 		</li>
 		<li class="sidebar-item active">
-			<a class="sidebar-link" href="bookings.html">
+			<a class="sidebar-link" href="/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
 <li class="sidebar-item">
-	<a class="sidebar-link" href="categories.html">
+	<a class="sidebar-link" href="/categories">
 <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
 </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="checkin.html">
+						<a class="sidebar-link" href="/reservations/checkin/list">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
 					</a>
 										</li>
