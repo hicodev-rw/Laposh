@@ -5,19 +5,24 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
+	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-profile.html" />
 
-	<title>La Posh Hotel</title>
+	<title>Profile | AdminKit Demo</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href="../../../css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
+    <nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="/dashboard">
           <span class="align-middle">La Posh Hotel</span>
@@ -135,75 +140,50 @@ Administrator
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>System Users</strong></h1>
-
+					<div class="mb-3">
+                    <h1 class="h3 mb-3"><strong>Update User Profile</strong></h1>
+					</div>
 					<div class="row">
-						<div class="col-xl-8 col-xxl-2 d-flex">
-							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
-								<div style="width: 90%;"  class="card flex-fill">
-									<div class="card-header">
-	
-										<h5 class="card-title mb-0">Users</h5>
-									</div>
-									<table class="table table-hover my-0">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>firstName</th>
-												<th>Email</th>
-												<th class="d-none d-xl-table-cell">Role</th>
-												<th>Actions</th>
-											</tr>
-										</thead>
-		<tbody>
-		@foreach($users as $user)
-			<tr>
-				<td>{{$loop->iteration}}</td>
-					<td>{{$user->firstName}}</td>
-					<td>{{$user->email}}</td>
-					<td class="d-none d-xl-table-cell">{{$user->role}}</td>
-					<td class="d-none d-xl-table-cell">
-					<form action=' {{url('/users' . '/' .   $user->id)}}' method="post">
-					{{method_field('DELETE')}}
-					{{ csrf_field() }} 
-					<a href="{{ url('/users/'. $user->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
-					<a href="{{ url('/users/'. $user->id) }}" class="btn a btn-primary btn-sm">View</a>
-
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-													</form>
-
-												</td>
-												@endforeach
-											</tr>
-											
-										</tbody>
-									</table>
+						<div class="col-md-4 col-xl-3">
+							<div class="card mb-3">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Profile Summary</h5>
 								</div>
+								<div class="card-body text-center">
+									<img src="{{$user->avatar}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+									<h5 class="card-title mb-0">{{$user->lastName}}</h5>
+									<div class="text-muted mb-2">{{$user->role}}</div>
+								</div>
+
 							</div>
-							</div>
-						<div class="col-xl-4 col-l-7">
-							<div class="card flex-fill">
+						</div>
+
+						<div class="col-md-8 col-xl-9">
+							<div class="card">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Add New User</h5>
+									<h5 class="card-title mb-0">User Profile</h5>
 								</div>
-								<form action="{{url('users')}}"  method='post' enctype="multipart/form-data">
+								<div class="card-body h-100">
+							<div style="width: 80%;margin:auto" class="col-12 col-lg-8 col-xxl-9 d-flex" >
+							<div class="col-xl-12 col-l-12">
+							<div class="card flex-fill">
+								<div class="card-header">
+								</div>
+								<form action="{{url('users/'.$user->id)}}"  method='post'>
 									{{csrf_field()}}
+                                    @method('PATCH')
 									<div class="card-body">
 										<h5 class="card-title mb-0">firstName</h5>
-										<input type="text" name="firstName" class="form-control">
+										<input type="text" value="{{$user->firstName}}" name="firstName" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">lastName</h5>
-										<input type="text" name="lastName" class="form-control">
+										<input type="text" value="{{$user->lastName}}"name="lastName" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Email</h5>
-										<input type="email" name="email" class="form-control">
-									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Password</h5>
-										<input type="password" name="password" class="form-control">
+										<input type="email" value="{{$user->email}}" name="email" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Role</h5>
@@ -213,42 +193,20 @@ Administrator
 										@endforeach
 										</select>
 									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Avatar</h5>
-										<input type="file" name="avatar" class="form-control">
-									</div>
 
-									<button type="submit"class="btn btn-primary btn-md">Save</button>
+									<button type="submit"class="btn btn-primary btn-md">Update</button>
 								</form>
 							</div>
 						</div>
 					</div>
+								</div>
+							</div>
+							</div>
+									</div>
 
-			
 
-					<div class="row">
+	<script src="../../../js/app.js"></script>
 
-						
-					</div>
-
-				</div>
-			</main>
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							
-						</div>
-						<div class="col-6 text-end">
-							
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-	</div>
-
-	<script src="js/app.js"></script>
 </body>
+
 </html>

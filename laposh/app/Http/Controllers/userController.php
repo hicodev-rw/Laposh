@@ -73,9 +73,14 @@ class userController extends Controller
         ]);
         $password = array('password' => $hashed);
         $merge = array_merge($input, $password);
+        $link = cloudinary()->upload($request->avatar->getRealPath())->getSecurePath();
+        $avatar=array('avatar'=>$link);
+        $merge = array_merge($merge, $avatar);
         $user = User::create($merge);
         $user->assignRole($input['role']);
-        return $user;
+        // return $user;
+
+        return redirect('/users')->with('message','user added successfully');
     }
     else{
         $message='User is already registered';
@@ -85,13 +90,17 @@ class userController extends Controller
 
     public function show($id)
     {
-        $user=User::with(['role'])->find($id);
-        $permissions=$user->role->permission;
-        return $user;
+        $user=User::find($id);
+        //$permissions=$user->roles->permissions;
+        //return $user;
+        return view('management.static.view_user')->with('user',$user);
     }
 
     public function edit($id)
     {
+        $user=User::find($id);
+        $roles=RoleModel::all();
+        return view('management.static.edit_user')->with('user',$user)->with('roles',$roles);
     }
 
     public function update(Request $request, $id)
@@ -128,11 +137,11 @@ class userController extends Controller
     }
 
 
-    public function storeAvatar(Request $request,$id)
+    public function updateAvatar(Request $request,$id)
     {
         $user=User::find($id);
         if($user){
-            $link = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
+        $link = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
         $avatar=array('avatar'=>$link);
         $user->update($avatar);
         return $user;
