@@ -14,6 +14,9 @@ use App\Http\Controllers\statusController;
 Route::get('/login', function () {
     return view('management.static.login');
 });
+Route::get('/', function () {
+    return view('web.web.home');
+});
 //room routes
 Route::get('/rooms',[roomController::class,'index']);
 Route::get('/rooms/{id}',[roomController::class,'show']);

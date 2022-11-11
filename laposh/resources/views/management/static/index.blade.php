@@ -53,13 +53,13 @@
 
 									</li>
 			<li class="sidebar-item">
-					<a class="sidebar-link" href="/checkout">
+					<a class="sidebar-link" href="/reservations/checkout/list">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="/config">
+				<a class="sidebar-link" href="/roles">
 				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Configurations</span>
 			</a>
 		</li>
