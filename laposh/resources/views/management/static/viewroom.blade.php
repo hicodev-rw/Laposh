@@ -18,7 +18,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="/dashboard">
           <span class="align-middle">La Posh Hotel</span>
         </a>
 
@@ -44,14 +44,14 @@
 </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="checkin.html">
+						<a class="sidebar-link" href="/reservations/checkin/list">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
 					</a>
 										</li>
 
 									</li>
 			<li class="sidebar-item">
-					<a class="sidebar-link" href="/checkout">
+					<a class="sidebar-link" href="/reservations/checkout/list">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
@@ -75,7 +75,7 @@
 Administrator
 						</div>
 						<div class="d-grid">
-							<a href="logout.html" class="btn btn-primary">Sign Out</a>
+							<a href="/logout" class="btn btn-primary">Sign Out</a>
 						</div>
 					</div>
 				</div>
