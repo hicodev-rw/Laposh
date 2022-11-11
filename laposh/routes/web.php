@@ -31,7 +31,7 @@ Route::delete('/rooms',[roomController::class,'destroy']);
 
 
 //analytics
-Route::get('/dashboard',[dashboard::class,'index'])->middleware(['auth:sanctum','can:dashbord']);
+Route::get('/dashboard',[dashboard::class,'index']);
 
 
 //users
@@ -46,7 +46,6 @@ Route::post('/login',[userController::class,'login']);
 //customers
 
 Route::resource('/customers',customerController::class);
-
 Route::POST('customer/login',[customerController::class,'login']);
 //rooms
 // Route::resource('/rooms',roomController::class);
@@ -67,8 +66,3 @@ Route::resource('/reservation/status',statusController::class);
 //hotel info
 Route::resource('/hotel/info',infoController::class);
 Route::post('/info/logo',[infoController::class,'uploadLogo']);
-
-
-// Route::group(['middleware'=>['auth:sanctum' AND 'can:create-reservation']], function () {
-
-// });
