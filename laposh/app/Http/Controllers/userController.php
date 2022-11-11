@@ -116,8 +116,9 @@ class userController extends Controller
         $password = array('password' => $hashed);
         $merge = array_merge($input, $password);
         $user->update($merge);
-        $message="User was updated succesfully!";
-        return $message;
+        // $message="User was updated succesfully!";
+        // return $message;
+        return redirect('/users/'.$id)->with('message','user updated successfully');
         }
         else{
             $message="user not Found";
@@ -127,8 +128,9 @@ class userController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        $message="User removed successfully";
-        return $message;
+        // $message="User removed successfully";
+        // return $message;
+        return redirect('/users')->with('message','user removed successfully');
     }
 
     public function showUploadForm()

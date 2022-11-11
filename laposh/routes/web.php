@@ -33,8 +33,7 @@ Route::delete('/rooms',[roomController::class,'destroy'])->middleware(['auth:san
 
 
 //analytics
-Route::get('/dashboard',[dashboard::class,'index']);
-//->middleware(['auth:sanctum','can:dashbord']);
+Route::get('/dashboard',[dashboard::class,'index'])->middleware(['auth:sanctum','can:dashbord']);
 
 
 //users

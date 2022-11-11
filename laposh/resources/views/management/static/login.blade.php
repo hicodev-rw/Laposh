@@ -13,12 +13,13 @@
 <div class="card-body">
   <h2 class="text-center">Login form</h2>
   <br>
-  <form action="/action_page.php">
+  <form action="{{url('/login')}}" method="POST">
+  {{csrf_field()}}
     <div class="form-group">
       <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" id="email" placeholder="Enter password" name="pswd">
+      <input type="password" class="form-control" id="email" placeholder="Enter password" name="password">
     </div>
     <button type="submit" id="button" class="btn btn-primary deep-purple btn-block ">Submit</button>
 <br>
