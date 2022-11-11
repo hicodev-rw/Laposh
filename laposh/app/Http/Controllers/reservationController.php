@@ -81,7 +81,8 @@ class reservationController extends Controller
 
     public function show($id)
     {
-
+        $reservation=Reservation::find($id);
+        return view('management.static.view_booking')->with('booking',$reservation);
     }
 
     public function edit($id)

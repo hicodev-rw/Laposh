@@ -11,7 +11,7 @@
 
 	<title>La Posh Hotel</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href="../../../css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -134,46 +134,46 @@ Administrator
 
 			<main class="content">
 				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3"><strong>Bookings</strong></h1>
-
+					<h1 class="h3 mb-3"><strong>Booking information</strong></h1>
 					<div class="row">
 						<div class="col-xl-12 col-xxl-2 d-flex">
-							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
+							<div style="width: 60%;margin:auto" class="col-12 col-lg-8 col-xxl-9 d-flex" >
 								<div style="width: 90%;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Bookings</h5>
+										<h5 class="card-title mb-0"></h5>
 									</div>
 									<table class="table table-hover my-0">
 										<thead>
 											<tr>
-												<th>#</th>
 												<th>Reference</th>
-												<th class="d-none d-xl-table-cell">Room</th>
-												<th class="d-none d-xl-table-cell">Status</th>
-												<th class="d-none d-xl-table-cell">Actions</th>
+												<th class="d-none d-xl-table-cell">{{$booking->reference}}</th>
+											</tr>
+                                            <tr>
+												<th>Room</th>
+												<th class="d-none d-xl-table-cell">{{$booking->room->name}}</th>
+											</tr>
+                                            <tr>
+												<th>Room Price ($)</th>
+												<th class="d-none d-xl-table-cell">{{$booking->room->price}}</th>
+											</tr>
+                                            <tr>
+												<th>Client</th>
+												<th class="d-none d-xl-table-cell">{{$booking->customer->firstName}} {{$booking->customer->lastName}}</th>
+											</tr>
+                                            <tr>
+												<th>Check-in-Date</th>
+												<th class="d-none d-xl-table-cell">{{$booking->check_in_date}}</th>
+											</tr>
+                                            <tr>
+												<th>Check_out_date</th>
+												<th class="d-none d-xl-table-cell">{{$booking->check_out_date}}</th>
+											</tr>
+                                            <tr>
+												<th>Status</th>
+												<th class="d-none d-xl-table-cell">{{$booking->status->name}}</th>
 											</tr>
 										</thead>
-										<tbody>
-											@foreach($bookings as $booking)
-											<tr>
-												<td>{{$loop->iteration}}</td>
-												<td>{{$booking->reference}}</td>
-												<td class="d-none d-xl-table-cell">{{$booking->room->name}}</td>
-												<td class="d-none d-xl-table-cell">{{$booking->status->name}}</td>
-												<td><form action=' {{url('/bookings' . '/' .   $booking->id)}}' method="post">
-					{{method_field('DELETE')}}
-					{{ csrf_field() }} 
-					<a href="{{ url('/bookings/'. $booking->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
-					<a href="{{ url('/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
-
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-													</form>
-</td>
-											</tr>
-											@endforeach
-										</tbody>
 									</table>
 								</div>
 							</div>
@@ -201,7 +201,7 @@ Administrator
 		</div>
 	</div>
 
-	<script src="js/app.js"></script>
+	<script src="../../../js/app.js"></script>
 </body>
 
 </html>

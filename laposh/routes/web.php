@@ -9,6 +9,7 @@ use App\Http\Controllers\configController;
 use App\Http\Controllers\permissionController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\reservationController;
+use App\Http\Controllers\statusController;
 
 Route::get('/login', function () {
     return view('management.static.login');
