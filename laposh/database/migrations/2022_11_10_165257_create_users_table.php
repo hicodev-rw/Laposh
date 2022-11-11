@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('firstName');
             $table->string('lastName')->nullable();
             $table->string('email')->unique();
+            $table->string('role');
             $table->longText('avatar')->nullable();
             $table->string('password');
             $table->timestamps();

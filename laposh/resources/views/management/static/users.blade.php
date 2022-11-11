@@ -160,7 +160,7 @@ Administrator
 			<tr>
 				<td>{{$loop->iteration}}</td>
 					<td>{{$user->firstName}}</td>
-					<td>{{$user->Email}}</td>
+					<td>{{$user->email}}</td>
 					<td class="d-none d-xl-table-cell">{{$user->role}}</td>
 					<td class="d-none d-xl-table-cell">
 					<form action=' {{url('/users' . '/' .   $user->id)}}' method="post">
