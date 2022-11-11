@@ -141,12 +141,19 @@ class roomController extends Controller
         $room=Room::find($id);
         return view('management.static.edit_room')->with('category',$categories)->with('room',$room);
     }
+    public function editImages($id)
+    {
+        $categories=Category::all();
+        $room=Room::find($id);
+        return view('management.static.update_room_images')->with('room',$room);
+    }
     public function update(Request $request, $id)
     {
         $room=Room::find($id);
         $input =$request->all();
         $room->update($input);
-        return $room;
+       // return $room;
+       return redirect('/rooms')->with('message','room updated successfully');
     }
 
     public function destroy($id)
@@ -158,7 +165,7 @@ class roomController extends Controller
 
 
     //upload room images
-    public function addRoomImages(Request $request,$id){
+public function updateRoomImages(Request $request,$id){
         $images=array();
         $room=Room::find($id);
         if($room){
@@ -167,8 +174,8 @@ class roomController extends Controller
                 array_push($images,$image);
                 }
                 $roomImages = array('images' => $images);
-                // $room->update($roomImages);
-                return $room;
+                 $room->update($roomImages);
+                 return redirect('/rooms')->with('message','room updated successfully');
         }
         else{
             $message='Room not found';

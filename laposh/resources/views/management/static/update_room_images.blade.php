@@ -11,7 +11,7 @@
 
 	<title>La Posh Hotel</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href="../../../css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -135,7 +135,7 @@ Administrator
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Rooms</strong></h1>
+					<h1 class="h3 mb-3"><strong>Room information</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-8 col-xxl-2 d-flex">
@@ -143,84 +143,31 @@ Administrator
 								<div style="width: 90%;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Rooms</h5>
+										<h5 class="card-title mb-0">Room Image</h5>
 									</div>
-									<table class="table table-hover my-0">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>Code</th>
-												<th>Category</th>
-												<th class="d-none d-xl-table-cell">Price ($)</th>
-												<th>Actions</th>
-											</tr>
-										</thead>
-		<tbody>
-		@foreach($rooms as $room)
-			<tr>
-				<td>{{$loop->iteration}}</td>
-					<td>{{$room->name}}</td>
-					<td>{{$room->category->name}}</td>
-					<td class="d-none d-xl-table-cell">{{$room->price}}</td>
-					<td class="d-none d-xl-table-cell">
-					<form action=' {{url('/rooms' . '/' .   $room->id)}}' method="post">
-					{{method_field('DELETE')}}
-					{{ csrf_field() }} 
-					<a href="{{ url('/rooms/'. $room->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
-					<a href="{{ url('/rooms/'. $room->id) }}" class="btn a btn-primary btn-sm">View</a>
-
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-													</form>
-
-												</td>
-												@endforeach
-											</tr>
-											
-										</tbody>
-									</table>
+                                    <div class="card">
+									<img class="card-img-top" src="{{$room->images[0]}}" alt="Unsplash">
+                                    </div>
 								</div>
 							</div>
 							</div>
-						<div class="col-xl-4 col-l-7">
+                            <div class="col-xl-4 col-l-7">
 							<div class="card flex-fill">
 								<div class="card-header">
 
 									<h5 class="card-title mb-0">Add New Room</h5>
 								</div>
-								<form action="{{url('rooms')}}"  method='post' enctype="multipart/form-data">
+								<form action="{{url('/room/images/'.$room->id)}}"  method='post' enctype="multipart/form-data">
 									{{csrf_field()}}
-									<div class="card-body">
-										<h5 class="card-title mb-0">Name</h5>
-										<input type="text" name="name" class="form-control">
-									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Category</h5>
-										<select name="category_id" class="form-control">
-											@foreach($category as $cat)
-										<option value="{{$cat->id}}">{{$cat->name}}</option>
-										@endforeach
-										</select>
-									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Price ($)</h5>
-										<input type="number" name="price" class="form-control">
-									</div>
-									<div class="card-body">
-										<h5 class="card-title mb-0">Specifications</h5>
-										<input type="text" name="specifications" class="form-control">
-									</div>
-
-									<div class="card-body">
+                                    <div class="card-body">
 										<h5 class="card-title mb-0">Image (s)</h5>
 										<input type="file" name="images[]" class="form-control" multiple>
 									</div>
-
-									<button type="submit"class="btn btn-primary btn-md">Save</button>
+									<button type="submit"class="btn btn-primary btn-md">update</button>
 								</form>
 							</div>
 						</div>
 					</div>
-
 			
 
 					<div class="row">
@@ -246,6 +193,6 @@ Administrator
 		</div>
 	</div>
 
-	<script src="js/app.js"></script>
+	<script src="../../../js/app.js"></script>
 </body>
 </html>

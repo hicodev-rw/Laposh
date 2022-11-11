@@ -8,6 +8,7 @@ use App\Http\Controllers\dashboard;
 use App\Http\Controllers\configController;
 use App\Http\Controllers\permissionController;
 use App\Http\Controllers\roleController;
+use App\Http\Controllers\reservationController;
 
 Route::get('/login', function () {
     return view('management.static.login');
@@ -16,8 +17,11 @@ Route::get('/login', function () {
 Route::get('/rooms',[roomController::class,'index']);
 Route::get('/rooms/{id}',[roomController::class,'show']);
 Route::post('/rooms',[roomController::class,'store']);
-Route::patch('/rooms/{id}',[roomController::class,'update'])->middleware(['auth:sanctum','can:edit-room']);
+Route::POST('/room/images/{id}',[roomController::class,'updateRoomImages']);
+Route::patch('/rooms/{id}',[roomController::class,'update']);
+//->middleware(['auth:sanctum','can:edit-room']);
 Route::get('/rooms/{id}/edit',[roomController::class,'edit']);
+Route::get('/edit-room-images/{id}',[roomController::class,'editImages']);
 //->middleware(['auth:sanctum','can:edit-room']);
 Route::delete('/rooms',[roomController::class,'destroy'])->middleware(['auth:sanctum','can:delete-room']);
 
@@ -46,12 +50,11 @@ Route::POST('customer/login',[customerController::class,'login']);
 //rooms
 // Route::resource('/rooms',roomController::class);
 Route::get('/list',[roomController::class,'list']);
-Route::POST('/room/avatar/save/{id}',[roomController::class,'addRoomImages']);
 Route::resource('/categories',categoryController::class);
 Route::get('/room/popular',[roomController::class,'popular']);
 
 //bookings
-Route::resource('/reservations',reservationController::class);
+Route::resource('/bookings',reservationController::class);
 Route::patch('/reservations/cancel/{id}',[reservationController::class,'cancelBooking']);
 Route::get('/reservations/checkin/list',[reservationController::class,'readForCheckIn']);
 Route::get('/reservations/checkout/list',[reservationController::class,'readForCheckOut']);

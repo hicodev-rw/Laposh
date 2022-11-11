@@ -157,11 +157,14 @@ Administrator
 
 									<h5 class="card-title mb-0">Add New Room</h5>
 								</div>
-								<form action="{{url('rooms')}}"  method='post' enctype="multipart/form-data">
+								<form action="{{url('/rooms/'.$room->id)}}"  method='post' enctype="multipart/form-data">
 									{{csrf_field()}}
+                                    @method('PATCH')
 									<div class="card-body">
 										<h5 class="card-title mb-0">Name</h5>
-										<input type="text" name="name" class="form-control">
+										<input type="text" name="name" 
+                                        value="{{$room->name}}"
+                                        class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Category</h5>
@@ -173,20 +176,20 @@ Administrator
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Price ($)</h5>
-										<input type="number" name="price" class="form-control">
+										<input type="number" name="price" 
+                                        value="{{$room->price}}"
+                                        class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Specifications</h5>
-										<input type="text" name="specifications" class="form-control">
+										<input type="text" name="specifications"
+                                        value="{{$room->specifications}}"
+                                        class="form-control">
 									</div>
-
-									<div class="card-body">
-										<h5 class="card-title mb-0">Image</h5>
-										<input type="file" name="images[]" class="form-control" multiple>
-									</div>
-
-									<button type="submit"class="btn btn-primary btn-md">Save</button>
+									<button type="submit"class="btn btn-primary btn-md">update</button>
 								</form>
+                                <br>
+                                <a href="/edit-room-images/{{$room->id}}"class="btn btn-primary btn-md">Change room Images</a>
 							</div>
 						</div>
 					</div>

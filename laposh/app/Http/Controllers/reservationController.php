@@ -60,7 +60,7 @@ class reservationController extends Controller
         else{
             $reservations=$reservations_query->orderBy($sortBy,$sortOrder)->get();
         }
-        return $reservations;
+        return view('management.static.bookings')->with('bookings',$reservations);
     }
 
     public function create()

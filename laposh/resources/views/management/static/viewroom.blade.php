@@ -8,7 +8,6 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-
 	<title>La Posh Hotel</title>
 
 	<link href="../../../css/app.css" rel="stylesheet">
@@ -145,8 +144,11 @@ Administrator
 	
 										<h5 class="card-title mb-0">Room Image</h5>
 									</div>
-                                    <div class="card">
-									<img class="card-img-top" src="{{$room->images[0]}}" alt="Unsplash">
+                                    <div class="card" style="padding-left:15px;padding-right:15px;">
+									@foreach($room->images as $image)
+									<img class="card-img-top" src="{{$image}}" alt="Unsplash">
+
+									@endforeach
                                     </div>
 								</div>
 							</div>
