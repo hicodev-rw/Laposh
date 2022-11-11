@@ -23,11 +23,9 @@ Route::get('/rooms/{id}',[roomController::class,'show']);
 Route::post('/rooms',[roomController::class,'store']);
 Route::POST('/room/images/{id}',[roomController::class,'updateRoomImages']);
 Route::patch('/rooms/{id}',[roomController::class,'update']);
-//->middleware(['auth:sanctum','can:edit-room']);
 Route::get('/rooms/{id}/edit',[roomController::class,'edit']);
 Route::get('/edit-room-images/{id}',[roomController::class,'editImages']);
-//->middleware(['auth:sanctum','can:edit-room']);
-Route::delete('/rooms',[roomController::class,'destroy'])->middleware(['auth:sanctum','can:delete-room']);
+Route::delete('/rooms',[roomController::class,'destroy']);
 
 
 
