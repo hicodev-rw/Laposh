@@ -65,7 +65,7 @@ class categoryController extends Controller
     {
         $categories=Category::all();
         $category=Category::find($id);
-        return view('management.static.edit_category')->with('category',$category)->with('categories',$categories);;
+        return view('management.static.edit_category')->with('category',$category)->with('categories',$categories);
     }
 
 

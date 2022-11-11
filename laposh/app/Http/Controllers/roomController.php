@@ -108,10 +108,17 @@ class roomController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
+        $images=array();
         $isUnique=count(Room::where('name',$input['name'])->get());
         if($isUnique==0){
-            $room=Room::create($input); 
-            return $room;
+            foreach($request->images as $file){
+                $image = cloudinary()->upload($file->getRealPath())->getSecurePath();
+                array_push($images,$image);
+                }
+                $roomImages = array('images' => $images);
+                $merge=array_merge($input,$roomImages);
+            $room=Room::create($merge); 
+            return redirect('/rooms')->with('message','room added successfully');
         }
         else{
        $message='the name of room must be unique';
@@ -130,6 +137,9 @@ class roomController extends Controller
 
     public function edit($id)
     {
+        $categories=Category::all();
+        $room=Room::find($id);
+        return view('management.static.edit_room')->with('category',$categories)->with('room',$room);
     }
     public function update(Request $request, $id)
     {
@@ -152,12 +162,12 @@ class roomController extends Controller
         $images=array();
         $room=Room::find($id);
         if($room){
-            foreach($request->file('file') as $file){
+            foreach($request->file('images') as $file){
                 $image = cloudinary()->upload($file->getRealPath())->getSecurePath();
                 array_push($images,$image);
                 }
                 $roomImages = array('images' => $images);
-                $room->update($roomImages);
+                // $room->update($roomImages);
                 return $room;
         }
         else{

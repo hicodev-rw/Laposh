@@ -9,12 +9,16 @@ use App\Http\Controllers\configController;
 use App\Http\Controllers\permissionController;
 use App\Http\Controllers\roleController;
 
+Route::get('/login', function () {
+    return view('management.static.login');
+});
 //room routes
 Route::get('/rooms',[roomController::class,'index']);
 Route::get('/rooms/{id}',[roomController::class,'show']);
 Route::post('/rooms',[roomController::class,'store']);
 Route::patch('/rooms/{id}',[roomController::class,'update'])->middleware(['auth:sanctum','can:edit-room']);
-Route::patch('/rooms/edit',[roomController::class,'edit'])->middleware(['auth:sanctum','can:edit-room']);
+Route::get('/rooms/{id}/edit',[roomController::class,'edit']);
+//->middleware(['auth:sanctum','can:edit-room']);
 Route::delete('/rooms',[roomController::class,'destroy'])->middleware(['auth:sanctum','can:delete-room']);
 
 
