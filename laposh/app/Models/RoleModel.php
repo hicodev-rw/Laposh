@@ -9,12 +9,5 @@ class RoleModel extends Model
 {
     protected $table='roles';
     protected $primaryKey='id';
-    protected $fillable=['name','permission_id'];
-
-    public function permission(){
-        return $this->belongsTo(Permission::class);
-    }
-    public function users(){
-        return $this->hasMany(User::class);
-    }
+    protected $fillable=['name'];
 }

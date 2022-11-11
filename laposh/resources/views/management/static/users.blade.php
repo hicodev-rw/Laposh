@@ -5,12 +5,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
 
 	<title>La Posh Hotel</title>
 
@@ -126,7 +123,7 @@ Administrator
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">hicode</span>
+                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -138,7 +135,7 @@ Administrator
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Users</strong></h1>
+					<h1 class="h3 mb-3"><strong>System Users</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-8 col-xxl-2 d-flex">
@@ -152,30 +149,32 @@ Administrator
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Name</th>
-                                                <th>Username</th>
+												<th>firstName</th>
+												<th>Email</th>
 												<th class="d-none d-xl-table-cell">Role</th>
-                                                <th class="d-none d-xl-table-cell">Actions</th>
+												<th>Actions</th>
 											</tr>
 										</thead>
-										<tbody>
-											@forEach($users as $user)
-											<tr>
-												<td>{{$loop->iteration}}</td>
-												<td>{{$user->lastName}}</td>
-												<td>{{$user->email}}</td>
-												<td class="d-none d-xl-table-cell">{{$user->role->name}}</td>
-												<td class="d-none d-xl-table-cell">
-												<form action=' {{url('/users' . '/' .   $user->id)}}' method="post">
-													{{method_field('DELETE')}}
-													{{ csrf_field() }} 
-												<a class="btn btn-primary btn-sm">Edit</a>
-													
-                                                    <button class="btn btn-danger btn-sm">Delete</button>
+		<tbody>
+		@foreach($users as $user)
+			<tr>
+				<td>{{$loop->iteration}}</td>
+					<td>{{$user->firstName}}</td>
+					<td>{{$user->Email}}</td>
+					<td class="d-none d-xl-table-cell">{{$user->role}}</td>
+					<td class="d-none d-xl-table-cell">
+					<form action=' {{url('/users' . '/' .   $user->id)}}' method="post">
+					{{method_field('DELETE')}}
+					{{ csrf_field() }} 
+					<a href="{{ url('/users/'. $user->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
+					<a href="{{ url('/users/'. $user->id) }}" class="btn a btn-primary btn-sm">View</a>
+
+                                                <button class="btn btn-danger btn-sm">Delete</button>
 													</form>
-                                                </td>
+
+												</td>
+												@endforeach
 											</tr>
-											@endforeach
 											
 										</tbody>
 									</table>
@@ -184,41 +183,49 @@ Administrator
 							</div>
 						<div class="col-xl-4 col-l-7">
 							<div class="card flex-fill">
-							
 								<div class="card-header">
 
 									<h5 class="card-title mb-0">Add New User</h5>
 								</div>
-								<form action="{{ url('users') }}" method='post'>
-									{!! csrf_field() !!}
+								<form action="{{url('users')}}"  method='post' enctype="multipart/form-data">
+									{{csrf_field()}}
 									<div class="card-body">
 										<h5 class="card-title mb-0">firstName</h5>
-										<input type="text" name="firstName" class="form-control" required>
+										<input type="text" name="firstName" class="form-control">
 									</div>
 									<div class="card-body">
-										<h5 class="card-title mb-0">LastName</h5>
-										<input type="text" name="lastName" class="form-control" required>
+										<h5 class="card-title mb-0">lastName</h5>
+										<input type="text" name="lastName" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Email</h5>
-										<input type="email" name="email" class="form-control" required>
+										<input type="email" name="email" class="form-control">
 									</div>
 									<div class="card-body">
-									<select name="role_id" class="form-control">
+										<h5 class="card-title mb-0">Role</h5>
+										<select name="role" class="form-control">
 											@foreach($roles as $role)
-										<option value="{{$role->id}}">{{$role->name}}</option>
+										<option value="{{$role->name}}">{{$role->name}}</option>
 										@endforeach
 										</select>
 									</div>
+									<div class="card-body">
+										<h5 class="card-title mb-0">Price ($)</h5>
+										<input type="number" name="price" class="form-control">
+									</div>
+									<div class="card-body">
+										<h5 class="card-title mb-0">Specifications</h5>
+										<input type="text" name="specifications" class="form-control">
+									</div>
 
 									<div class="card-body">
-										<h5 class="card-title mb-0">Password</h5>
-										<input type="password" name="password" class="form-control"required>
-									<div class="card-body">
-									<button type="submit" class="btn btn-primary btn-md">Save</button>
-									</form>
+										<h5 class="card-title mb-0">Image (s)</h5>
+										<input type="file" name="images[]" class="form-control" multiple>
+									</div>
+
+									<button type="submit"class="btn btn-primary btn-md">Save</button>
+								</form>
 							</div>
-							
 						</div>
 					</div>
 
@@ -249,5 +256,4 @@ Administrator
 
 	<script src="js/app.js"></script>
 </body>
-
 </html>

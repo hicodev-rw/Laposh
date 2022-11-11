@@ -16,6 +16,7 @@ class userController extends Controller
 {
     public function index(Request $request)
     {
+        $roles=RoleModel::all();
         $user_query=User::with('roles');
         if($request->role){
             $user_query->whereHas('roles',function($query) use($request){
@@ -54,7 +55,8 @@ class userController extends Controller
             $users=$user_query->orderBy($sortBy,$sortOrder)->get();
         }
         $users=$user_query->get();
-        return $users;
+       // return $users;
+        return view('management.static.users')->with('users',$users)->with('roles',$roles);
     }
     public function create()
     {

@@ -39,12 +39,12 @@ Route::get('/dashboard',[dashboard::class,'index']);
 
 //users
 Route::post('/login',[userController::class,'login']);
- Route::group(['middleware'=>['auth:sanctum','role:admin']], function () {
+//  Route::group(['middleware'=>['auth:sanctum','role:admin']], function () {
      Route::resource('/users',userController::class); 
      Route::post('/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
      Route::resource('/users/manage/permissions',permissionController::class);
      Route::resource('/users/manage/roles',roleController::class);
- });
+//  });
 
 //customers
 
