@@ -30,10 +30,10 @@
 												<td>{{$booking->reference}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->room->name}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->status->name}}</td>
-												<td><form action=' {{url('/reservations/checkout/'.   $booking->id)}}' method="post">
+												<td><form action=' {{url('/management/reservations/checkout/'.   $booking->id)}}' method="post">
 					@method('patch')
 					{{ csrf_field() }} 
-					<a href="{{ url('/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
+					<a href="{{ url('/management/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
 
                                                 <button class="btn a btn-primary btn-sm">Check-out</button>
 													</form>

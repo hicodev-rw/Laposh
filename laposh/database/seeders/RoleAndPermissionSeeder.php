@@ -33,6 +33,7 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'check-out']);
         Permission::create(['name' => 'view-reservation']);
         Permission::create(['name' => 'cancel-reservation']);
+        Permission::create(['name' => 'extend-reservation']);
 
         Permission::create(['name' => 'view-payment']);
         Permission::create(['name' => 'check-paymemt']);
@@ -57,6 +58,7 @@ class RoleAndPermissionSeeder extends Seeder
                 'check-in',
                 'check-out',
                 'view-reservation',
+                'extend-reservation'
                 ]);
         $receptionRole->givePermissionTo([
             'view-reservation',

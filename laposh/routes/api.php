@@ -69,7 +69,7 @@ Route::get('/reservations/checkin/list',[reservationController::class,'readForCh
 Route::get('/reservations/checkout/list',[reservationController::class,'readForCheckOut']);
 Route::patch('/reservations/checkin/{id}',[reservationController::class,'checkin']);
 Route::patch('/reservations/checkout/{id}',[reservationController::class,'checkout']);
-Route::resource('/reservation/status',statusController::class);
+Route::resource('/status',statusController::class);
 
 
 //hotel info

@@ -88,7 +88,8 @@ class reservationController extends Controller
 
     public function edit($id)
     {
-        //
+        $reservation=Reservation::find($id);
+        return view('management.static.extend')->with('reservation',$reservation);
     }
 
     public function update(Request $request, $id)
@@ -98,7 +99,8 @@ class reservationController extends Controller
         if($reservation){
             $reservation->update($input);
             $message="reservation was updated succesfully!";
-            return $message;
+          //  return $message;
+            return redirect('/management/bookings')->with('message',$message);
         }
         else{
             $message="reservation not Found";
@@ -230,7 +232,8 @@ class reservationController extends Controller
         if($reservation){
             $reservation->update($input);
             $message="reservation was canceled succesfully!";
-            return $message;
+            // return $message;
+        return redirect('/management/bookings')->with('message',$message);
         }
         else{
             $message="reservation not Found";

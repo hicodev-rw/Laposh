@@ -32,7 +32,7 @@
 							<div class="card flex-fill">
 								<div class="card-header">
 								</div>
-								<form action="{{url('users/'.$user->id)}}"  method='post'>
+								<form action="{{url('/management/users/'.$user->id)}}"  method='post'>
 									{{csrf_field()}}
                                     @method('PATCH')
 									<div class="card-body">

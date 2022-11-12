@@ -30,13 +30,13 @@
 												<td>{{$booking->reference}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->room->name}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->status->name}}</td>
-												<td><form action=' {{url('/bookings' . '/' .   $booking->id)}}' method="post">
-					{{method_field('DELETE')}}
+												<td><form action=' {{url('/management/reservations/cancel' . '/' .   $booking->id)}}' method="post">
+					{{method_field('PATCH')}}
 					{{ csrf_field() }} 
-					<a href="{{ url('/bookings/'. $booking->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
-					<a href="{{ url('/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
+					<a href="{{ url('/management/bookings/'. $booking->id .'/edit') }}" class="btn a btn-primary btn-sm">Extend</a>
+					<a href="{{ url('/management/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
 
-                                                <button class="btn btn-danger btn-sm">Delete</button>
+                                                <button class="btn btn-danger btn-sm">Cancel</button>
 													</form>
 													</td>
 											</tr>
