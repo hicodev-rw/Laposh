@@ -26,7 +26,7 @@ use App\Http\Controllers\reservationController;
 
 
 //room routes
-Route::get('/rooms',[roomController::class,'index']);
+Route::get('/rooms',[roomController::class,'index'])->middleware(['auth','can:dashbord']);
 Route::get('/rooms/{id}',[roomController::class,'show']);
 Route::post('/rooms',[roomController::class,'store'])->middleware(['auth:sanctum','can:create-room']);
 Route::patch('/rooms/{id}',[roomController::class,'update'])->middleware(['auth:sanctum','can:edit-room']);
@@ -37,7 +37,7 @@ Route::delete('/rooms',[roomController::class,'destroy'])->middleware(['auth:san
 
 
 //analytics
-Route::get('/dashboard',[dashboard::class,'index'])->middleware(['auth:sanctum','can:dashbord']);
+Route::get('/dashboard',[dashboard::class,'index'])->middleware(['auth','can:dashbord']);
 
 
 //users

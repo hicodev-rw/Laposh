@@ -161,8 +161,8 @@ Administrator
 </div>
 								
 									<div class="card-body">
-										<h5 class="card-title mb-0">Code</h5>
-										<input type="text" name="code" class="form-control"
+										<h5 class="card-title mb-0">Name</h5>
+										<input type="text" name="name" class="form-control"
                                         value="{{$room->name}}" readonly>
 									</div>
 									<div class="card-body">
@@ -182,7 +182,18 @@ Administrator
 			
 
 					<div class="row">
-
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Specifications</h5>
+								</div>
+								<div class="card-body">
+									<html>
+									{{$room->specifications}}
+									</html>
+								</div>
+							</div>
+						</div>
 						
 					</div>
 

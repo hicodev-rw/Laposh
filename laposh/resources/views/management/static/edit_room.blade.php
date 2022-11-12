@@ -182,9 +182,10 @@ Administrator
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Specifications</h5>
-										<input type="text" name="specifications"
-                                        value="{{$room->specifications}}"
-                                        class="form-control">
+										<textarea type="text" name="specifications"
+                                        class="ckeditor form-control">
+										{{$room->specifications}}
+										</textarea>
 									</div>
 									<button type="submit"class="btn btn-primary btn-md">update</button>
 								</form>
@@ -219,5 +220,11 @@ Administrator
 	</div>
 
 	<script src="../../../js/app.js"></script>
+	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('.ckeditor').ckeditor();
+    });
+</script>
 </body>
 </html>

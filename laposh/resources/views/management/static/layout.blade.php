@@ -11,7 +11,8 @@
 
 	<title>La Posh Hotel</title>
 
-	<link href="css/app.css" rel="stylesheet">
+	<link href=".../../../css/app.css" rel="stylesheet">
+	<link href=".../../../css/custom.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -26,44 +27,49 @@
 				<ul class="sidebar-nav">
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="/management/dashboard">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="rooms.html">
+						<a class="sidebar-link" href="/management/rooms">
               <i class="align-middle" data-feather="home"></i> <span class="align-middle">Rooms</span>
             </a>
 		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="bookings.html">
+			<a class="sidebar-link" href="/management/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
 <li class="sidebar-item">
-	<a class="sidebar-link" href="categories.html">
+	<a class="sidebar-link" href="/management/categories">
 <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
 </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="checkin.html">
+						<a class="sidebar-link" href="/management/reservations/checkin/list">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
 					</a>
 										</li>
 
 									</li>
-			<li class="sidebar-item active">
-					<a class="sidebar-link" href="checkout.html">
+			<li class="sidebar-item">
+					<a class="sidebar-link" href="/management/reservations/checkout/list">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="settings.html">
+				<a class="sidebar-link" href="/management/roles">
+				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Configurations</span>
+			</a>
+		</li>
+		<li class="sidebar-item">
+				<a class="sidebar-link" href="/management/settings">
 				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
 			</a>
 		</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="users.html">
+						<a class="sidebar-link" href="/management/users">
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
             </a>
 </li>
@@ -76,7 +82,7 @@
 Administrator
 						</div>
 						<div class="d-grid">
-							<a href="logout.html" class="btn btn-primary">Sign Out</a>
+							<a href="/logout" class="btn btn-primary">Sign Out</a>
 						</div>
 					</div>
 				</div>
@@ -123,7 +129,7 @@ Administrator
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -131,50 +137,9 @@ Administrator
 					</ul>
 				</div>
 			</nav>
+            @yield('content')
 
-			<main class="content">
-				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3"><strong>Rooms Available for check-out</strong></h1>
-
-					<div class="row">
-						<div class="col-xl-12 col-xxl-2 d-flex">
-							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
-								<div style="width: 90%;"  class="card flex-fill">
-									<div class="card-header">
-
-									</div>
-									<table class="table table-hover my-0">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>Referemce</th>
-												<th class="d-none d-xl-table-cell">Room</th>
-												<th class="d-none d-xl-table-cell">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>DEF-8347392</td>
-												<td class="d-none d-xl-table-cell">Suite-001</td>
-												<td class="d-none d-xl-table-cell"><button class="btn btn-primary">Check-out</button></td>
-											</tr>
-											
-										</tbody>
-									</table>
-								</div>
-							</div>
-							</div>
-					<div class="row">
-
-						
-					</div>
-
-				</div>
-			</main>
-
-			<footer class="footer">
+            <footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
 						<div class="col-6 text-start">
@@ -189,7 +154,28 @@ Administrator
 		</div>
 	</div>
 
-	<script src="js/app.js"></script>
-</body>
+	<script src=".../../../js/app.js"></script>
+	
+	
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var date = new Date(Date.now());
+			var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
+			document.getElementById("datetimepicker-dashboard").flatpickr({
+				inline: true,
+				prevArrow: "<span title=\"Previous month\">&laquo;</span>",
+				nextArrow: "<span title=\"Next month\">&raquo;</span>",
+				defaultDate: defaultDate
+			});
+		});
+	</script>
 
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('.ckeditor').ckeditor();
+    });
+</script>
+
+</body>
 </html>

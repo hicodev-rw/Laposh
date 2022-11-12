@@ -11,6 +11,7 @@ use Illuminate\Support\Facades;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
  
 class userController extends Controller
 {
@@ -152,26 +153,50 @@ class userController extends Controller
 
     public function login(Request $request)
     {
-        $user=User::where('email',$request->email)->first();
-        if($user){
-            $hashed=$user['password'];
-            $password=$request->password;
-            if(Hash::check($password,$hashed)){
-                $token = $user->createToken('myapitoken');
-             return ['token' => $token->plainTextToken];
-            }
-            else{
-                $message='Incorrect password';
-                return $message;
-            }
+        // $user=User::where('email',$request->email)->first();
+        // if($user){
+        //     $hashed=$user['password'];
+        //     $password=$request->password;
+        //     if(Hash::check($password,$hashed)){
+        //         $token = $user->createToken('myapitoken');
+        //      return ['token' => $token->plainTextToken];
+        //     }
+        //     else{
+        //         $message='Incorrect password';
+        //         return $message;
+        //     }
         
+        // }
+        // else{
+        //     $message='User Not found';
+        //     return $message;
+        // }
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            return redirect()->intended('dashboard');
         }
-        else{
-            $message='User Not found';
-            return $message;
-        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     
     }
+    public function logout(Request $request)
+{
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect('/login');
+}
 
 
 }
