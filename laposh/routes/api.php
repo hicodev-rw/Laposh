@@ -26,6 +26,7 @@ use App\Http\Controllers\reservationController;
 
 
 //room routes
+Route::resource('/customers',customerController::class);
 Route::get('/rooms',[roomController::class,'index'])->middleware(['auth','can:dashbord']);
 Route::get('/rooms/{id}',[roomController::class,'show']);
 Route::post('/rooms',[roomController::class,'store'])->middleware(['auth:sanctum','can:create-room']);
@@ -51,7 +52,7 @@ Route::post('/login',[userController::class,'login']);
 
 //customers
 
-Route::resource('/customers',customerController::class);
+
 
 Route::POST('/customer/login',[customerController::class,'login']);
 //rooms
