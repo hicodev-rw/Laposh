@@ -53,7 +53,7 @@ Route::post('/login',[userController::class,'login']);
 
 Route::resource('/customers',customerController::class);
 
-Route::POST('customer/login',[customerController::class,'login']);
+Route::POST('/customer/login',[customerController::class,'login']);
 //rooms
 // Route::resource('/rooms',roomController::class);
 Route::get('/list',[roomController::class,'list']);

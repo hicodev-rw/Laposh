@@ -1,36 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="css/login.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Classic Login Form Example</title>
+  <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet"><link rel="stylesheet" href="{{ URL::asset('css/login.css'); }}">
 
 </head>
-<body id="body">
+<body>
+<section class='login' id='login'>
+  <div class='head'>
+  <h1 class='company'>La posh Hotel</h1>
+  </div>
+  <p class='msg'>Welcome back</p>
+  <div class='form'>
+    <form action="{{ url('/login') }}" method="POST">
+    {{csrf_field()}}
+  <input type="text" placeholder='username' class='text' name='email' required><br>
+  <input type="password" placeholder='password' class='password' name='password'><br>
+  <button type="submit" class='btn-login'>Login</button>
+  <a href="#" class='forgot'>Forgot?</a>
+    </form>
+  </div>
+</section>
+<footer>
 
-<div id="login-card" class="card">
-<div class="card-body">
-  <h2 class="text-center">Login form</h2>
-  <br>
-  <form action="{{url('/login')}}" method="POST">
-  {{csrf_field()}}
-    <div class="form-group">
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-    </div>
-    <div class="form-group">
-      <input type="password" class="form-control" id="email" placeholder="Enter password" name="password">
-    </div>
-    <button type="submit" id="button" class="btn btn-primary deep-purple btn-block ">Submit</button>
-<br>
-    <br>
-   
-    <div id="btn" class="text-center">
-   <button type="button" class="btn btn-primary btn-circle btn-sm"><i class="fa fa-facebook"></i></button>
-   <button type="button" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-google"></i></button>
-   <button type="button" class="btn btn-info btn-circle btn-sm"><i class="fa fa-twitter"></i></button>
-   </div>
-
-  </form>
-</div>
-<div>
+</footer>
+<!-- partial -->
+</body>
+</html>

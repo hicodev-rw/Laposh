@@ -13,9 +13,9 @@
 									<h5 class="card-title mb-0">Profile Summary</h5>
 								</div>
 								<div class="card-body text-center">
-									<img src="{{$user->avatar}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-									<h5 class="card-title mb-0">{{$user->lastName}}</h5>
-									<div class="text-muted mb-2">{{$user->role}}</div>
+									<img src="{{ auth()->user()->avatar }}" alt="" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+									<h5 class="card-title mb-0">{{ auth()->user()->lastName }}</h5>
+									<div class="text-muted mb-2">{{ auth()->user()->role }}</div>
 								</div>
 
 							</div>
@@ -39,25 +39,25 @@
 										<thead>
 											<tr>
 												<th>First Name</th>
-												<th class="d-none d-xl-table-cell">{{$user->firstName}}</th>
+												<th class="d-none d-xl-table-cell">{{ auth()->user()->firstName }}</th>
 											</tr>
                                             <tr>
 												<th>Last Name</th>
-												<th class="d-none d-xl-table-cell">{{$user->lastName}}</th>
+												<th class="d-none d-xl-table-cell">{{ auth()->user()->lastName }}</th>
 											</tr>
                                             <tr>
 												<th>Email</th>
-												<th class="d-none d-xl-table-cell">{{$user->email}}</th>
+												<th class="d-none d-xl-table-cell">{{ auth()->user()->email }}</th>
 											</tr>
                                             <tr>
 												<th>role</th>
-												<th class="d-none d-xl-table-cell">{{$user->role}}</th>
+												<th class="d-none d-xl-table-cell">{{ auth()->user()->role }}</th>
 											</tr>
                                             <tr>
 										</thead>
 									</table>
                                     <br>
-                                    <a href="{{ url('/management/users/'. $user->id .'/edit') }}" class="btn a btn-primary btn-lg">Update This user</a>
+                                    <a href="{{ url('/management/users/'. auth()->user()->id .'/edit') }}" class="btn a btn-primary btn-lg">Update Profile</a>
 								</div>
 							</div>
 							</div>

@@ -151,6 +151,10 @@ class userController extends Controller
         }
     }
 
+    public function profile(){
+        return view('management.static.profile');
+    }
+
     public function login(Request $request)
     {
         // $user=User::where('email',$request->email)->first();

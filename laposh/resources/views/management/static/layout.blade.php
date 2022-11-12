@@ -106,7 +106,7 @@
                 <img src="{{ auth()->user()->avatar }}" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">{{ auth()->user()->lastName }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="/management/user/profile"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 						</li>
 					</ul>
 				</div>
