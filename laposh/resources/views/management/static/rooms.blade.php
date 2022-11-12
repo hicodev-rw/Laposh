@@ -9,10 +9,9 @@
 						<div class="col-xl-8 col-xxl-2 d-flex">
 							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
 								<div style="width: 90%;"  class="card flex-fill">
-									<div class="card-header">
-	
-										<h5 class="card-title mb-0">Rooms</h5>
-									</div>
+							<div class="card-header">
+								
+							</div>
 									<table class="table table-hover my-0">
 										<thead>
 											<tr>
@@ -31,13 +30,19 @@
 					<td>{{$room->category->name}}</td>
 					<td class="d-none d-xl-table-cell">{{$room->price}}</td>
 					<td class="d-none d-xl-table-cell">
-					<form action=' {{url('/rooms' . '/' .   $room->id)}}' method="post">
+					<form action=' {{url('/management/rooms' . '/' .   $room->id)}}' method="post">
 					{{method_field('DELETE')}}
 					{{ csrf_field() }} 
-					<a href="{{ url('/rooms/'. $room->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
-					<a href="{{ url('/rooms/'. $room->id) }}" class="btn a btn-primary btn-sm">View</a>
-
-                                                <button class="btn btn-danger btn-sm">Delete</button>
+					@if(auth()->user()->can('edit-room'))
+					<a href="{{ url('/management/rooms/'. $room->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
+					@endif
+					@if(auth()->user()->can('view-room'))
+					<a href="{{ url('/management/rooms/'. $room->id) }}" class="btn a btn-primary btn-sm">View</a>
+					@endif
+						@if(auth()->user()->can('delete-room'))
+						<button class="btn btn-danger btn-sm">Delete</button>
+						@endif
+                                                
 													</form>
 
 												</td>
@@ -49,13 +54,14 @@
 								</div>
 							</div>
 							</div>
+							@if(auth()->user()->can('create-room'))
 						<div class="col-xl-4 col-l-7">
 							<div class="card flex-fill">
 								<div class="card-header">
 
 									<h5 class="card-title mb-0">Add New Room</h5>
 								</div>
-								<form action="{{url('rooms')}}"  method='post' enctype="multipart/form-data">
+								<form action="{{url('/management/rooms')}}"  method='post' enctype="multipart/form-data">
 									{{csrf_field()}}
 									<div class="card-body">
 										<h5 class="card-title mb-0">Name</h5>
@@ -71,11 +77,12 @@
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Price ($)</h5>
-										<input type="number" name="price" class="form-control">
+										<input type="number" name="price"
+										step=".01" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Specifications</h5>
-										<textarea name="specifications" class="ckeditor form-control">
+										<textarea name="specifications" class="form-control">
 										</textarea>
 									</div>
 
@@ -88,6 +95,7 @@
 								</form>
 							</div>
 						</div>
+						@endif
 					</div>
 
 			

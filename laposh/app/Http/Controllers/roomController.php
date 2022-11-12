@@ -118,7 +118,7 @@ class roomController extends Controller
                 $roomImages = array('images' => $images);
                 $merge=array_merge($input,$roomImages);
             $room=Room::create($merge); 
-            return redirect('/rooms')->with('message','room added successfully');
+            return redirect('management/rooms')->with('message','room added successfully');
         }
         else{
        $message='the name of room must be unique';
@@ -153,7 +153,7 @@ class roomController extends Controller
         $input =$request->all();
         $room->update($input);
        // return $room;
-       return redirect('/rooms')->with('message','room updated successfully');
+       return redirect('/management/rooms')->with('message','room updated successfully');
     }
 
     public function destroy($id)
@@ -175,7 +175,7 @@ public function updateRoomImages(Request $request,$id){
                 }
                 $roomImages = array('images' => $images);
                  $room->update($roomImages);
-                 return redirect('/rooms')->with('message','room updated successfully');
+                 return redirect('/management/rooms')->with('message','room updated successfully');
         }
         else{
             $message='Room not found';

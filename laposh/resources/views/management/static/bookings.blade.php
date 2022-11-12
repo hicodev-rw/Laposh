@@ -38,7 +38,7 @@
 
                                                 <button class="btn btn-danger btn-sm">Delete</button>
 													</form>
-</td>
+													</td>
 											</tr>
 											@endforeach
 										</tbody>

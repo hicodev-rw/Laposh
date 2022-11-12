@@ -48,7 +48,7 @@ class categoryController extends Controller
         $input=$request->all();
         $category=Category::create($input);
        // return $category;
-        return redirect('/categories')->with('message','category created successfully');
+        return redirect('management/categories')->with('message','category created successfully');
     }
 
     public function show($id)
@@ -75,7 +75,7 @@ class categoryController extends Controller
         $input =$request->all();
         $category->update($input);
         //return $category;
-        return redirect('/categories')->with('message','category updated successfully');
+        return redirect('management/categories')->with('message','category updated successfully');
     }
 
 
@@ -84,6 +84,6 @@ class categoryController extends Controller
         Category::destroy($id);
         $message='category removed successfully';
        // return $message;
-       return redirect('/categories')->with('message','category removed successfully');
+       return redirect('management/categories')->with('message','category removed successfully');
     }
 }

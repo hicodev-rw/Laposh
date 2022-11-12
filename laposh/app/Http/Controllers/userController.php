@@ -81,7 +81,7 @@ class userController extends Controller
         $user->assignRole($input['role']);
         // return $user;
 
-        return redirect('/users')->with('message','user added successfully');
+        return redirect('/management/users')->with('message','user added successfully');
     }
     else{
         $message='User is already registered';
@@ -119,7 +119,7 @@ class userController extends Controller
         $user->update($merge);
         // $message="User was updated succesfully!";
         // return $message;
-        return redirect('/users/'.$id)->with('message','user updated successfully');
+        return redirect('/management/users/'.$id)->with('message','user updated successfully');
         }
         else{
             $message="user not Found";
@@ -131,7 +131,7 @@ class userController extends Controller
         User::destroy($id);
         // $message="User removed successfully";
         // return $message;
-        return redirect('/users')->with('message','user removed successfully');
+        return redirect('management/users')->with('message','user removed successfully');
     }
 
     public function showUploadForm()
@@ -179,7 +179,7 @@ class userController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect()->intended('dashboard');
+            return redirect()->intended('management/dashboard');
         }
  
         return back()->withErrors([

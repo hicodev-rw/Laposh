@@ -11,8 +11,8 @@
 
 	<title>La Posh Hotel</title>
 
-	<link href=".../../../css/app.css" rel="stylesheet">
-	<link href=".../../../css/custom.css" rel="stylesheet">
+	<link href="{{ URL::asset('css/app.css'); }}" rel="stylesheet">
+	<link href="{{ URL::asset('css/custom.css'); }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -46,14 +46,14 @@
 </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="/management/reservations/checkin/list">
+						<a class="sidebar-link" href="/management/check-in-list">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
 					</a>
 										</li>
 
 									</li>
 			<li class="sidebar-item">
-					<a class="sidebar-link" href="/management/reservations/checkout/list">
+					<a class="sidebar-link" href="/management/check-out-list">
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
@@ -77,9 +77,9 @@
 
 				<div class="sidebar-cta">
 					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Hicode</strong>
+						<strong class="d-inline-block mb-2">{{ auth()->user()->lastName }}</strong>
 						<div class="mb-3 text-sm">
-Administrator
+						{{ auth()->user()->role }}
 						</div>
 						<div class="d-grid">
 							<a href="/logout" class="btn btn-primary">Sign Out</a>
@@ -98,38 +98,12 @@ Administrator
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-								<div class="position-relative">
-									<i class="align-middle" data-feather="bell"></i>
-									<span class="indicator">1</span>
-								</div>
-							</a>
-							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-								<div class="dropdown-menu-header">
-									1 New Notifications
-								</div>
-								<div class="list-group">
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<i class="text-danger" data-feather="alert-circle"></i>
-											</div>
-											<div class="col-10">
-												<div class="text-dark">Update completed</div>
-												<div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
-												<div class="text-muted small mt-1">30m ago</div>
-											</div>
-										</div>
-									
-							</div>
-						</li>
-						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                 <i class="align-middle" data-feather="settings"></i>
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="images/avatar.jpg" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">hicode</span>
+                <img src="{{ auth()->user()->avatar }}" class="avatar img-fluid rounded me-1" alt="" /> <span class="text-dark">{{ auth()->user()->lastName }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -154,7 +128,7 @@ Administrator
 		</div>
 	</div>
 
-	<script src=".../../../js/app.js"></script>
+	<script src="{{ URL::asset('js/app.js'); }}"></script>
 	
 	
 	<script>
@@ -169,13 +143,5 @@ Administrator
 			});
 		});
 	</script>
-
-<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-       $('.ckeditor').ckeditor();
-    });
-</script>
-
 </body>
 </html>

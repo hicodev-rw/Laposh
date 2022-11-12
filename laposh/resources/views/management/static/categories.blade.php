@@ -26,11 +26,11 @@
 												<td>{{$loop->iteration}}</td>
 												<td>{{$category->name}}</td>
 												<td class="d-none d-xl-table-cell">
-												<form action=' {{url('/categories' . '/' .   $category->id)}}' method="post">
+												<form action=' {{url('/management/categories' . '/' .   $category->id)}}' method="post">
 													{{method_field('DELETE')}}
 													{{ csrf_field() }} 
-												<a href="{{url('categories/' .$category->id .'/edit')}}"class="btn btn-primary btn-sm">Edit</a>
-												<a href="{{url('categories/'.$category->id)}}"class="btn btn-primary btn-sm">View</a>
+												<a href="{{url('/management/categories/' .$category->id .'/edit')}}"class="btn btn-primary btn-sm">Edit</a>
+												<a href="{{url('/management/categories/'.$category->id)}}"class="btn btn-primary btn-sm">View</a>
                                                     <button class="btn btn-danger btn-sm">Delete</button>
 													</form>
 
@@ -48,7 +48,7 @@
 
 									<h5 class="card-title mb-0">Add New</h5>
 								</div>
-								<form action="{{ url('categories') }}" method='post'>
+								<form action="{{ url('management/categories') }}" method='post'>
 									{{ csrf_field() }}
 									<div class="card-body">
 										<h5 class="card-title mb-0">Name</h5>

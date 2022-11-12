@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->unsignedBigInteger('category_id');
-            $table->double('price');
-            $table->json('specifications');
-            $table->json('images')->nullable();
+            $table->decimal('price',5,2);
+            $table->longtext('specifications');
+            $table->json('images');
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });

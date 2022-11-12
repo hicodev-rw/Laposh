@@ -199,7 +199,7 @@ class reservationController extends Controller
         $reservation->update($input);
        // $message="reservation was checked in succesfully!";
        // return $message;
-        return redirect('/reservations/checkin/list')->with('message','room checked in successfully');
+        return redirect('/management/check-in-list')->with('message','room checked in successfully');
     }
     else{
         $message="reservation not Found";
@@ -215,7 +215,7 @@ class reservationController extends Controller
             $reservation->update($input);
             // $message="reservation was closed succesfully!";
             // return $message;
-            return redirect('/reservations/checkout/list')->with('message','room checked out successfully');
+            return redirect('/management/check-out-list')->with('message','room checked out successfully');
         }
         else{
             $message="reservation not Found";

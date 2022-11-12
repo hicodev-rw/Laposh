@@ -41,8 +41,8 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
     //bookings
     Route::resource('/management/bookings',reservationController::class);
     Route::patch('/management/reservations/cancel/{id}',[reservationController::class,'cancelBooking']);
-    Route::get('/management/reservations/checkin/list',[reservationController::class,'readForCheckIn']);
-    Route::get('/management/reservations/checkout/list',[reservationController::class,'readForCheckOut']);
+    Route::get('/management/check-in-list',[reservationController::class,'readForCheckIn']);
+    Route::get('/management/check-out-list',[reservationController::class,'readForCheckOut']);
     Route::patch('/reservations/checkin/{id}',[reservationController::class,'checkin']);
     Route::patch('/management/reservations/checkout/{id}',[reservationController::class,'checkout']);
     Route::resource('/management/reservation/status',statusController::class);
