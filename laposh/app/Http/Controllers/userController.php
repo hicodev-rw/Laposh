@@ -196,7 +196,7 @@ class userController extends Controller
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect('/login');
+    return redirect('/management/login');
 }
 
 public function grantPermissions(Request $request,$id)

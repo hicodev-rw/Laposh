@@ -40,15 +40,15 @@
                               <div class="col-md-12">
                                  <span>Arrival</span>
                                  <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="check_in_date">
+                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="check_in_date" id="cindate">
                               </div>
                               <div class="col-md-12">
                                  <span>Departure</span>
                                  <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="check_out_date">
+                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="check_out_date" id="coutdate">
                               </div>
                               <div class="col-md-12">
-                                 <button class="book_btn">Check Availability</button>
+                                 <button class="book_btn" onclick=dataSetter()>Check Availability</button>
                               </div>
                            </div>
                         </form>
@@ -59,6 +59,15 @@
          </div>
       </section>
       <!-- end banner -->
+
+      <script>
+function dataSetter(){
+   let cindate=document.getElementById('cindate').value;
+   let coutdate=document.getElementById('coutdate').value;
+   localStorage.setItem('cindate',cindate);
+   localStorage.setItem('coutdate',coutdate);
+}
+         </script>
 @endsection
       
       

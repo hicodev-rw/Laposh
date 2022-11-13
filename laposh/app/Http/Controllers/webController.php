@@ -60,8 +60,8 @@ class webController extends Controller
         // return $room;
         return view('web.room_details')->with('room',$room);
     }
-    public function bookingForm()
+    public function bookingForm($id)
     {
-        return view('web.booking_form');
+        return view('web.booking_form')->with('id',$id);
     }
 }

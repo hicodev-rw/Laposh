@@ -13,7 +13,7 @@
   </div>
   <p class='msg'>Welcome back</p>
   <div class='form'>
-    <form action="{{ url('/management/login') }}" method="POST">
+    <form action="{{ url('/login') }}" method="POST">
     {{csrf_field()}}
   <input type="text" placeholder='username' class='text' name='email' required><br>
   <input type="password" placeholder='password' class='password' name='password'><br>

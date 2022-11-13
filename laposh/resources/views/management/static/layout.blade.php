@@ -83,7 +83,7 @@
 						{{ auth()->user()->role }}
 						</div>
 						<div class="d-grid">
-							<a href="/logout" class="btn btn-primary">Sign Out</a>
+							<a href="/management/logout" class="btn btn-primary">Sign Out</a>
 						</div>
 					</div>
 				</div>

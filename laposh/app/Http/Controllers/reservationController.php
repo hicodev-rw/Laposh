@@ -76,7 +76,9 @@ class reservationController extends Controller
         $status = array('status_id' => 1,'reference'=>$ref);
         $merge = array_merge($input, $status);
         $reservation=Reservation::create($merge);
-        return $reservation;
+        // return $reservation;
+        return redirect('web.home')->with('booking',$reservation);
+
 
     }
 

@@ -10,15 +10,22 @@ use App\Http\Controllers\configController;
 use App\Http\Controllers\permissionController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\reservationController;
+use App\Http\Controllers\customerController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\webController;
 
 //Authentication
-Route::get('login', function () {
+Route::get('/management/login', function () {
     return view('management.static.login');
 });
-Route::post('/login',[userController::class,'login']);
-Route::GET('/logout',[userController::class,'logout']);
+Route::get('/login', function () {
+    return view('web.login');
+});
+
+Route::post('/management/login',[userController::class,'login']);
+Route::GET('/management/logout',[userController::class,'logout']);
+Route::post('/login',[customerController::class,'login']);
+Route::GET('/logout',[customerController::class,'logout']);
 
 //Client site
 
@@ -52,6 +59,7 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
 
     //bookings
     Route::resource('/management/bookings',reservationController::class);
+    Route::POST('/customer/booking',[reservationController::class,'store']);
     Route::patch('/management/reservations/cancel/{id}',[reservationController::class,'cancelBooking']);
     Route::get('/management/check-in-list',[reservationController::class,'readForCheckIn']);
     Route::get('/management/check-out-list',[reservationController::class,'readForCheckOut']);

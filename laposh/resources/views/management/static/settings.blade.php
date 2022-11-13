@@ -29,25 +29,27 @@
 							<div class="card flex-fill">
 								<form action="{{url('/management/settings')}}"  method='post' enctype="multipart/form-data">
 									{{csrf_field()}}
+									@method('PATCH')
 									<div class="card-body">
 										<h5 class="card-title mb-0">Hotel Name</h5>
-										<input type="text" name="name" class="form-control">
+										<input type="text" name="name" value="{{$info->name}}"class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Location</h5>
-										<input type="text" name="address" class="form-control">
+										<input type="text" name="address" value="{{$info->address}}"class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Email</h5>
-										<input type="email" name="email" class="form-control">
+										<input type="email" name="email" value="{{$info->email}}" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Telephone</h5>
-										<input type="text" name="phone" class="form-control">
+										<input type="text" name="phone" value="{{$info->phone}}" class="form-control">
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">About section</h5>
 										<textarea name="about-us" class="form-control">
+										{{$info->name}}
 										</textarea>
 									</div>
 
@@ -56,7 +58,7 @@
 										<input type="file" name="logo" class="form-control">
 									</div>
 
-									<button type="submit"class="btn btn-primary btn-md">Save</button>
+									<button type="submit"class="btn btn-primary btn-md">Update</button>
 								</form>
 							</div>
 						</div>

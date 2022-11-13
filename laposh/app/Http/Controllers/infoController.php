@@ -19,7 +19,7 @@ class infoController extends Controller
         $link = cloudinary()->upload($request->file('logo')->getRealPath())->getSecurePath();
         $logo=array('logo'=>$link);
         $merge=array_merge($input,$logo);
-        Hotel_info::create($input);
+        Hotel_info::create($merge);
         return redirect('/management/settings')->with('message','Info updated successfully');
 
     }
@@ -27,8 +27,11 @@ class infoController extends Controller
     {
         $info=Hotel_info::first();
         $input=$request->all();
-        $info->update($input);
-        return 'Data updated succesfully!';
+        $link = cloudinary()->upload($request->file('logo')->getRealPath())->getSecurePath();
+        $logo=array('logo'=>$link);
+        $merge=array_merge($input,$logo);
+        $info->update($merge);
+        return redirect('/management/settings')->with('message','Info updated successfully');
     }
 
     public function updateLogo(Request $request)

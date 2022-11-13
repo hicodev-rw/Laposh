@@ -13,19 +13,19 @@
 								</div>
 								<form action="{{url('/customer/booking')}}"  method='post'>
 									{{csrf_field()}}
-                                    <input type="number" value="" name="customer_id" class="form-control" hidden>
-                                    <input type="number" value="" name="room_id" class="form-control" hidden>
+                                    <input type="number" value="{{auth()->user()->id}}" name="customer_id" class="form-control" hidden>
+                                    <input type="number" value="{{$id}}" name="room_id" class="form-control" hidden>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Check in date</h5>
-										<input type="date" value="" name="check_in_date" class="form-control">
+										<input type="date" value="" name="check_in_date" id="cindate" class="form-control" readonly>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Check out date</h5>
-										<input type="date" value=""name="check_out_date" class="form-control">
+										<input type="date" value=""name="check_out_date" id="coutdate" class="form-control" readonly>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Special information</h5>
-										<textarea type="email" value="" name="email" class="form-control">
+										<textarea type="email" value="" name="special_info" class="form-control">
                                         </textarea>
 									</div>
 
@@ -36,7 +36,10 @@
 					</div>
 				</div>
 </main>
-
+<script>
+   document.getElementById('cindate').value=localStorage.getItem('cindate');
+   document.getElementById('coutdate').value=localStorage.getItem('coutdate');
+         </script>
 @endsection
       
       
