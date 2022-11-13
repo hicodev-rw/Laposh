@@ -29,9 +29,15 @@
 												<form action=' {{url('/management/categories' . '/' .   $category->id)}}' method="post">
 													{{method_field('DELETE')}}
 													{{ csrf_field() }} 
+													@if(auth()->user()->can('edit-category'))
 												<a href="{{url('/management/categories/' .$category->id .'/edit')}}"class="btn btn-primary btn-sm">Edit</a>
+												@endif
+												@if(auth()->user()->can('view-category'))
 												<a href="{{url('/management/categories/'.$category->id)}}"class="btn btn-primary btn-sm">View</a>
+												@endif
+												@if(auth()->user()->can('delete-category'))
                                                     <button class="btn btn-danger btn-sm">Delete</button>
+													@endif
 													</form>
 
 												</td>
@@ -42,6 +48,7 @@
 								</div>
 							</div>
 							</div>
+							@if(auth()->user()->can('create-category'))
 						<div class="col-xl-4 col-l-7">
 							<div class="card flex-fill">
 								<div class="card-header">
@@ -59,6 +66,7 @@
 								</form>
 							</div>
 						</div>
+						@endif
 					</div>
 
 			

@@ -57,7 +57,7 @@
 					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
 				</a>
 			</li>
-
+			@if(auth()->user()->role=='Administrator')
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="/management/roles">
 				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Configurations</span>
@@ -73,6 +73,7 @@
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
             </a>
 </li>
+@endif
 
 
 				<div class="sidebar-cta">

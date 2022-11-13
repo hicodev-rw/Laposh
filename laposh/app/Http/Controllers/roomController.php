@@ -98,13 +98,10 @@ class roomController extends Controller
         else{
             $rooms=$room_query->whereNotIn('id', $keys)->orderBy($sortBy,$sortOrder)->get();
         }
-            return $rooms;
+            // return $rooms;
+            return view('web.list')->with('rooms',$rooms);
     }
 
-
-    public function create()
-    {
-    }
     public function store(Request $request)
     {
         $input=$request->all();

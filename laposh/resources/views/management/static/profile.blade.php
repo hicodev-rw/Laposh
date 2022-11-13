@@ -57,7 +57,9 @@
 										</thead>
 									</table>
                                     <br>
+									@if(auth()->user()->can('edit-user'))
                                     <a href="{{ url('/management/users/'. auth()->user()->id .'/edit') }}" class="btn a btn-primary btn-lg">Update Profile</a>
+									@endif
 								</div>
 							</div>
 							</div>

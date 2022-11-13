@@ -5,11 +5,13 @@ use App\Http\Controllers\categoryController;
 use App\Http\Controllers\roomController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\dashboard;
+use App\Http\Controllers\infoController;
 use App\Http\Controllers\configController;
 use App\Http\Controllers\permissionController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\reservationController;
 use App\Http\Controllers\statusController;
+use App\Http\Controllers\webController;
 
 //Authentication
 Route::get('login', function () {
@@ -18,12 +20,20 @@ Route::get('login', function () {
 Route::post('/login',[userController::class,'login']);
 Route::GET('/logout',[userController::class,'logout']);
 
-//Client homepage
-Route::get('/', function () {
-    return view('web.web.home');
+//Client site
+
+Route::GET('/',[webController::class,'index']);
+Route::GET('/rooms',[webController::class,'rooms']);
+Route::GET('/room/details/{id}',[webController::class,'show']);
+Route::get('/list',[roomController::class,'list']);
+Route::get('/room/reserve/{id}',[webController::class,'bookingForm']);
+
+Route::group(['middleware'=>'auth:sanctum'], function () {
+    Route::resource('/management/users/manage/permissions',permissionController::class);
+    Route::resource('/management/roles',roleController::class);
+    Route::PATCH('/management/users/manage/grant/permissions/{id}',[userController::class,'grantPermissions']);
+    Route::PATCH('/management/users/manage/revoke/permissions/{id}',[userController::class,'revokePermissions']);
 });
-
-
 Route::group(['middleware'=>'auth:sanctum'], function () {
     //dashboard
     Route::get('/management/dashboard',[dashboard::class,'index']);
@@ -58,8 +68,6 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
      Route::resource('/management/users',userController::class); 
      Route::get('/management/user/profile',[userController::class,'profile']);
      Route::post('/management/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
-     Route::resource('/management/users/manage/permissions',permissionController::class);
-     Route::resource('/management/users/manage/roles',roleController::class);
   });
 
 
@@ -71,7 +79,6 @@ Route::resource('/customer',customerController::class);
 Route::POST('/customer/login',[customerController::class,'login']);
 //rooms
 // Route::resource('/rooms',roomController::class);
-Route::get('/list',[roomController::class,'list']);
 Route::resource('/room/categories',categoryController::class);
 Route::get('/room/popular',[roomController::class,'popular']);
 

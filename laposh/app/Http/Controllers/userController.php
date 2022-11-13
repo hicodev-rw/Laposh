@@ -194,12 +194,34 @@ class userController extends Controller
     public function logout(Request $request)
 {
     Auth::logout();
- 
     $request->session()->invalidate();
- 
     $request->session()->regenerateToken();
- 
     return redirect('/login');
+}
+
+public function grantPermissions(Request $request,$id)
+{
+    $input=$request->all();
+    $permissions=array_values($input);
+    unset($permissions[0]);
+    unset($permissions[1]);
+    $permissions=array_values($permissions);
+    $user=User::find($id);
+    $role = Role::where('name',$user->role)->first();
+    $role->givePermissionTo($permissions);
+    return redirect('/management/roles/'.$id.'/edit');
+}
+public function revokePermissions(Request $request,$id)
+{
+    $input=$request->all();
+    $permissions=array_values($input);
+    unset($permissions[0]);
+    unset($permissions[1]);
+    $permissions=array_values($permissions);
+    $user=User::find($id);
+    $role = Role::where('name',$user->role)->first();
+    $role->revokePermissionTo($permissions);
+    return redirect('/management/roles/'.$id.'/edit');
 }
 
 

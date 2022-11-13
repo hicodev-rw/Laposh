@@ -486,6 +486,11 @@ button {
      margin-right: 40px;
      overflow: hidden;
 }
+.detail_img {
+     margin-right: 40px;
+     overflow: hidden;
+     height: 400px;
+}
 
 .about_img figure {
      margin: 0;
@@ -536,6 +541,7 @@ button {
 
 .our_room .room .room_img figure img {
      width: 100%;
+     height:280px;
      transition: all .5s;
 }
 
@@ -639,6 +645,7 @@ button {
 
 .blog .blog_box .blog_img figure img {
      width: 100%;
+     height: 280px;
      transition: all .5s;
 }
 
