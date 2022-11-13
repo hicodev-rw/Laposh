@@ -10,18 +10,19 @@ class infoController extends Controller
     public function index()
     {
         $info=Hotel_info::first();
-        return $info;
+        return view('management.static.settings')->with('info',$info);
     }
 
     public function store(Request $request)
     {
         $input=$request->all();
+        $link = cloudinary()->upload($request->file('logo')->getRealPath())->getSecurePath();
+        $logo=array('logo'=>$link);
+        $merge=array_merge($input,$logo);
         Hotel_info::create($input);
-        return 'Data added succesfully!';
+        return redirect('/management/settings')->with('message','Info updated successfully');
 
     }
-
-
     public function update(Request $request)
     {
         $info=Hotel_info::first();
@@ -30,7 +31,7 @@ class infoController extends Controller
         return 'Data updated succesfully!';
     }
 
-    public function uploadLogo(Request $request)
+    public function updateLogo(Request $request)
     {
         $data=Hotel_info::first();
             $link = cloudinary()->upload($request->file('logo')->getRealPath())->getSecurePath();

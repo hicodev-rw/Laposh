@@ -33,6 +33,8 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
     Route::resource('/management/roles',roleController::class);
     Route::PATCH('/management/users/manage/grant/permissions/{id}',[userController::class,'grantPermissions']);
     Route::PATCH('/management/users/manage/revoke/permissions/{id}',[userController::class,'revokePermissions']);
+    Route::resource('/management/settings',infoController::class);
+    Route::post('/management/info/logo',[infoController::class,'changeLogo']);
 });
 Route::group(['middleware'=>'auth:sanctum'], function () {
     //dashboard
@@ -60,9 +62,6 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
     //customers
     Route::resource('/management/customers',customerController::class);
 
-    //hotel administration
-    Route::resource('/management/hotel/info',infoController::class);
-    Route::post('/management/info/logo',[infoController::class,'uploadLogo']);
 
      //users
      Route::resource('/management/users',userController::class); 
