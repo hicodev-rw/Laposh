@@ -13,7 +13,7 @@
 								</div>
 								<form action="{{url('/customer/booking')}}"  method='post'>
 									{{csrf_field()}}
-                                    <input type="number" value="{{auth()->user()->id}}" name="customer_id" class="form-control" hidden>
+                                    <input type="number" value="{{auth()->user()->id}}" name="user_id" class="form-control" hidden>
                                     <input type="number" value="{{$id}}" name="room_id" class="form-control" hidden>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Check in date</h5>

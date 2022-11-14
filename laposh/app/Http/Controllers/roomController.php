@@ -140,7 +140,6 @@ class roomController extends Controller
     }
     public function editImages($id)
     {
-        $categories=Category::all();
         $room=Room::find($id);
         return view('management.static.update_room_images')->with('room',$room);
     }
@@ -178,11 +177,5 @@ public function updateRoomImages(Request $request,$id){
             $message='Room not found';
             return $message;
         }
-    }
-
-    //popular booked room
-    public function popular()
-    {
-
     }
 }

@@ -13,10 +13,11 @@ use App\Http\Controllers\reservationController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\webController;
+use App\Models\Hotel_info as Info;
 
 //Authentication
 Route::get('/login', function () {
-    return view('login');
+    return view('login')->with('info',Info::first());
 });
 Route::post('/login',[userController::class,'login']);
 Route::GET('/logout',[userController::class,'logout']);
@@ -26,19 +27,21 @@ Route::GET('/',[webController::class,'index']);
 Route::GET('/rooms',[webController::class,'rooms']);
 Route::GET('/room/details/{id}',[webController::class,'show']);
 Route::get('/list',[roomController::class,'list']);
-Route::get('/room/reserve/{id}',[webController::class,'bookingForm']);
+Route::get('/register',[customerController::class,'create']);
+Route::POST('/customer/register',[customerController::class,'store']);
+
+Route::group(['middleware'=>['client']], function () {
 Route::get('/customer/dashboard',[webController::class,'dashboard']);
-Route::get('/customer/bookings',[customerController::class,'bookings']);
+Route::get('/customer/bookings',[customerController::class,'myBookings']);
 Route::POST('/customer/booking',[reservationController::class,'store']);
+Route::get('/room/reserve/{id}',[webController::class,'bookingForm']);
 Route::patch('/customer/bookings/cancel/{id}',[webController::class,'cancelBooking']);
 Route::patch('/customer/bookings/extension/{id}',[webController::class,'extenstionRequest']);
 Route::get('/customer/bookings/{id}',[webController::class,'extenstionRequest']);
 Route::get('/customer/bookings/{id}',[webController::class,'showReservation']);
 Route::get('/customer/profile',[customerController::class,'profile']);
+});
 
-//Route::group(['middleware'=>'auth:sanctum'], function () {
-
-//});
 Route::group(['middleware'=>['auth:sanctum','user']], function () {
     //dashboard
     Route::get('/management/dashboard',[dashboard::class,'index']);
@@ -59,6 +62,7 @@ Route::group(['middleware'=>['auth:sanctum','user']], function () {
     Route::PATCH('/management/users/manage/grant/permissions/{id}',[userController::class,'grantPermissions']);
     Route::PATCH('/management/users/manage/revoke/permissions/{id}',[userController::class,'revokePermissions']);
     Route::resource('/management/settings',infoController::class);
+    Route::POST('/management/update/settings',[infoController::class,'update']);
     Route::post('/management/info/logo',[infoController::class,'changeLogo']);
 
     //bookings

@@ -27,9 +27,8 @@
 					</div>
 					<div class="col-xl-12 col-l-7">
 							<div class="card flex-fill">
-								<form action="{{url('/management/settings')}}"  method='post' enctype="multipart/form-data">
+								<form action="{{url('/management/update/settings')}}"  method='post' enctype="multipart/form-data">
 									{{csrf_field()}}
-									@method('PATCH')
 									<div class="card-body">
 										<h5 class="card-title mb-0">Hotel Name</h5>
 										<input type="text" name="name" value="{{$info->name}}"class="form-control">
@@ -48,8 +47,8 @@
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">About section</h5>
-										<textarea name="about-us" class="form-control">
-										{{$info->name}}
+										<textarea name="about" class="form-control">
+										{{$info->about}}
 										</textarea>
 									</div>
 

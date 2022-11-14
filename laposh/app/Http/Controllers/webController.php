@@ -68,10 +68,10 @@ class webController extends Controller
 
     public function dashboard()
     {
-        $bookings=count(Reservation::all());
-        $ongoing=count(Reservation::all()->where('status_id','=',2));
-        $canceled=count(Reservation::all()->where('status_id','=',4));
-        $closed=count(Reservation::all()->where('status_id','=',3));
+        $bookings=count(Reservation::where('user_id',auth()->user()->id)->get());
+        $ongoing=count(Reservation::where('status_id','=',2)->where('user_id',auth()->user()->id)->get());
+        $canceled=count(Reservation::where('status_id','=',4)->where('user_id',auth()->user()->id)->get());
+        $closed=count(Reservation::where('status_id','=',3)->where('user_id',auth()->user()->id)->get());
         return view('web.dashboard.index')->with('bookings',$bookings)->with('closed',$closed)->with('canceled',$canceled)->with('ongoing',$ongoing);
     }
     public function cancelBooking(Request $request, $id)

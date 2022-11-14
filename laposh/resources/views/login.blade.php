@@ -9,7 +9,7 @@
 <body>
 <section class='login' id='login'>
   <div class='head'>
-  <h1 class='company'>La posh Hotel</h1>
+  <h1 class='company'>{{$info->name}}</h1>
   </div>
   <p class='msg'>Welcome back</p>
   <div class='form'>
@@ -20,7 +20,11 @@
   <button type="submit" class='btn-login'>Login</button>
   <a href="#" class='forgot'>Forgot?</a>
     </form>
+
   </div>
+  <br><br>
+<a href="/register" class='forgot'>Register</a>
+<a href="/" class='forgot'>Home&nbsp;|&nbsp;</a>
 </section>
 <footer>
 

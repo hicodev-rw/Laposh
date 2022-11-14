@@ -25,7 +25,10 @@
         </a>
 
 				<ul class="sidebar-nav">
-
+				<li class="sidebar-item">
+						<a class="sidebar-link" href="/">
+              <i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span>
+            </a>
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/customer/dashboard">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
@@ -37,9 +40,6 @@
 				<div class="sidebar-cta">
 					<div class="sidebar-cta-content">
 						<strong class="d-inline-block mb-2">{{ auth()->user()->lastName }}</strong>
-						<div class="mb-3 text-sm">
-						{{ auth()->user()->role }}
-						</div>
 						<div class="d-grid">
 							<a href="/logout" class="btn btn-primary">Sign Out</a>
 						</div>

@@ -73,14 +73,11 @@ class customerController extends Controller
         $hashed = Hash::make($password, [
             'rounds' => 12,
         ]);
-        $password = array('password' => $hashed);
-        $merge = array_merge($input, $password);
-        $link = cloudinary()->upload($request->avatar->getRealPath())->getSecurePath();
-        $avatar=array('avatar'=>$link);
-        $merge = array_merge($merge, $avatar);
+        $new = array('password' => $hashed,'role'=>'client');
+        $merge = array_merge($input, $new);
         $customer = User::create($merge);
         $customer->assignRole('client');
-        return $customer;
+        return redirect('/login');
     }
     else{
         $message='User is already registered';

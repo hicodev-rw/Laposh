@@ -42,7 +42,7 @@
 
 @media (min-width: 576px) and (max-width: 767px) {
     .header {
-        height: 76px;
+        height: 96px;
     }
     .carousel-item img {
         min-height: 570px;

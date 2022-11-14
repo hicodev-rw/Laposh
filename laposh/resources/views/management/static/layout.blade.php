@@ -37,14 +37,15 @@
             </a>
 		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="/management/bookings">
-  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
-</a>
-<li class="sidebar-item">
 	<a class="sidebar-link" href="/management/categories">
 <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
 </a>
 					</li>
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="/management/bookings">
+  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
+</a>
+
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/check-in-list">
 					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>

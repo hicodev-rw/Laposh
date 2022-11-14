@@ -25,7 +25,7 @@
 
 									<h5 class="card-title mb-0">Add New Room</h5>
 								</div>
-								<form action="{{url('/rooms/'.$room->id)}}"  method='post' enctype="multipart/form-data">
+								<form action="{{url('/management/rooms/'.$room->id)}}"  method='post' enctype="multipart/form-data">
 									{{csrf_field()}}
                                     @method('PATCH')
 									<div class="card-body">
@@ -55,10 +55,10 @@
 										{{$room->specifications}}
 										</textarea>
 									</div>
-									<button type="submit"class="btn btn-primary btn-md">update</button>
+									<button type="submit"class="btn btn-primary btn-md" style="width:100%;">update</button>
 								</form>
                                 <br>
-                                <a href="/edit-room-images/{{$room->id}}"class="btn btn-primary btn-md">Change room Images</a>
+                                <a href="/management/edit-room-images/{{$room->id}}"class="btn btn-primary btn-md">Change room Images</a>
 							</div>
 						</div>
 					</div>
@@ -69,6 +69,15 @@
 						
 					</div>
 
+				</div>
+				<div class="row">
+					@foreach($room->images as $image)
+					<div class="col-12 col-md-4">
+						<div class="card">
+							<img class="card-img-top" src="{{$image}}" alt="Unsplash">
+						</div>
+					</div>
+					@endforeach
 				</div>
 			</main>
 @endsection

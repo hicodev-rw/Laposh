@@ -19,7 +19,7 @@ class reservationController extends Controller
 
     public function index(Request $request)
     {
-        $reservations_query=Reservation::with(['status','customer']);
+        $reservations_query=Reservation::with(['status','user']);
 
         if($request->keyword){
             $reservations_query->where('reference','LIKE','%'.$request->keyword.'%');
@@ -30,7 +30,7 @@ class reservationController extends Controller
             });
         }
         if($request->owner){
-            $reservations_query->whereHas('customer',function($query) use($request){
+            $reservations_query->whereHas('user',function($query) use($request){
                 $query->where('firstName',$request->owner);
             });
         }
@@ -77,7 +77,7 @@ class reservationController extends Controller
         $merge = array_merge($input, $status);
         $reservation=Reservation::create($merge);
         // return $reservation;
-        return redirect('web.home')->with('booking',$reservation);
+        return redirect('/customer/dashboard')->with('booking',$reservation);
 
 
     }
@@ -113,12 +113,12 @@ class reservationController extends Controller
     public function readForCheckIn(Request $request)
     {
         $date = date('Y-m-d');
-        $reservations_query=Reservation::with('room','customer');
+        $reservations_query=Reservation::with('room','user');
         if($request->keyword){
             $reservations_query->where('reference','LIKE','%'.$request->keyword.'%')->where('check_in_date',$date);
         }
         if($request->owner){
-            $reservations_query->whereHas('customer',function($query) use($request){
+            $reservations_query->whereHas('user',function($query) use($request){
                 $query->where('firstName',$request->owner)->where('check_in_date',$date);
             });
         }
@@ -155,12 +155,12 @@ class reservationController extends Controller
     
     public function readForCheckOut(Request $request)
     {
-        $reservations_query=Reservation::with('room','customer');
+        $reservations_query=Reservation::with('room','user');
         if($request->keyword){
             $reservations_query->where('reference','LIKE','%'.$request->keyword.'%')->where('status_id',2);
         }
         if($request->owner){
-            $reservations_query->whereHas('customer',function($query) use($request){
+            $reservations_query->whereHas('user',function($query) use($request){
                 $query->where('firstName',$request->owner)->where('check_in_date',$date);
             });
         }

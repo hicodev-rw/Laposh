@@ -37,13 +37,42 @@
       <header>
          <!-- header inner -->
          <div class="header">
+         <div class="container">  
+               <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                  </div>
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <nav class="navigation navbar">
+                           <ul class="row">
+                              @if(!auth()->user())
+                              <li class="nav-item">
+                                 <a href="/register">Register</a>
+                              </li>&nbsp;|&nbsp;
+                              <li class="nav-item">
+                                 <a href="/login">Login</a>
+                              </li>&nbsp;@endif
+                              
+                              @if(auth()->user())|&nbsp;
+                              <li class="nav-item">
+                                 <a href="/customer/dashboard">My Laposh</a>
+                              </li>
+                              @endif
+                           </ul>
+                     </nav>
+                  </div>
+                  
+               </div>
+            </div>
             <div class="container">
+
                <div class="row">
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="/"><img src="{{ URL::asset('images/logo.png');}}" alt="#" /></a>
+                           <h1><strong>
+                           La posh Hotel
+</strong></h1>
                            </div>
                         </div>
                      </div>
@@ -70,19 +99,11 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="/contact">Contact Us</a>
                               </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/contact">Register</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/contact">Login</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/customer/dashboard">My Laposh</a>
-                              </li>
                            </ul>
                         </div>
                      </nav>
                   </div>
+                  
                </div>
             </div>
          </div>

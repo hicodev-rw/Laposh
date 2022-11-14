@@ -162,15 +162,14 @@ class userController extends Controller
         ]);
  
         if (Auth::attempt($credentials) && Auth()->user()->role=='client') {
-            Session::put('username', $user->username);
-            $request->session()->regenerate('client');
+            $request->session()->regenerate();
             return redirect()->intended('/');
         }
         else if(Auth::attempt($credentials))
           {
             return redirect()->intended('management/dashboard');
             }
- else{
+      else{
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
@@ -180,7 +179,7 @@ class userController extends Controller
     public function logout(Request $request)
 {
     Auth::logout();
-    $request->session()->invalidate('sc');
+    $request->session()->invalidate();
     $request->session()->regenerateToken();
     return redirect('/login');
 }

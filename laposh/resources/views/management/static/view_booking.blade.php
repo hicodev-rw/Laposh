@@ -27,7 +27,7 @@
 											</tr>
                                             <tr>
 												<th>Client</th>
-												<th class="d-none d-xl-table-cell">{{$booking->customer->firstName}} {{$booking->customer->lastName}}</th>
+												<th class="d-none d-xl-table-cell">{{$booking->user->firstName}} {{$booking->user->lastName}}</th>
 											</tr>
                                             <tr>
 												<th>Check-in-Date</th>

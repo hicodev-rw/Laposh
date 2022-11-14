@@ -80,6 +80,14 @@
 										</select>
 									</div>
 									<div class="card-body">
+										<h5 class="card-title mb-0">Prefered title</h5>
+										<select name="title" class="form-control">	
+										<option value="Mr.">Mr.</option>
+										<option value="Mrs.">Mrs.</option>
+										<option value="Miss.">Miss.</option>
+										</select>
+									</div>
+									<div class="card-body">
 										<h5 class="card-title mb-0">Avatar</h5>
 										<input type="file" name="avatar" class="form-control">
 									</div>
