@@ -70,6 +70,15 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="/contact">Contact Us</a>
                               </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="/contact">Register</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="/contact">Login</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="/customer/dashboard">My Laposh</a>
+                              </li>
                            </ul>
                         </div>
                      </nav>

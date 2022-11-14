@@ -15,35 +15,31 @@ use App\Http\Controllers\statusController;
 use App\Http\Controllers\webController;
 
 //Authentication
-Route::get('/management/login', function () {
-    return view('management.static.login');
-});
 Route::get('/login', function () {
-    return view('web.login');
+    return view('login');
 });
-
-Route::post('/management/login',[userController::class,'login']);
-Route::GET('/management/logout',[userController::class,'logout']);
-Route::post('/login',[customerController::class,'login']);
-Route::GET('/logout',[customerController::class,'logout']);
+Route::post('/login',[userController::class,'login']);
+Route::GET('/logout',[userController::class,'logout']);
 
 //Client site
-
 Route::GET('/',[webController::class,'index']);
 Route::GET('/rooms',[webController::class,'rooms']);
 Route::GET('/room/details/{id}',[webController::class,'show']);
 Route::get('/list',[roomController::class,'list']);
 Route::get('/room/reserve/{id}',[webController::class,'bookingForm']);
+Route::get('/customer/dashboard',[webController::class,'dashboard']);
+Route::get('/customer/bookings',[customerController::class,'bookings']);
+Route::POST('/customer/booking',[reservationController::class,'store']);
+Route::patch('/customer/bookings/cancel/{id}',[webController::class,'cancelBooking']);
+Route::patch('/customer/bookings/extension/{id}',[webController::class,'extenstionRequest']);
+Route::get('/customer/bookings/{id}',[webController::class,'extenstionRequest']);
+Route::get('/customer/bookings/{id}',[webController::class,'showReservation']);
+Route::get('/customer/profile',[customerController::class,'profile']);
 
-Route::group(['middleware'=>'auth:sanctum'], function () {
-    Route::resource('/management/users/manage/permissions',permissionController::class);
-    Route::resource('/management/roles',roleController::class);
-    Route::PATCH('/management/users/manage/grant/permissions/{id}',[userController::class,'grantPermissions']);
-    Route::PATCH('/management/users/manage/revoke/permissions/{id}',[userController::class,'revokePermissions']);
-    Route::resource('/management/settings',infoController::class);
-    Route::post('/management/info/logo',[infoController::class,'changeLogo']);
-});
-Route::group(['middleware'=>'auth:sanctum'], function () {
+//Route::group(['middleware'=>'auth:sanctum'], function () {
+
+//});
+Route::group(['middleware'=>['auth:sanctum','user']], function () {
     //dashboard
     Route::get('/management/dashboard',[dashboard::class,'index']);
     //rooms
@@ -57,37 +53,40 @@ Route::group(['middleware'=>'auth:sanctum'], function () {
     Route::delete('/management/rooms',[roomController::class,'destroy']);
     Route::resource('/management/categories',categoryController::class);
 
+    //settings and configurations
+    Route::resource('/management/users/manage/permissions',permissionController::class);
+    Route::resource('/management/roles',roleController::class);
+    Route::PATCH('/management/users/manage/grant/permissions/{id}',[userController::class,'grantPermissions']);
+    Route::PATCH('/management/users/manage/revoke/permissions/{id}',[userController::class,'revokePermissions']);
+    Route::resource('/management/settings',infoController::class);
+    Route::post('/management/info/logo',[infoController::class,'changeLogo']);
+
     //bookings
     Route::resource('/management/bookings',reservationController::class);
-    Route::POST('/customer/booking',[reservationController::class,'store']);
     Route::patch('/management/reservations/cancel/{id}',[reservationController::class,'cancelBooking']);
     Route::get('/management/check-in-list',[reservationController::class,'readForCheckIn']);
     Route::get('/management/check-out-list',[reservationController::class,'readForCheckOut']);
     Route::patch('management/reservations/checkin/{id}',[reservationController::class,'checkin']);
     Route::patch('/management/reservations/checkout/{id}',[reservationController::class,'checkout']);
     Route::resource('/management/reservation/status',statusController::class);
-    
     //customers
-    Route::resource('/management/customers',customerController::class);
-
-
-     //users
-     Route::resource('/management/users',userController::class); 
-     Route::get('/management/user/profile',[userController::class,'profile']);
-     Route::post('/management/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
+    Route::resource('/customers',customerController::class);
+    //users
+    Route::resource('/management/users',userController::class); 
+    Route::get('/management/user/profile',[userController::class,'profile']);
+    Route::post('/management/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
   });
 
 
 
 
-//customers
+// //customers
 
-Route::resource('/customer',customerController::class);
-Route::POST('/customer/login',[customerController::class,'login']);
-//rooms
-// Route::resource('/rooms',roomController::class);
-Route::resource('/room/categories',categoryController::class);
-Route::get('/room/popular',[roomController::class,'popular']);
+// Route::resource('/customer',customerController::class);
+// //rooms
+// // Route::resource('/rooms',roomController::class);
+// Route::resource('/room/categories',categoryController::class);
+// Route::get('/room/popular',[roomController::class,'popular']);
 
-//hotel info
+// //hotel info
 

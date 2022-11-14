@@ -3,26 +3,71 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Customer;
+use App\Models\User;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 class customerController extends Controller
 {
     public function index()
     {
-        $customers=Customer::all();
+        $customers=User::all();
         return $customers;
     }
 
     public function create()
     {
-        //
+        return view('web.register');
+    }
+    public function myBookings(Request $request)
+    {
+        $reservations_query=Reservation::with(['status'])->where('user_id',Auth()->user()->id);
+        if($request->keyword){
+            $reservations_query->where('reference','LIKE','%'.$request->keyword.'%');
+        }
+        if($request->status){
+            $reservations_query->whereHas('status',function($query) use($request){
+                $query->where('name',$request->status);
+            });
+        }
+        if($request->owner){
+            $reservations_query->whereHas('customer',function($query) use($request){
+                $query->where('firstName',$request->owner);
+            });
+        }
+        if($request->sortBy && in_array($request->sortBy,['reference','created_at',])){
+            $sortBy=$request->sortBy;
+        }
+        else{
+            $sortBy='created_at'; 
+        }
+
+        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
+            $sortOrder=$request->sortOrder;
+        }
+        else{
+            $sortOrder='asc'; 
+        }
+
+        if($request->perPage){
+            $perPage=$request->perPage;
+        }
+        else{
+            $perPage=8;
+        }
+        if($request->paginate){
+            $reservations=$reservations_query->orderBy($sortBy,$sortOrder)->paginate($perPage);
+        }
+        else{
+            $reservations=$reservations_query->orderBy($sortBy,$sortOrder)->get();
+        }
+        return view('web.dashboard.bookings')->with('bookings',$reservations);
     }
 
     public function store(Request $request)
     {
         $input=$request->all();
-        $isUnique = count(Customer::where('email',$request->email)->get());
+        $isUnique = count(User::where('email',$request->email)->get());
         if($isUnique==0){
         $password=$request->password;
         $hashed = Hash::make($password, [
@@ -30,18 +75,22 @@ class customerController extends Controller
         ]);
         $password = array('password' => $hashed);
         $merge = array_merge($input, $password);
-        $customer = Customer::create($merge);
+        $link = cloudinary()->upload($request->avatar->getRealPath())->getSecurePath();
+        $avatar=array('avatar'=>$link);
+        $merge = array_merge($merge, $avatar);
+        $customer = User::create($merge);
+        $customer->assignRole('client');
         return $customer;
     }
     else{
         $message='User is already registered';
-        return $message;
+        return redirect('/register')->with('message',$message);
     }
     }
 
     public function show($id)
     {
-        $customer=Customer::with('reservations')->find($id);
+        $customer=User::with('reservations')->find($id);
         if($customer){
             return $customer;
         }
@@ -54,13 +103,14 @@ class customerController extends Controller
 
     public function edit($id)
     {
-        //
+        $user=User::find($id);
+        return view('web.dashboard.edit_profile')->with('user',$user);
     }
 
     public function update(Request $request, $id)
     {
         $input=$request->all();
-        $customer=Customer::find($id);
+        $customer=User::find($id);
         if($customer){
         $password=$request->password;
         $hashed = Hash::make($password, [
@@ -69,21 +119,21 @@ class customerController extends Controller
         $password = array('password' => $hashed);
         $merge = array_merge($input, $password);
         $customer->update($merge);
-        $message="Profile was updated succesfully!";
-        return $message;
+        return redirect('/customer/profile')->with('message','profile updated successfully');
         }
         else{
+
             $message="user not Found";
-            return $message;  
+            return redirect('/customer/profile')->with('message',$message); 
         }
     }
 
     public function destroy($id)
     {
-        $data=Customer::find($id);
+        $data=User::find($id);
         if($data){
-            Customer::destroy($id);
-            $message="client was removed succesfully!";
+            User::destroy($id);
+            $message="Account removed succesfully!";
             return $message;
         }
         else{
@@ -91,73 +141,7 @@ class customerController extends Controller
             return $message;  
         }
     }
-
-    // public function login(Request $request)
-    // {
-    //     $user=Customer::where('email',$request->email)->first();
-    //     if($user){
-    //         $hashed=$user['password'];
-    //         $password=$request->password;
-    //         if(Hash::check($password,$hashed)){
-    //             $token = $user->createToken('myapitoken');
- 
-    //          return ['token' => $token->plainTextToken];
-    //         }
-    //         else{
-    //             $message='Incorrect password';
-    //             return $message;
-    //         }
-        
-    //     }
-    //     else{
-    //         $message='User Not found';
-    //         return $message;
-    //     }
-    
-    // }
-
-    public function login(Request $request)
-    {
-        // $user=User::where('email',$request->email)->first();
-        // if($user){
-        //     $hashed=$user['password'];
-        //     $password=$request->password;
-        //     if(Hash::check($password,$hashed)){
-        //         $token = $user->createToken('myapitoken');
-        //      return ['token' => $token->plainTextToken];
-        //     }
-        //     else{
-        //         $message='Incorrect password';
-        //         return $message;
-        //     }
-        
-        // }
-        // else{
-        //     $message='User Not found';
-        //     return $message;
-        // }
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
- 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect()->intended('/');
-        }
- 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
-    
+    public function profile(){
+        return view('web.dashboard.profile');
     }
-    public function logout(Request $request)
-{
-    Auth::logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-    return redirect('/management/login');
-}
-
 }

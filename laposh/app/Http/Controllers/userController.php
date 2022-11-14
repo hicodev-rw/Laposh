@@ -18,7 +18,7 @@ class userController extends Controller
     public function index(Request $request)
     {
         $roles=RoleModel::all();
-        $user_query=User::with('roles');
+        $user_query=User::with('roles')->whereNot('role','client');
         if($request->role){
             $user_query->whereHas('roles',function($query) use($request){
                 $query->where('name',$request->role);
@@ -80,7 +80,6 @@ class userController extends Controller
         $user = User::create($merge);
         $user->assignRole($input['role']);
         // return $user;
-
         return redirect('/management/users')->with('message','user added successfully');
     }
     else{
@@ -157,46 +156,33 @@ class userController extends Controller
 
     public function login(Request $request)
     {
-        // $user=User::where('email',$request->email)->first();
-        // if($user){
-        //     $hashed=$user['password'];
-        //     $password=$request->password;
-        //     if(Hash::check($password,$hashed)){
-        //         $token = $user->createToken('myapitoken');
-        //      return ['token' => $token->plainTextToken];
-        //     }
-        //     else{
-        //         $message='Incorrect password';
-        //         return $message;
-        //     }
-        
-        // }
-        // else{
-        //     $message='User Not found';
-        //     return $message;
-        // }
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
  
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect()->intended('management/dashboard');
+        if (Auth::attempt($credentials) && Auth()->user()->role=='client') {
+            Session::put('username', $user->username);
+            $request->session()->regenerate('client');
+            return redirect()->intended('/');
         }
- 
+        else if(Auth::attempt($credentials))
+          {
+            return redirect()->intended('management/dashboard');
+            }
+ else{
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     
     }
+}
     public function logout(Request $request)
 {
     Auth::logout();
-    $request->session()->invalidate();
+    $request->session()->invalidate('sc');
     $request->session()->regenerateToken();
-    return redirect('/management/login');
+    return redirect('/login');
 }
 
 public function grantPermissions(Request $request,$id)
@@ -223,6 +209,4 @@ public function revokePermissions(Request $request,$id)
     $role->revokePermissionTo($permissions);
     return redirect('/management/roles/'.$id.'/edit');
 }
-
-
 }

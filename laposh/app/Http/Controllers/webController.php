@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Reservation;
 use App\Models\Category;
+
 class webController extends Controller
 {
     public function index(Request $request)
@@ -63,5 +64,30 @@ class webController extends Controller
     public function bookingForm($id)
     {
         return view('web.booking_form')->with('id',$id);
+    }
+
+    public function dashboard()
+    {
+        $bookings=count(Reservation::all());
+        $ongoing=count(Reservation::all()->where('status_id','=',2));
+        $canceled=count(Reservation::all()->where('status_id','=',4));
+        $closed=count(Reservation::all()->where('status_id','=',3));
+        return view('web.dashboard.index')->with('bookings',$bookings)->with('closed',$closed)->with('canceled',$canceled)->with('ongoing',$ongoing);
+    }
+    public function cancelBooking(Request $request, $id)
+    {
+        $reservation=Reservation::find($id);
+        $input=array('status_id'=>4);
+        if($reservation){
+            $reservation->update($input);
+            $message="reservation was canceled succesfully!";
+            // return $message;
+        return redirect('/customer/bookings')->with('message',$message);
+        }
+    }
+    public function showReservation($id)
+    {
+        $reservation=Reservation::find($id);
+        return view('web.dashboard.view_booking')->with('booking',$reservation);
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('room_id');
             $table->Date('check_in_date');
             $table->Date('check_out_date');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('reference');
             $table->unsignedBigInteger('status_id')->default(1);
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('status_id')->references('id')->on('status');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
         });

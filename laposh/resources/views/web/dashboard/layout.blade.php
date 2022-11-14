@@ -27,55 +27,13 @@
 				<ul class="sidebar-nav">
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="/management/dashboard">
+						<a class="sidebar-link" href="/customer/dashboard">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="/management/rooms">
-              <i class="align-middle" data-feather="home"></i> <span class="align-middle">Rooms</span>
-            </a>
-		</li>
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="/management/bookings">
+			<a class="sidebar-link" href="/customer/bookings">
   <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
 </a>
-<li class="sidebar-item">
-	<a class="sidebar-link" href="/management/categories">
-<i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
-</a>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="/management/check-in-list">
-					<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Check-in</span>
-					</a>
-										</li>
-
-									</li>
-			<li class="sidebar-item">
-					<a class="sidebar-link" href="/management/check-out-list">
-					<i class="align-middle" data-feather="minus"></i> <span class="align-middle">Check-out</span>
-				</a>
-			</li>
-			@if(auth()->user()->role=='Administrator')
-			<li class="sidebar-item">
-				<a class="sidebar-link" href="/management/roles">
-				<i class="align-middle" data-feather="folder"></i> <span class="align-middle">Configurations</span>
-			</a>
-		</li>
-		<li class="sidebar-item">
-				<a class="sidebar-link" href="/management/settings">
-				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
-			</a>
-		</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="/management/users">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
-            </a>
-</li>
-@endif
-
-
 				<div class="sidebar-cta">
 					<div class="sidebar-cta-content">
 						<strong class="d-inline-block mb-2">{{ auth()->user()->lastName }}</strong>
@@ -107,7 +65,7 @@
                 <img src="{{ auth()->user()->avatar }}" width="36" height="36" class="rounded-circle me-2" alt="" /> <span class="text-dark">{{ auth()->user()->lastName }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="/management/user/profile"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="/customer/profile"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 						</li>
 					</ul>
 				</div>

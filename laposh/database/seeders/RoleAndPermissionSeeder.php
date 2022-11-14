@@ -43,6 +43,7 @@ class RoleAndPermissionSeeder extends Seeder
         $accountantRole = Role::create(['name' => 'Accountant']);
         $roomOperatorRole = Role::create(['name' => 'Room-operator']);
         $receptionRole = Role::create(['name' => 'Receptionist']);
+        $clientRole = Role::create(['name' => 'Client']);
 
         $adminRole->givePermissionTo(Permission::all());
 
