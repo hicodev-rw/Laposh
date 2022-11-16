@@ -19,6 +19,7 @@
 												<th>#</th>
 												<th>Reference</th>
 												<th class="d-none d-xl-table-cell">Room</th>
+												<th class="d-none d-xl-table-cell">Booking Time</th>
 												<th class="d-none d-xl-table-cell">Status</th>
 												<th class="d-none d-xl-table-cell">Actions</th>
 											</tr>
@@ -29,14 +30,20 @@
 												<td>{{$loop->iteration}}</td>
 												<td>{{$booking->reference}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->room->name}}</td>
+												<td class="d-none d-xl-table-cell">{{$booking->created_at}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->status->name}}</td>
 												<td><form action=' {{url('/management/reservations/cancel' . '/' .   $booking->id)}}' method="post">
 					{{method_field('PATCH')}}
 					{{ csrf_field() }} 
+					@if(auth()->user()->can('extend-reservation'))
 					<a href="{{ url('/management/bookings/'. $booking->id .'/edit') }}" class="btn a btn-primary btn-sm">Extend</a>
+					@endif
+					@if(auth()->user()->can('view-reservation'))
 					<a href="{{ url('/management/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
-
+@endif
+@if(auth()->user()->can('cancel-reservation'))
                                                 <button class="btn btn-danger btn-sm">Cancel</button>
+												@endif
 													</form>
 													</td>
 											</tr>

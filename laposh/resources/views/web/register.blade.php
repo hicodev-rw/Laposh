@@ -1,19 +1,16 @@
 @extends('web.layout')
 @section('content')
 			<main class="content">
-				<div class="container-fluid p-0">
+				<div class="our_room">
 					<div class="row" style="margin:auto;">
-						<div class="col-md-8 col-xl-9"style="margin:auto;">
-							<div class="card" style="border:none">
-							<div style="width: 80%;margin:auto; border:none" class="col-12 col-lg-8 col-xxl-9 d-flex" >
-							<div class="col-xl-12 col-l-12">
-							<div class="card">
-								<div class="card-header">
-                                    <center>
-                                <h1 class="h3 mb-3"><strong>Create Account</strong></h1>
-                                </center>
-								</div>
-								<form action="{{url('/customer/register')}}"  method='POST'>
+					<div class="col-md-6 col-xl-6">
+					<div class="titlepage">
+                    
+					<p class="margin_0">lorem ipsum</p>
+				 </div>
+						</div>
+						<div class="col-md-6    col-xl-6"style="margin:auto;">
+								<form action="{{url('/customer/register')}}"  method='POST'class="form_register">
 									{{csrf_field()}}
 									<div class="card-body">
 										<h5 class="card-title mb-0">First Name</h5>
@@ -46,7 +43,8 @@
 										<input type="password" name="cpassword" class="form-control" required>
 									</div>
                                     <div class="card-body">
-									<button style="width:100%;" type="submit"class="btn btn-primary btn-md">Register</button>
+										<center>
+									<button type="submit"class="read_more">Register</button></center>
                                     </div>
 								</form>
 							</div>

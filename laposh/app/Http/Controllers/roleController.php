@@ -11,8 +11,8 @@ class roleController extends Controller
 
     public function index()
     {
-        $users=User::all();
-        $roles=Role::all();
+        $users=User::whereNot('role','client')->get();
+        $roles=Role::whereNot('name','client')->get();
         return view('management.static.config')->with('users',$users)->with('roles',$roles);
         return $roles;
     }

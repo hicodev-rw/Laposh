@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Reservation;
 use App\Models\Category;
+use App\Models\Hotel_info;
 
 class webController extends Controller
 {
@@ -61,6 +62,12 @@ class webController extends Controller
         // return $room;
         return view('web.room_details')->with('room',$room);
     }
+    public function bookable($id)
+    {
+        $room=Room::with('category')->find($id);
+        // return $room;
+        return view('web.bookable')->with('room',$room);
+    }
     public function bookingForm($id)
     {
         return view('web.booking_form')->with('id',$id);
@@ -89,5 +96,16 @@ class webController extends Controller
     {
         $reservation=Reservation::find($id);
         return view('web.dashboard.view_booking')->with('booking',$reservation);
+    }
+    public function about()
+    {
+        $info=Hotel_info::first();
+        return view('web.about')->with('info',$info);
+    }
+    public function gallery()
+    {
+        $rooms=Room::all();
+        return view('web.gallery')->with('rooms',$rooms);
+
     }
 }

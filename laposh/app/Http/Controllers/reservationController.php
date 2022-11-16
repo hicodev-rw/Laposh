@@ -119,7 +119,7 @@ class reservationController extends Controller
         }
         if($request->owner){
             $reservations_query->whereHas('user',function($query) use($request){
-                $query->where('firstName',$request->owner)->where('check_in_date',$date);
+                $query->where('firstName',$request->owner);
             });
         }
         if($request->sortBy && in_array($request->sortBy,['reference','created_at',])){

@@ -17,7 +17,7 @@ class userController extends Controller
 {
     public function index(Request $request)
     {
-        $roles=RoleModel::all();
+        $roles=RoleModel::whereNot('name','client')->get();
         $user_query=User::with('roles')->whereNot('role','client');
         if($request->role){
             $user_query->whereHas('roles',function($query) use($request){
@@ -99,7 +99,7 @@ class userController extends Controller
     public function edit($id)
     {
         $user=User::find($id);
-        $roles=RoleModel::all();
+        $roles=RoleModel::whereNot('name','client')->get();
         return view('management.static.edit_user')->with('user',$user)->with('roles',$roles);
     }
 

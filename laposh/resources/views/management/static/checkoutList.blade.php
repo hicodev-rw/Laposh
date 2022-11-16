@@ -33,9 +33,12 @@
 												<td><form action=' {{url('/management/reservations/checkout/'.   $booking->id)}}' method="post">
 					@method('patch')
 					{{ csrf_field() }} 
+					@if(auth()->user()->can('view-reservation'))
 					<a href="{{ url('/management/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
-
+					@endif
+					@if(auth()->user()->can('check-out'))
                                                 <button class="btn a btn-primary btn-sm">Check-out</button>
+												@endif
 													</form>
 </td>
 											</tr>

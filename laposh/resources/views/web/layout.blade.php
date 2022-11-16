@@ -72,7 +72,7 @@
                            <div class="logo">
                            <h1><strong>
                            La posh Hotel
-</strong></h1>
+                              </strong></h1>
                            </div>
                         </div>
                      </div>
@@ -109,36 +109,13 @@
          </div>
       </header>
       @yield('content')
-
       <!--  footer -->
       <footer>
          <div class="footer">
             <div class="container">
                <div class="row">
-                  <div class=" col-md-4">
-                     <h3>Contact US</h3>
-                     <ul class="conta">
-                        <li><i class="fa fa-map-marker" aria-hidden="true"></i> Address</li>
-                        <li><i class="fa fa-mobile" aria-hidden="true"></i> +01 1234569540</li>
-                        <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> demo@gmail.com</a></li>
-                     </ul>
-                  </div>
-                  <div class="col-md-4">
-                     <h3>Menu Links</h3>
-                     <ul class="link_menu">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about"> about</a></li>
-                        <li><a href="/room">Our Room</a></li>
-                        <li><a href="/gallery">Gallery</a></li>
-                        <li><a href="/contact">Contact Us</a></li>
-                     </ul>
-                  </div>
-                  <div class="col-md-4">
-                     <h3>News letter</h3>
-                     <form class="bottom_form">
-                        <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
-                        <button class="sub_btn">subscribe</button>
-                     </form>
+               <div class=" col-md-3">
+                     <h3>La posh Hotel</h3>
                      <ul class="social_icon">
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -146,19 +123,31 @@
                         <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
                      </ul>
                   </div>
-               </div>
-            </div>
-            <div class="copyright">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-10 offset-md-1">
-                        
-                        <p>
-                        © 2022 All Rights Reserved, Laposh
-                        <br><br>
-                        </p>
+                  <div class=" col-md-3">
+                     <h3>Contact US</h3>
+                     <ul class="conta">
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i> Kigali, Rwanda</li>
+                        <li><i class="fa fa-mobile" aria-hidden="true"></i> 0788230853</li>
+                        <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> info@laposh.com</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-md-3">
+                     <h3>Menu Links</h3>
+                     <ul class="link_menu">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/rooms">Our Rooms</a></li>
+                        <li><a href="/gallery">Gallery</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-md-3">
+                     <h3>News letter</h3>
+                     <form action="/subscribe" method="POST" class="bottom_form">
+                        {{csrf_field()}}
+                        <input class="enter" placeholder="Enter your email" type="email" name="email" required>
+                        <button type="submit" class="sub_btn">subscribe</button>
+                     </form>
 
-                     </div>
                   </div>
                </div>
             </div>

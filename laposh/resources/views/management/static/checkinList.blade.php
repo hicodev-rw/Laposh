@@ -30,13 +30,18 @@
 												<td>{{$booking->reference}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->room->name}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->status->name}}</td>
-												<td><form action=' {{url('/management/reservations/checkin/'.   $booking->id)}}' method="post">
-					@method('patch')
-					{{ csrf_field() }} 
-					<a href="{{ url('/management/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
-
+												<td>
+												
+												<form action=' {{url('/management/reservations/checkin/'.   $booking->id)}}' method="post">
+												@method('patch')
+												{{ csrf_field() }} 
+												@if(auth()->user()->can('view-reservation'))
+												<a href="{{ url('/management/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
+												@endif
+												@if(auth()->user()->can('check-in'))
                                                 <button class="btn a btn-primary btn-sm">Check-in</button>
 													</form>
+													@endif
 													</td>
 											</tr>
 											@endforeach

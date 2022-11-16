@@ -13,6 +13,7 @@ use App\Http\Controllers\reservationController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\webController;
+use App\Http\Controllers\subscriptionController;
 use App\Models\Hotel_info as Info;
 
 //Authentication
@@ -23,11 +24,15 @@ Route::post('/login',[userController::class,'login']);
 Route::GET('/logout',[userController::class,'logout']);
 
 //Client site
+Route::get('/gallery',[webController::class,'gallery']);
+Route::resource('/subscribe',subscriptionController::class);
 Route::GET('/',[webController::class,'index']);
 Route::GET('/rooms',[webController::class,'rooms']);
 Route::GET('/room/details/{id}',[webController::class,'show']);
+Route::GET('/room/bookable/details/{id}',[webController::class,'bookable']);
 Route::get('/list',[roomController::class,'list']);
 Route::get('/register',[customerController::class,'create']);
+Route::get('/about',[webController::class,'about']);
 Route::POST('/customer/register',[customerController::class,'store']);
 
 Route::group(['middleware'=>['client']], function () {

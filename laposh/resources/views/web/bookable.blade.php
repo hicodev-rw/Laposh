@@ -8,7 +8,7 @@
                     <h3>{{$room->name}}</h3>
                      <p>{{$room->specifications}} </p>
                      <p>price: {{$room->price}} $/day </p>
-                     <a class="read_more" href="/"> Check availability</a>
+                     <a class="read_more" href="/room/reserve/{{$room->id}}">Book Now</a>
                   </div>
                </div>
                <div class="col-md-7">

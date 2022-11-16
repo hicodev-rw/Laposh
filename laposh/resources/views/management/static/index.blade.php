@@ -12,7 +12,7 @@
 								<div class="row">
 									
 									<div class="col-sm-6">
-									
+									<a href="/management/bookings" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -33,6 +33,8 @@
 												</div>
 											</div>
 										</div>
+</a>
+<a href="/management/bookings?status=ongoing" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -53,6 +55,7 @@
 												</div>
 											</div>
 										</div>
+</a>
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -74,7 +77,9 @@
 											</div>
 										</div>
 									</div>
+									
 									<div class="col-sm-6">
+									<a href="/management/rooms" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -94,7 +99,8 @@
 													<span class="text-muted">Categories</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
+										<a href="/management/bookings?status=closed" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -114,7 +120,8 @@
 													<span class="text-muted">Since last week</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
+										<a href="/management/bookings?status=cancelled" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -135,6 +142,7 @@
 												</div>
 											</div>
 										</div>
+</a>
 
 									</div>
 								</div>

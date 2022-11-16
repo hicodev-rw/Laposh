@@ -1,6 +1,6 @@
 @extends('web.layout')
 @section('content')
-			<main class="content">
+			<main class="content"style="background-color:#b1c5ee;padding:10px;">
 				<div class="container-fluid p-0">
 					<div class="row" style="margin:auto;">
 						<div class="col-md-8 col-xl-9"style="margin:auto;">

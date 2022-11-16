@@ -6,7 +6,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Our Room</h2>
+                     <h2>Gallery</h2>
                   </div>
                </div>
             </div>
@@ -16,11 +16,6 @@
                   <div id="serv_hover"  class="room">
                      <div class="room_img" style="">
                         <figure><img src="{{$room->images[0]}}" alt="{{$room->name}}"/></figure>
-                     </div>
-                     <div class="bed_room">
-                     <h3>{{$room->price}} $ /day</h3>
-                        <h3>{{$room->name}}</h3>
-                        <a class="read_more" href="/room/bookable/details/{{$room->id}}"> Read More</a>
                      </div>
                   </div>
                </div>
