@@ -11,4 +11,7 @@ class Payment extends Model
     protected $table='payments';
     protected $primaryKey='id';
     protected $fillable=['booking_id','reference','amount','payment_option'];
+    public function booking(){
+        return $this->belongsTo(Reservation::class);
+    }
 }

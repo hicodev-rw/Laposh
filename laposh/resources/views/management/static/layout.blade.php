@@ -74,8 +74,35 @@
               <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
             </a>
 </li>
-@endif
 
+@endif
+<li class="sidebar-item">
+        <a class="sidebar-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="align-middle" data-feather="edit"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
+		<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/reports/financial">
+              <i class="align-middle"></i> <span class="align-middle">Financial</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/reports/data/weekly">
+              <i class="align-middle"></i> <span class="align-middle">Data weekly</span>
+            </a>
+		</li>
+		<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/reports/data/monthly">
+              <i class="align-middle"></i> <span class="align-middle">Data monthly</span>
+            </a>
+		</li>
+		<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/reports/data/annual">
+              <i class="align-middle"></i> <span class="align-middle">Data Annual</span>
+            </a>
+		</li>
+        </ul>
+      </li>
 
 				<div class="sidebar-cta">
 					<div class="sidebar-cta-content">

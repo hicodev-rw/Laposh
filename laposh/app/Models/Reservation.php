@@ -20,4 +20,7 @@ class Reservation extends Model
     public function status(){
         return $this->belongsTo(Status::class);
     }
+    public function payment(){
+        return $this->hasOne(Payment::class);
+    }
 }

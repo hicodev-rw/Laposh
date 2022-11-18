@@ -13,6 +13,7 @@ use App\Http\Controllers\reservationController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\webController;
+use App\Http\Controllers\reports;
 use App\Http\Controllers\subscriptionController;
 use App\Models\Hotel_info as Info;
 
@@ -84,6 +85,10 @@ Route::group(['middleware'=>['auth:sanctum','user']], function () {
     Route::resource('/management/users',userController::class); 
     Route::get('/management/user/profile',[userController::class,'profile']);
     Route::post('/management/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
+
+
+
+    Route::get('/management/reports/financial',[reports::class,'financial']);
   });
 
 

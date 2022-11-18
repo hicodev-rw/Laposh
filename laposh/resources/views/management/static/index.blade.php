@@ -122,10 +122,10 @@
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">$21.300</h1>
+												<h1 class="mt-1 mb-3">${{$payments_count}}</h1>
 												<div class="mb-0">
 												<br>
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i></span>
 													<span class="text-muted">Since last week</span>
 												</div>
 											</div>
@@ -276,8 +276,8 @@
 										<tr>
 										<th>#</th>
 											<th>Reference</th>
+											<th>Booking reference</th>
 											<th class="d-none d-xl-table-cell">Client</th>
-											<th class="d-none d-xl-table-cell">Booking id</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -285,10 +285,11 @@
 										<tr>
 											<td>{{$loop->iteration}}</td>
 											<td class="d-none d-xl-table-cell">{{$payment->reference}}</td>
-											<td class="d-none d-xl-table-cell">{{$payment->booking->user}}</td>
+											<td class="d-none d-xl-table-cell">{{$payment->booking->reference}}</td>
+											<td class="d-none d-xl-table-cell">{{$payment->booking->user->lastName}}</td>
 											
 										</tr>
-										@endfor
+										@endforeach
 									</tbody>
 								</table>
 							</div>
