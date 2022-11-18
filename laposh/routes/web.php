@@ -48,7 +48,7 @@ Route::get('/customer/bookings/{id}',[webController::class,'showReservation']);
 Route::get('/customer/profile',[customerController::class,'profile']);
 });
 
-Route::group(['middleware'=>['auth:sanctum','user']], function () {
+Route::group(['middleware'=>['auth:sanctum','user','prevent-back-history']], function () {
     //dashboard
     Route::get('/management/dashboard',[dashboard::class,'index']);
     //rooms
@@ -87,7 +87,7 @@ Route::group(['middleware'=>['auth:sanctum','user']], function () {
     Route::post('/management/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
 
 
-
+//reports
     Route::get('/management/reports/financial',[reports::class,'financial']);
     Route::get('/management/reports/data/weekly',[reports::class,'weekly_data']);
     Route::get('/management/reports/data/monthly',[reports::class,'monthly_data']);

@@ -36,7 +36,7 @@
 										<h5 class="card-title mb-0"></h5>
 									</div>
 									<table class="table table-hover my-0">
-										<thead>
+										<tbody>
 											<tr>
 												<th>First Name</th>
 												<th class="d-none d-xl-table-cell">{{ auth()->user()->firstName }}</th>
@@ -54,7 +54,7 @@
 												<th class="d-none d-xl-table-cell">{{ auth()->user()->role }}</th>
 											</tr>
                                             <tr>
-										</thead>
+										</tbody>
 									</table>
                                     <br>
 									@if(auth()->user()->can('edit-user'))
