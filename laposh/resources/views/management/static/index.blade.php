@@ -283,12 +283,12 @@
 									<tbody>
 										@foreach($payments as $payment)
 										<tr>
-											<td>{{$payment->reference}}</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-warning">In progress</span></td>
-											<td class="d-none d-md-table-cell">William Harris</td>
+											<td>{{$loop->iteration}}</td>
+											<td class="d-none d-xl-table-cell">{{$payment->reference}}</td>
+											<td class="d-none d-xl-table-cell">{{$payment->booking->user}}</td>
+											
 										</tr>
+										@endfor
 									</tbody>
 								</table>
 							</div>
