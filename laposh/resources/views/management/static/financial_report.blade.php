@@ -40,7 +40,7 @@
 					
                                 <div style="padding:10px 100px;">
                                     <table class="table table-hover my-0">
-										<thead>
+										<tbody>
                                             @foreach($data as $data)
 											<tr>
 												<th>{{$data['month']}}</th>
@@ -52,7 +52,7 @@
                                             <th>Total</th>
 												<th>$ {{$payment_total}}</th>
                                            </tr>
-										</thead>
+										</tbody>
                                         
 										</table>
 						<br/><br/>

@@ -3,15 +3,14 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Bookings</strong></h1>
+					<h1 class="h3 mb-3"><strong>Bookings to check out</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-12 col-xxl-2 d-flex">
 							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
-								<div style="width: 90%;"  class="card flex-fill">
+								<div style="width: 90%; padding:10px;"  class="card flex-fill">
 									<div class="card-header">
 	
-										<h5 class="card-title mb-0">Bookings to check out</h5>
 									</div>
 									<table class="table table-hover my-0">
 										<thead>
