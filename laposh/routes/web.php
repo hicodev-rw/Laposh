@@ -89,6 +89,9 @@ Route::group(['middleware'=>['auth:sanctum','user']], function () {
 
 
     Route::get('/management/reports/financial',[reports::class,'financial']);
+    Route::get('/management/reports/data/weekly',[reports::class,'weekly_data']);
+    Route::get('/management/reports/data/monthly',[reports::class,'monthly_data']);
+    Route::get('/management/reports/data/annual',[reports::class,'annual_data']);
   });
 
 

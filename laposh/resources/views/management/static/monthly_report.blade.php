@@ -38,23 +38,7 @@
 					</div>
 
 					
-                                <div style="padding:10px 100px;">
-                                    <table class="table table-hover my-0">
-										<thead>
-                                            @foreach($data as $data)
-											<tr>
-												<th>{{$data['month']}}</th>
-												<th>$ {{$data['sum']}}</th>
-                                                
-											</tr>
-                                            @endforeach
-                                            <tr>
-                                            <th>Total</th>
-												<th>$ {{$payment_total}}</th>
-                                           </tr>
-										</thead>
-                                        
-										</table>
+                                
 						<br/><br/>
                         I,{{auth()->user()->firstName}}&nbsp;{{auth()->user()->lastName}}, confirm that this information is true and have been verified.
 						<br/><br/><br/><br/><br/><br/>

@@ -3,7 +3,7 @@
 <main class="content">
 				<div class="container-fluid p-0">
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Annual Financial Report</h1>
+						<h1 class="h3 d-inline align-middle">Weekly Data Report</h1>
 					</div>
 					<div class="card">
 					<div class="row">
