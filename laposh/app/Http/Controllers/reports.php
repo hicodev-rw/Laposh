@@ -56,9 +56,9 @@ $datum=array_values($dataArr);
         $hotel_data=Hotel_info::first();
         return view('management.static.weekly_report')->with('hotel_data',$hotel_data);
     }
-    public function montly_data(){
+    public function monthly_data(){
         $hotel_data=Hotel_info::first();
-        return view('management.static.montly_report')->with('hotel_data',$hotel_data);
+        return view('management.static.monthly_report')->with('hotel_data',$hotel_data);
     }
     public function annual_data(){
         $hotel_data=Hotel_info::first();

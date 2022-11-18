@@ -3,14 +3,14 @@
 <main class="content">
 				<div class="container-fluid p-0">
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Annual Financial Report</h1>
+						<h1 class="h3 d-inline align-middle">Monthly Report</h1>
 					</div>
 					<div class="card">
 					<div class="row">
 
 						<div class="col-md-4 col-xl-5">
 								<div class="card-body h-100">
-									<div class="d-flex align-items-start">
+									<div class="d-flex align-items-end">
 											
 												<div class="col-6 col-md-6">
 													<img src="{{$hotel_data->logo}}" class="img-fluid pe-2" alt="logo">
@@ -36,8 +36,7 @@
 						<hr />	
 </div>			
 					</div>
-
-					
+					<div style="padding:10px 100px;">
                                 
 						<br/><br/>
                         I,{{auth()->user()->firstName}}&nbsp;{{auth()->user()->lastName}}, confirm that this information is true and have been verified.

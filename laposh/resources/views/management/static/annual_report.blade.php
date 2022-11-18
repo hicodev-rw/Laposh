@@ -3,7 +3,7 @@
 <main class="content">
 				<div class="container-fluid p-0">
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Annual Financial Report</h1>
+						<h1 class="h3 d-inline align-middle">Annual Data Report</h1>
 					</div>
 					<div class="card">
 					<div class="row">
@@ -39,22 +39,7 @@
 
 					
                                 <div style="padding:10px 100px;">
-                                    <table class="table table-hover my-0">
-										<thead>
-                                            @foreach($data as $data)
-											<tr>
-												<th>{{$data['month']}}</th>
-												<th>$ {{$data['sum']}}</th>
-                                                
-											</tr>
-                                            @endforeach
-                                            <tr>
-                                            <th>Total</th>
-												<th>$ {{$payment_total}}</th>
-                                           </tr>
-										</thead>
-                                        
-										</table>
+                                   
 						<br/><br/>
                         I,{{auth()->user()->firstName}}&nbsp;{{auth()->user()->lastName}}, confirm that this information is true and have been verified.
 						<br/><br/><br/><br/><br/><br/>
