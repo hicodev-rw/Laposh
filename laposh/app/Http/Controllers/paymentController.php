@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
+use Stripe;
+use App\Models\Reservation;
 class paymentController extends Controller
 {
     /**
@@ -11,6 +13,7 @@ class paymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -23,7 +26,8 @@ class paymentController extends Controller
      */
     public function create()
     {
-        //
+        $booking=Reservation::where('user_id',auth()->user()->id)->latest()->first();
+            return view('web.stripe')->with('booking',$booking);
     }
 
     /**
@@ -34,7 +38,18 @@ class paymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    
+        Stripe\Charge::create ([
+                "amount" => 100 * 100,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from LaravelTus.com." 
+        ]);
+      
+        Session::flash('success', 'Payment successful!');
+              
+        return back();
     }
 
     /**

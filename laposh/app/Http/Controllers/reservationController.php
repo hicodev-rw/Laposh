@@ -76,8 +76,7 @@ class reservationController extends Controller
         $status = array('status_id' => 1,'reference'=>$ref);
         $merge = array_merge($input, $status);
         $reservation=Reservation::create($merge);
-        // return $reservation;
-        return redirect('/customer/dashboard')->with('booking',$reservation);
+        return redirect('/stripe/payment/start');
 
 
     }

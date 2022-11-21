@@ -15,6 +15,7 @@ use App\Http\Controllers\statusController;
 use App\Http\Controllers\webController;
 use App\Http\Controllers\reports;
 use App\Http\Controllers\subscriptionController;
+use App\Http\Controllers\paymentController;
 use App\Models\Hotel_info as Info;
 
 //Authentication
@@ -43,8 +44,9 @@ Route::POST('/customer/booking',[reservationController::class,'store']);
 Route::get('/room/reserve/{id}',[webController::class,'bookingForm']);
 Route::patch('/customer/bookings/cancel/{id}',[webController::class,'cancelBooking']);
 Route::patch('/customer/bookings/extension/{id}',[webController::class,'extenstionRequest']);
-Route::get('/customer/bookings/{id}',[webController::class,'extenstionRequest']);
-Route::get('/customer/bookings/{id}',[webController::class,'showReservation']);
+Route::get('/stripe/payment/start',[paymentController::class,'create']);
+Route::POST('/stripe/payment',[paymentController::class,'store']);
+Route::POST('/customer/bookings/{id}',[webController::class,'showReservation']);
 Route::get('/customer/profile',[customerController::class,'profile']);
 });
 
