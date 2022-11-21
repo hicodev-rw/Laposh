@@ -16,40 +16,38 @@ class dashboard extends Controller
     {
         $past_week_start=Carbon::now()->subWeek()->startOfWeek();
         $past_week_end=Carbon::now()->subWeek()->endOfWeek();
-            if((Reservation::where('created_at', ">",$past_week_end)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->count())!=0)
-            {
-        $booking_stats=(((Reservation::where('created_at', ">",$past_week_end)->count())-(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->count()))/(Reservation::where('created_at', ">",$past_week_end)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->count()))*100;
+        $b1=(Reservation::where('created_at', ">",$past_week_end)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->count());
+        if($b1!=0){
+        $booking_stats=(((Reservation::where('created_at', ">",$past_week_end)->count())-(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->count()))/$b1)*100;
         }
         else{
             $booking_stats=0;
         }
-        if((Reservation::where('created_at', ">",$past_week_end)->where('status_id',2)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',2)->count())!=0){
-        $ongoing_stats=(((Reservation::where('created_at', ">",$past_week_end)->where('status_id',2)->count())-(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',2)->count()))/(Reservation::where('created_at', ">",$past_week_end)->where('status_id',2)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',2)->count()))*100;
+        $bo=Reservation::where('created_at', ">",$past_week_end)->where('status_id',2)->count()+Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',2)->count();
+        if($bo!==0){
+        $ongoing_stats=(((Reservation::where('created_at', ">",$past_week_end)->where('status_id',2)->count())-(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',2)->count()))/$bo)*100;
     }
     else{
         $ongoing_stats=0; 
     }
-    if((Reservation::where('created_at', ">",$past_week_end)->where('status_id',3)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',2)->count())!=0){
+    $bc=Reservation::where('created_at', ">",$past_week_end)->where('status_id',3)->count()+Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',2)->count();
+    if($bc!=0){
 
-        $closed_stats=(((Reservation::where('created_at', ">",$past_week_end)->where('status_id',3)->count())-(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',3)->count()))/(Reservation::where('created_at', ">",$past_week_end)->where('status_id',3)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',2)->count()))*100;
+        $closed_stats=(((Reservation::where('created_at', ">",$past_week_end)->where('status_id',3)->count())-(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',3)->count()))/$bc)*100;
     }
     else{
         $closed_stats=0; 
     }
-    if((Reservation::where('created_at', ">",$past_week_end)->where('status_id',4)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',4)->count())){
-        $cancelled_stats=(((Reservation::where('created_at', ">",$past_week_end)->where('status_id',4)->count())-(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',4)->count()))/(Reservation::where('created_at', ">",$past_week_end)->where('status_id',4)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',4)->count()))*100;
+
+    $bcl=(Reservation::where('created_at', ">",$past_week_end)->where('status_id',4)->count())+(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',4)->count());
+    if($bcl!=0){
+        $cancelled_stats=(((Reservation::where('created_at', ">",$past_week_end)->where('status_id',4)->count())-(Reservation::whereBetween('created_at', [$past_week_start,$past_week_end])->where('status_id',4)->count()))/$bcl)*100;
     }
     else{
         $cancelled_stats=0; 
     }
-    if((User::where('created_at', ">",$past_week_end)->whereNot('role','client')->count())+(User::whereBetween('created_at', [$past_week_start,$past_week_end])->whereNot('Role','client')->count())){
 
-    }
-    else{
-        $clients_stats=0; 
-    }
-        $clients_stats=(((User::where('created_at', ">",$past_week_end)->whereNot('role','client')->count())-(User::whereBetween('created_at', [$past_week_start,$past_week_end])->whereNot('role','client')->count()))/(User::where('created_at', ">",$past_week_end)->whereNot('role','client')->count())+(User::whereBetween('created_at', [$past_week_start,$past_week_end])->whereNot('role','client')->count()))*100;
-       
+    $clients_stats=(User::where('created_at','>', $past_week_end)->whereNot('Role','client')->count());
 
         $bookings=count(Reservation::all());
         $ongoing=count(Reservation::all()->where('status_id','=',2));

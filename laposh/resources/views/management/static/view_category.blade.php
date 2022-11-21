@@ -8,7 +8,7 @@
 					<div class="row">
 						<div class="col-xl-8 col-xxl-2 d-flex">
 							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
-								<div style="width: 90%;"  class="card flex-fill">
+								<div style="width: 90%;padding:10px;"  class="card flex-fill">
 									<div class="card-header">
 	
 										<h5 class="card-title mb-0">Rooms</h5>
@@ -17,7 +17,9 @@
 										<thead>
 											<tr>
 												<th>#</th>
+												<th>Image</th>
 												<th>Name</th>
+												<th>Action</th>
 												<th>Actions</th>
 											</tr>
 										</thead>
@@ -25,17 +27,31 @@
                                             @foreach($rooms as $room)
                                             <tr>
                                         <td>{{$loop->iteration}}</td>
+										<td><img src="{{ $room->images[0] }}" width="36" height="36" class="rounded-circle me-2" alt="" /> </td>
 					<td>{{$room->name}}</td>
 					<td class="d-none d-xl-table-cell">{{$room->price}}</td>
 					<td class="d-none d-xl-table-cell">
 					<form action=' {{url('/management/rooms' . '/' .   $room->id)}}' method="post">
 					{{method_field('DELETE')}}
-					{{ csrf_field() }} 
-					<a href="{{ url('/management/rooms/'. $room->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
-					<a href="{{ url('/management/rooms/'. $room->id) }}" class="btn a btn-primary btn-sm">View</a>
-
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-													</form>
+					{{ csrf_field() }}
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown"><span class="text-dark">Actions</span></a>
+							 
+							<div class="dropdown-menu dropdown-menu-end">
+								@if(auth()->user()->can('edit-room'))
+								<a href="{{ url('/management/rooms/'. $room->id .'/edit') }}" class="dropdown-item">Edit</a>
+								@endif
+								@if(auth()->user()->can('view-room'))
+								<a href="{{ url('/management/rooms/'. $room->id) }}" class="dropdown-item">View</a>
+								@endif
+								@if(auth()->user()->can('delete-room'))
+								<button class="dropdown-item">Delete</button>
+								@endif  
+							</div>
+						</li>
+					</ul>
+				</form>
 
 												</td>
 </tr>

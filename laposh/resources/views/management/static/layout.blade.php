@@ -10,6 +10,7 @@
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>La Posh Hotel</title>
+	<link rel="stylesheet" href="{{ URL::asset('css/error.css'); }}">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
@@ -139,7 +140,7 @@
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                 <img src="{{ auth()->user()->avatar }}" width="36" height="36" class="rounded-circle me-2" alt="" /> <span class="text-dark">{{ auth()->user()->lastName }}</span>
-              </a>
+                 </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="/management/user/profile"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 						</li>

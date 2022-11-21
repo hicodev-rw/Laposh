@@ -118,8 +118,9 @@ class roomController extends Controller
             return redirect('management/rooms')->with('message','room added successfully');
         }
         else{
-       $message='the name of room must be unique';
-       return $message;
+            return back()->withErrors([
+                'name' => 'Room already exists!',
+            ])->onlyInput('name');
         }
     }
             
@@ -155,8 +156,7 @@ class roomController extends Controller
     public function destroy($id)
     {
         Room::destroy($id);
-        $message='Room was removed Succesfully!';
-        return $message;
+        return redirect('/management/rooms')->with('message','room deleted successfully');
     }
 
 

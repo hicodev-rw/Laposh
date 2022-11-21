@@ -9,6 +9,11 @@
 						<div class="col-xl-8 col-xxl-2 d-flex">
 							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
 								<div style="width: 90%;padding:10px;"  class="card flex-fill">
+								@if(session('message'))
+						<div class="success">
+							{{ session('message') }}
+						</div>
+					@endif
 									<div class="card-header">
 									</div>
 									<table class="table table-hover my-0">
@@ -26,16 +31,28 @@
 				<td>{{$loop->iteration}}</td>
 					<td>{{$user->email}}</td>
 					<td class="d-none d-xl-table-cell">{{$user->role}}</td>
-					<td class="d-none d-xl-table-cell">
+					<td>
 					<form action=' {{url('/management/users' . '/' .   $user->id)}}' method="post">
 					{{method_field('DELETE')}}
-					{{ csrf_field() }} 
-					<a href="{{ url('/management/users/'. $user->id .'/edit') }}" class="btn a btn-primary btn-sm">Edit</a>
-					<a href="{{ url('/management/users/'. $user->id) }}" class="btn a btn-primary btn-sm">View</a>
-
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-													</form>
-
+					{{ csrf_field() }}
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-sm-inline-block" href="#" data-bs-toggle="dropdown"><span class="text-dark">Actions</span></a>
+							 
+							<div class="dropdown-menu dropdown-menu-end">
+								@if(auth()->user()->can('edit-user'))
+								<a href="{{ url('/management/users/'. $user->id .'/edit') }}" class="dropdown-item">Edit</a>
+								@endif
+								@if(auth()->user()->can('view-user'))
+								<a href="{{ url('/management/users/'. $user->id) }}" class="dropdown-item">View</a>
+								@endif
+								@if(auth()->user()->can('delete-user'))
+								<button class="dropdown-item">Delete</button>
+								@endif  
+							</div>
+						</li>
+					</ul>
+				</form>
 												</td>
 												@endforeach
 											</tr>

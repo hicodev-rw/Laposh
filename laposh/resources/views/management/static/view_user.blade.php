@@ -36,25 +36,25 @@
 										<h5 class="card-title mb-0"></h5>
 									</div>
 									<table class="table table-hover my-0">
-										<thead>
+										<tbody>
 											<tr>
 												<th>First Name</th>
-												<th class="d-none d-xl-table-cell">{{$user->firstName}}</th>
+												<th>{{$user->firstName}}</th>
 											</tr>
                                             <tr>
 												<th>Last Name</th>
-												<th class="d-none d-xl-table-cell">{{$user->lastName}}</th>
+												<th>{{$user->lastName}}</th>
 											</tr>
                                             <tr>
 												<th>Email</th>
-												<th class="d-none d-xl-table-cell">{{$user->email}}</th>
+												<th>{{$user->email}}</th>
 											</tr>
                                             <tr>
-												<th>role</th>
-												<th class="d-none d-xl-table-cell">{{$user->role}}</th>
+												<td>role</th>
+												<th>{{$user->role}}</th>
 											</tr>
                                             <tr>
-										</thead>
+										</tbody>
 									</table>
                                     <br>
                                     <a href="{{ url('/management/users/'. $user->id .'/edit') }}" class="btn a btn-primary btn-lg">Update This user</a>

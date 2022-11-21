@@ -12,6 +12,7 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="card">
+											<a href="/management/bookings" style="text-decoration:none;">
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
@@ -29,12 +30,13 @@
 												@if($booking_stats>0)
 													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> +{{$booking_stats}}% </span>
 													@else
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -{{$booking_stats}}% </span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> {{$booking_stats}}% </span>
 													@endif
 													<span class="text-muted">compared to last week</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
+										<a href="/management/bookings?status=ongoing" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -53,12 +55,13 @@
 												@if($ongoing_stats>0)
 													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> +{{$ongoing_stats}}% </span>
 													@else
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -{{$ongoing_stats}}% </span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> {{$ongoing_stats}}% </span>
 													@endif
 													<span class="text-muted">compared to last week</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
+										<a href="/management/bookings?status=closed" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -77,12 +80,13 @@
 												@if($closed_stats>0)
 													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> +{{$closed_stats}}% </span>
 													@else
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -{{$closed_stats}}% </span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> {{$closed_stats}}% </span>
 													@endif
 													<span class="text-muted">compared to last week</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
+										<a href="/management/bookings?status=cancelled" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -101,14 +105,15 @@
 												@if($cancelled_stats>0)
 													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> +{{$cancelled_stats}}% </span>
 													@else
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -{{$cancelled_stats}}% </span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> {{$cancelled_stats}}% </span>
 													@endif
 													<span class="text-muted">compared to last week</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
 									</div>
 									<div class="col-sm-6">
+									<a href="#payments" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -129,7 +134,8 @@
 													<span class="text-muted">Since last week</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
+										<a href="/management/rooms" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -145,12 +151,13 @@
 												</div>
 												<h1 class="mt-1 mb-3">{{$rooms}}</h1>
 												<div class="mb-0">
-													<br>
+													<br/>
 													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{$categories}} </span>
 													<span class="text-muted">categories</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
+										
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -166,15 +173,12 @@
 												</div>
 												<h1 class="mt-1 mb-3">{{$clients}}</h1>
 												<div class="mb-0">
-												@if($clients_stats>0)
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> +{{$clients_stats}}% </span>
-													@else
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -{{$clients_stats}}% </span>
-													@endif
-													<span class="text-muted">compared to last week</span>
+													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> {{$clients_stats}} </span>
+													<span class="text-muted">this week</span>
 												</div>
 											</div>
 										</div>
+										<a href="/management/users" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -199,7 +203,7 @@
 													<br>
 												</div>
 											</div>
-										</div>
+										</div></a>
 									</div>
 								</div>
 							</div>
@@ -275,17 +279,17 @@
 										<tr>
 										<th>#</th>
 											<th>Reference</th>
-											<th>Booking reference</th>
-											<th class="d-none d-xl-table-cell">Client</th>
+											<th>Amount ($)</th>
+											<th>Client</th>
 										</tr>
 									</thead>
 									<tbody>
 										@foreach($payments as $payment)
 										<tr>
 											<td>{{$loop->iteration}}</td>
-											<td class="d-none d-xl-table-cell">{{$payment->reference}}</td>
-											<td class="d-none d-xl-table-cell">{{$payment->booking->reference}}</td>
-											<td class="d-none d-xl-table-cell">{{$payment->booking->user->lastName}}</td>
+											<td>{{$payment->reference}}</td>
+											<td>{{$payment->amount}}</td>
+											<td>{{$payment->booking->user->lastName}}</td>
 											
 										</tr>
 										@endforeach

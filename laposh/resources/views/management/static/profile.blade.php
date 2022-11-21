@@ -39,19 +39,19 @@
 										<tbody>
 											<tr>
 												<th>First Name</th>
-												<th class="d-none d-xl-table-cell">{{ auth()->user()->firstName }}</th>
+												<th>{{ auth()->user()->firstName }}</th>
 											</tr>
                                             <tr>
 												<th>Last Name</th>
-												<th class="d-none d-xl-table-cell">{{ auth()->user()->lastName }}</th>
+												<th>{{ auth()->user()->lastName }}</th>
 											</tr>
                                             <tr>
 												<th>Email</th>
-												<th class="d-none d-xl-table-cell">{{ auth()->user()->email }}</th>
+												<th>{{ auth()->user()->email }}</th>
 											</tr>
                                             <tr>
 												<th>role</th>
-												<th class="d-none d-xl-table-cell">{{ auth()->user()->role }}</th>
+												<th>{{ auth()->user()->role }}</th>
 											</tr>
                                             <tr>
 										</tbody>

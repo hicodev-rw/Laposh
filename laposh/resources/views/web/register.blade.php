@@ -10,6 +10,9 @@
 				 </div>
 						</div>
 						<div class="col-md-6    col-xl-6"style="margin:auto;">
+						@if ($errors->has('email'))
+										<p class='error'>{{$errors->first('email')}}</p>
+										@endif
 								<form action="{{url('/customer/register')}}"  method='POST'class="form_register">
 									{{csrf_field()}}
 									<div class="card-body">

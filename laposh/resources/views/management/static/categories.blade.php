@@ -8,6 +8,11 @@
 						<div class="col-xl-8 col-xxl-2 d-flex">
 							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
 								<div style="padding:10px;width: 90%;"  class="card flex-fill">
+								@if(session('message'))
+						<div class="success">
+							{{ session('message') }}
+						</div>
+					@endif
 									<div class="card-header">
 	
 										
@@ -27,19 +32,26 @@
 												<td>{{$category->name}}</td>
 												<td class="d-none d-xl-table-cell">
 												<form action=' {{url('/management/categories' . '/' .   $category->id)}}' method="post">
-													{{method_field('DELETE')}}
-													{{ csrf_field() }} 
-													@if(auth()->user()->can('edit-category'))
-												<a href="{{url('/management/categories/' .$category->id .'/edit')}}"class="btn btn-primary btn-sm">Edit</a>
-												@endif
-												@if(auth()->user()->can('view-category'))
-												<a href="{{url('/management/categories/'.$category->id)}}"class="btn btn-primary btn-sm">View</a>
-												@endif
-												@if(auth()->user()->can('delete-category'))
-                                                    <button class="btn btn-danger btn-sm">Delete</button>
-													@endif
-													</form>
-
+					{{method_field('DELETE')}}
+					{{ csrf_field() }}
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown"><span class="text-dark">Actions</span></a>
+							 
+							<div class="dropdown-menu dropdown-menu-end">
+								@if(auth()->user()->can('edit-category'))
+								<a href="{{ url('/management/categories/'. $category->id .'/edit') }}" class="dropdown-item">Edit</a>
+								@endif
+								@if(auth()->user()->can('view-category'))
+								<a href="{{ url('/management/categories/'. $category->id) }}" class="dropdown-item">View</a>
+								@endif
+								@if(auth()->user()->can('delete-category'))
+								<button class="dropdown-item">Delete</button>
+								@endif  
+							</div>
+						</li>
+					</ul>
+				</form>
 												</td>
 											</tr>
 											@endforeach

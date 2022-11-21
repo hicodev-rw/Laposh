@@ -171,7 +171,7 @@ class userController extends Controller
             }
       else{
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Account Already exists!',
         ])->onlyInput('email');
     
     }

@@ -80,8 +80,11 @@ class customerController extends Controller
         return redirect('/login');
     }
     else{
-        $message='User is already registered';
-        return redirect('/register')->with('message',$message);
+        return back()->withErrors([
+            'email' => 'incorrect username or password!',
+        ])->onlyInput('email');
+        // $message='User is already registered';
+        // return redirect('/register')->with('message',$message);
     }
     }
 

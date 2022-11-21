@@ -59,7 +59,7 @@ Route::group(['middleware'=>['auth:sanctum','user','prevent-back-history']], fun
     Route::patch('/management/rooms/{id}',[roomController::class,'update']);
     Route::get('/management/rooms/{id}/edit',[roomController::class,'edit']);
     Route::get('/management/edit-room-images/{id}',[roomController::class,'editImages']);
-    Route::delete('/management/rooms',[roomController::class,'destroy']);
+    Route::delete('/management/rooms/{id}',[roomController::class,'destroy']);
     Route::resource('/management/categories',categoryController::class);
 
     //settings and configurations

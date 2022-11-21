@@ -13,6 +13,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
+      <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet"><link rel="stylesheet" href="{{ URL::asset('css/error.css'); }}">
       <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css');}}">
       <!-- style css -->
       <link rel="stylesheet" href="{{ URL::asset('css/style.css');}}">
@@ -44,7 +45,7 @@
                   <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                      <nav class="navigation navbar">
                            <ul class="row">
-                              @if(!auth()->user())
+                              @if(auth()->user()->role!='client')
                               <li class="nav-item">
                                  <a href="/register">Register</a>
                               </li>&nbsp;|&nbsp;
@@ -52,7 +53,7 @@
                                  <a href="/login">Login</a>
                               </li>&nbsp;@endif
                               
-                              @if(auth()->user())|&nbsp;
+                              @if(auth()->user()->role=='client')|&nbsp;
                               <li class="nav-item">
                                  <a href="/customer/dashboard">My Laposh</a>
                               </li>
