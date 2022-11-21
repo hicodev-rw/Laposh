@@ -73,7 +73,7 @@ class reservationController extends Controller
     {
         $input=$request->all();
         $ref=$this->generateRandomString();
-        $status = array('status_id' => 1,'reference'=>$ref);
+        $status = array('status_id' => 5,'reference'=>$ref);
         $merge = array_merge($input, $status);
         $reservation=Reservation::create($merge);
         return redirect('/stripe/payment/start');

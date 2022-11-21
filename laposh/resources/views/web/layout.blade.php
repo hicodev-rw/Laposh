@@ -13,6 +13,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
       <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet"><link rel="stylesheet" href="{{ URL::asset('css/error.css'); }}">
       <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css');}}">
       <!-- style css -->
@@ -45,7 +46,7 @@
                   <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                      <nav class="navigation navbar">
                            <ul class="row">
-                              @if(auth()->user()->role!='client')
+                              @if(!auth()->user())
                               <li class="nav-item">
                                  <a href="/register">Register</a>
                               </li>&nbsp;|&nbsp;
@@ -53,7 +54,7 @@
                                  <a href="/login">Login</a>
                               </li>&nbsp;@endif
                               
-                              @if(auth()->user()->role=='client')|&nbsp;
+                              @if(auth()->user())|&nbsp;
                               <li class="nav-item">
                                  <a href="/customer/dashboard">My Laposh</a>
                               </li>
@@ -162,5 +163,76 @@
       <!-- sidebar -->
       <script src="{{ URL::asset('js/jquery.mCustomScrollbar.concat.min.js');}}"></script>
       <script src="{{ URL::asset('js/custom.js');}}"></script>
+
+      <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    
+<script type="text/javascript">
+  
+$(function() {
+  
+    /*------------------------------------------
+    --------------------------------------------
+    Stripe Payment Code
+    --------------------------------------------
+    --------------------------------------------*/
+    
+    var $form = $(".require-validation");
+     
+    $('form.require-validation').bind('submit', function(e) {
+        var $form = $(".require-validation"),
+        inputSelector = ['input[type=email]', 'input[type=password]',
+                         'input[type=text]', 'input[type=file]',
+                         'textarea'].join(', '),
+        $inputs = $form.find('.required').find(inputSelector),
+        $errorMessage = $form.find('div.error'),
+        valid = true;
+        $errorMessage.addClass('hide');
+    
+        $('.has-error').removeClass('has-error');
+        $inputs.each(function(i, el) {
+          var $input = $(el);
+          if ($input.val() === '') {
+            $input.parent().addClass('has-error');
+            $errorMessage.removeClass('hide');
+            e.preventDefault();
+          }
+        });
+     
+        if (!$form.data('cc-on-file')) {
+          e.preventDefault();
+          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+          Stripe.createToken({
+            number: $('.card-number').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+          }, stripeResponseHandler);
+        }
+    
+    });
+      
+    /*------------------------------------------
+    --------------------------------------------
+    Stripe Response Handler
+    --------------------------------------------
+    --------------------------------------------*/
+    function stripeResponseHandler(status, response) {
+        if (response.error) {
+            $('.error')
+                .removeClass('hide')
+                .find('.alert')
+                .text(response.error.message);
+        } else {
+            /* token contains id, last4, and card type */
+            var token = response['id'];
+                 
+            $form.find('input[type=text]').empty();
+            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+            $form.get(0).submit();
+        }
+    }
+     
+});
+</script>
    </body>
 </html>

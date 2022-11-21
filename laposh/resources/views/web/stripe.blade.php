@@ -1,7 +1,6 @@
 @extends('web.layout')
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   
     <div class="our_room">
     <div class="row">
@@ -9,22 +8,27 @@
             <div class="form_register">
                     <h3 class="panel-title text-center"><strong>Reservation Details</strong></h3>
 
-                    Dear {{auth()->user()->lastName}}, your reservation has been received with the following details. You are rewured to pay for it to be active!
+                    Dear {{auth()->user()->lastName}}, your reservation has been received with the following details. You are required to pay for it to be active!
+                    <hr/>
 <div>
-Reference:{{$booking->reference}}
+<h4><strong>Reference:{{$booking->reference}}</strong></h4>
 </div>
 <div>
-Price:{{$booking->room->price}}
+<h4><strong>Room:{{$booking->room->name}}</strong></h4>
 </div>
 <div>
-Room:{{$booking->room->name}}
+<h4><strong>Price: ${{$booking->room->price}}</strong></h4>
 </div>
 <div>
-Check in date:{{$booking->check_in_date}}
+<h4><strong>Check in date:{{$booking->check_in_date}}</strong></h4>
 </div>
 <div>
-Check out date:{{$booking->check_out_date}}
+<h4><strong>Check out date:{{$booking->check_out_date}}</strong></h4>
 </div>
+
+Regards,
+<br><br><br>
+<br>
 
 
                         </div>
@@ -37,7 +41,7 @@ Check out date:{{$booking->check_out_date}}
                 <div class='form-row row'>
                             <div class='col-md-12 error form-group hide' >
                                 <p>Please correct the errors and try again.</
-</p>
+                    </p>
                         </div>
                 <div class="panel-body">
     
@@ -57,7 +61,7 @@ Check out date:{{$booking->check_out_date}}
                             data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
                             id="payment-form">
                         @csrf
-    
+                        <input value="{{$booking->id}}" name="booking_id" type='number' hidden>
                         <div class='card-body'>
                             <div class='col-xs-12 form-group required'>
                                 <label class='control-label'style="font-size:16px;">Name on Card</label> 
@@ -66,9 +70,15 @@ Check out date:{{$booking->check_out_date}}
                         </div>
     
                         <div class='card-body'>
+                            <div class='col-xs-12' style="background-color:#eef2fcf5; border:none;">
+                                <label style="font-size:16px;">Amount</label> 
+                                <input value="{{$booking->room->price}}" class='form-control' type='number' step="2" name="amount" readonly>
+                            </div>
+                        </div>
+                        <div class='card-body'>
                             <div class='col-xs-12 form-group card required' style="background-color:#eef2fcf5; border:none;">
                                 <label class='control-label'style="font-size:16px;">Card Number</label> 
-                                <input autocomplete='off' class='form-control card-number' size='20' type='text'>
+                                <input class='form-control card-number' size='20' type='text'>
                             </div>
                         </div>
                         <div class="row">
@@ -90,7 +100,7 @@ Check out date:{{$booking->check_out_date}}
     
                         <div class="row">
                             <div class="col-xs-12 col-md-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now</button>
                             </div>
                         </div>
                             
@@ -99,80 +109,14 @@ Check out date:{{$booking->check_out_date}}
             </div>        
         </div>
     </div>
+
+
+
+    
         
 </div>
 </div>
 </div>
 
-    
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    
-<script type="text/javascript">
-  
-$(function() {
-  
-    /*------------------------------------------
-    --------------------------------------------
-    Stripe Payment Code
-    --------------------------------------------
-    --------------------------------------------*/
-    
-    var $form = $(".require-validation");
-     
-    $('form.require-validation').bind('submit', function(e) {
-        var $form = $(".require-validation"),
-        inputSelector = ['input[type=email]', 'input[type=password]',
-                         'input[type=text]', 'input[type=file]',
-                         'textarea'].join(', '),
-        $inputs = $form.find('.required').find(inputSelector),
-        $errorMessage = $form.find('div.error'),
-        valid = true;
-        $errorMessage.addClass('hide');
-    
-        $('.has-error').removeClass('has-error');
-        $inputs.each(function(i, el) {
-          var $input = $(el);
-          if ($input.val() === '') {
-            $input.parent().addClass('has-error');
-            $errorMessage.removeClass('hide');
-            e.preventDefault();
-          }
-        });
-     
-        if (!$form.data('cc-on-file')) {
-          e.preventDefault();
-          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-          Stripe.createToken({
-            number: $('.card-number').val(),
-            cvc: $('.card-cvc').val(),
-            exp_month: $('.card-expiry-month').val(),
-            exp_year: $('.card-expiry-year').val()
-          }, stripeResponseHandler);
-        }
-    
-    });
-      
-    /*------------------------------------------
-    --------------------------------------------
-    Stripe Response Handler
-    --------------------------------------------
-    --------------------------------------------*/
-    function stripeResponseHandler(status, response) {
-        if (response.error) {
-            $('.error')
-                .removeClass('hide')
-                .find('.alert')
-                .text(response.error.message);
-        } else {
-            /* token contains id, last4, and card type */
-            var token = response['id'];
-                 
-            $form.find('input[type=text]').empty();
-            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-            $form.get(0).submit();
-        }
-    }
-     
-});
-</script>
-@endsection
+@endsection    
+

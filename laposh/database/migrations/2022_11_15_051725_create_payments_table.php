@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('booking_id');
             $table->string('payment_option');
             $table->string('reference');
-            $table->decimal('amount',5,2);
+            $table->decimal('amount',9,2);
             $table->timestamps();
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
         });

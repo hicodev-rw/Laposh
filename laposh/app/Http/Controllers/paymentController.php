@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Session;
 use Stripe;
 use App\Models\Reservation;
+use App\Models\Payment;
+
 class paymentController extends Controller
 {
     /**
@@ -14,10 +16,17 @@ class paymentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
-    {
-        //
+    function generateRandomString() {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 3; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $reference=$randomString.'-'.rand(1111111,9999999);
+        return $reference;
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,12 +50,22 @@ class paymentController extends Controller
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
     
         Stripe\Charge::create ([
-                "amount" => 100 * 100,
+            "amount" => $request->amount * 100,
                 "currency" => "usd",
                 "source" => $request->stripeToken,
-                "description" => "Test payment from LaravelTus.com." 
+                "description" => "Room Payment" 
         ]);
       
+        Payment::create(["booking_id" => $request->booking_id,
+        "amount" => $request->amount,
+        "payment_option" => 'card',
+        "reference" => $this->generateRandomString(),
+        "currency" => "usd",
+        "description" => "Test payment from LaravelTus.com."
+    ]);
+    $reservation=Reservation::find($request->booking_id);
+    $reservation->update(['status_id'=>1]);
+
         Session::flash('success', 'Payment successful!');
               
         return back();
