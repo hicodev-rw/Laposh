@@ -48,7 +48,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="padding-right:20px; padding-left:30px; align-items:right">
                    <nav class="navigation navbar">
                          <ul class="row">
-                            @if(!auth()->user()->role=='client')
+                            @if(!auth()->user() || auth()->user()->role!='client')
                             <li class="nav-item">
                                <a href="/register">Register</a>
                             </li>&nbsp;|&nbsp;
@@ -56,7 +56,7 @@
                                <a href="/login">Login</a>
                             </li>&nbsp;@endif
                             
-                            @if(auth()->user()->role=='client')|&nbsp;
+                            @if(auth()->user() && auth()->user()->role=='client')|&nbsp;
                             <li class="nav-item">
                                <a href="/customer/dashboard">My Laposh</a>
                             </li>
@@ -71,7 +71,7 @@
 				<div class="col-md-8 order-md-last">
 					<div class="row">
 						<div class="col-md-6 text-center">
-							<a class="navbar-brand" href="index.html">Laposh Hotel <span>We serve you better</span></a>
+							<a class="navbar-brand" href="#">Laposh Hotel <span>We serve you better</span></a>
 						</div>
 						<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
 							<form action="#" class="searchform order-lg-last">

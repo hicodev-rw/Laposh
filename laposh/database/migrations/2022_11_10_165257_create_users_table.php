@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('role');
             $table->string('title')->nullable();
             $table->longText('avatar')->nullable();
+            $table->date('birthdate')->nullable();
             $table->string('password');
             $table->timestamps();
         });

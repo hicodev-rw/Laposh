@@ -186,7 +186,7 @@ img {
 }
 
 .form-control:focus {
-     border-color: #ffffff !important;
+     border-color: 2px solid blue !important;
      box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
 }
 
@@ -715,12 +715,12 @@ button {
 .form_register{
      border: #fff solid 1px;
      padding: 15px;
-     background-color: #eef2fcf5;
+     background-color: white;
      margin-bottom: 25px;
      width: 100%;
      border-radius: 10px;
      height: max-content;
-     border: 2px solid white;
+     border: 2px solid grey;
      color: #000000;
      font-size: 20px;
      font-weight: normal;

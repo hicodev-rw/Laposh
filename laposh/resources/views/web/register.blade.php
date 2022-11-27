@@ -35,7 +35,10 @@
                                             <option value="Miss.">Miss.</option>
                                         </select>
 									</div>
-
+									<div class="card-body">
+										<h5 class="card-title mb-0">Birth Date</h5>
+										<input type="date"  name="birthdate" class="form-control">
+									</div>
                                     <hr/>
                                     <div class="card-body">
                                     <h5 class="card-title mb-0">Create Password</h5>

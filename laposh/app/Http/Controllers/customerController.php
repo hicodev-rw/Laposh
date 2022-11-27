@@ -7,8 +7,8 @@ use App\Models\User;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\MailNotify;
-use Mail;
 class customerController extends Controller
 {
     public function index()
@@ -79,6 +79,14 @@ class customerController extends Controller
         $merge = array_merge($input, $new);
         $customer = User::create($merge);
         $customer->assignRole('client');
+
+        $data=[
+            'subject'=>'Welcome To Laposh',
+            'body'=>'Congratulation, your account succesfully. login to access your account'
+        ];
+        Mail::to($request->email)->send(new MailNotify($data));
+
+
         return redirect('/login');
     }
     else{
