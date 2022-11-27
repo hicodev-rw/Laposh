@@ -40,12 +40,12 @@
                               <div class="col-md-12">
                                  <span>Arrival</span>
                                  <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="check_in_date" id="cindate">
+                                 <input class="online_book" placeholder="dd/mm/yyyy" type="datetime-local" name="check_in_date" id="cindate">
                               </div>
                               <div class="col-md-12">
                                  <span>Departure</span>
                                  <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="check_out_date" id="coutdate">
+                                 <input class="online_book" placeholder="dd/mm/yyyy" type="datetime-local" name="check_out_date" id="coutdate">
                               </div>
                               <div class="col-md-12">
                                  <button class="book_btn" onclick=dataSetter()>Check Availability</button>

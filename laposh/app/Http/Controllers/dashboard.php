@@ -174,7 +174,32 @@ $graph4=array_values($data4Arr);
 
 
 //top booked room
+$popular = Reservation::select('room_id')
+->get()
+->groupBy('room_id')->take(5);
+$popularcount = [];
+$popularArr = [];
 
-      return view('management.static.index')->with('bookings',$bookings)->with('ongoing',$ongoing)->with('clients',$clients)->with('users',$users)->with('rooms',$rooms)->with('categories',$categories)->with('closed',$closed)->with('cancelled',$cancelled)->with('payments',$payments)->with('payments_count',$payments_count)->with('booking_stats',$booking_stats)->with('ongoing_stats',$ongoing_stats)->with('cancelled_stats',$cancelled_stats)->with('closed_stats',$closed_stats)->with('clients_stats',$clients_stats)->with('graph',$graph)->with('graph2',$graph2)->with('graph3',$graph3)->with('graph4',$graph4);
+foreach ($popular as $key => $value) {
+        $popularcount[(int)$key] = count($value);
+}
+$Array=array();
+
+foreach ($popular as $key => $value) {
+    array_push($Array,$key);
+}
+
+$popularrooms=Room::whereIn('id', $Array)->get(['id','name']);
+for ($i = 1; $i <=count($popularcount); $i++) {
+if (!empty($popularcount[$i])) {
+    $popularArr[$i]['count'] = $popularcount[$i];
+} else {
+    $popularArr[$i]['count'] = 0;
+}
+$popularArr[$i]['room'] = $popularrooms[$i-1];
+}
+
+
+return view('management.static.index')->with('bookings',$bookings)->with('ongoing',$ongoing)->with('clients',$clients)->with('users',$users)->with('rooms',$rooms)->with('categories',$categories)->with('closed',$closed)->with('cancelled',$cancelled)->with('payments',$payments)->with('payments_count',$payments_count)->with('booking_stats',$booking_stats)->with('ongoing_stats',$ongoing_stats)->with('cancelled_stats',$cancelled_stats)->with('closed_stats',$closed_stats)->with('clients_stats',$clients_stats)->with('graph',$graph)->with('graph2',$graph2)->with('graph3',$graph3)->with('graph4',$graph4)->with('popular',$popularArr);
     }
 }

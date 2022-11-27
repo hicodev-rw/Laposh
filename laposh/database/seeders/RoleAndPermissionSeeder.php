@@ -40,12 +40,27 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'generate-report']);
 
         $adminRole = Role::create(['name' => 'Administrator']);
+        $managerRole = Role::create(['name' => 'Manager']);
         $accountantRole = Role::create(['name' => 'Accountant']);
         $roomOperatorRole = Role::create(['name' => 'Room-operator']);
         $receptionRole = Role::create(['name' => 'Receptionist']);
         $clientRole = Role::create(['name' => 'Client']);
 
         $adminRole->givePermissionTo(Permission::all());
+
+
+        $managerRole->givePermissionTo([  
+            'view-payment',
+            'view-room',
+            'check-paymemt',
+            'generate-report',
+            'view-room',
+            'view-category',
+            'check-in',
+            'check-out',
+            'view-reservation',
+            'extend-reservation'
+            ]);
 
         $accountantRole->givePermissionTo([  
             'view-payment',

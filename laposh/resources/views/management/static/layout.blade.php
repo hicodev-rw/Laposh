@@ -47,11 +47,38 @@
 	<a class="sidebar-link" href="/management/categories">
 <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Categories</span>
 </a>
-					</li>
+<li class="sidebar-item">
+        <a class="sidebar-link collapsed" data-bs-target="#components-nav1" data-bs-toggle="collapse" href="#">
+          <i class="align-middle" data-feather="book"></i><span>Reservations</span><i data-feather="chevron-down"></i>
+        </a>
+        <ul style="margin-left:20px;"id="components-nav1" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
 		<li class="sidebar-item">
-			<a class="sidebar-link" href="/management/bookings">
-  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Reservations</span>
-</a>
+						<a class="sidebar-link" href="/management/booking/pending">
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Pending Bookings</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/booking/ongoing">
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Ongoing Bookings</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/booking/closed">
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Closed Bookings</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/booking/unpaid">
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">With pending payment</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/booking/closed">
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Closed Bookings</span>
+            </a>
+					</li>
+        </ul>
+      </li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/check-in-list">
@@ -76,18 +103,30 @@
 				<i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
 			</a>
 		</li>
-					<li class="sidebar-item">
+		<li class="sidebar-item">
+        <a class="sidebar-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#">
+          <i class="align-middle" data-feather="users"></i><span>Users</span><i data-feather="chevron-down"></i>
+        </a>
+        <ul id="components-nav3" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
+		<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/users">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
+              <i class="align-middle"></i> <span class="align-middle">Management</span>
             </a>
-</li>
+					</li>
+		<li class="sidebar-item">
+						<a class="sidebar-link" href="/management/clients">
+              <i class="align-middle"></i> <span class="align-middle">Clients</span>
+            </a>
+		</li>
+        </ul>
+      </li>
 
 @endif
 <li class="sidebar-item">
-        <a class="sidebar-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="align-middle" data-feather="edit"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="sidebar-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
+          <i class="align-middle" data-feather="edit"></i><span>Reports</span><i data-feather="chevron-down"></i>
         </a>
-        <ul id="components-nav" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav2" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
 		<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/reports/financial">
               <i class="align-middle"></i> <span class="align-middle">Financial</span>

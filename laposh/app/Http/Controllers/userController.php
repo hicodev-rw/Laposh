@@ -18,46 +18,14 @@ class userController extends Controller
     public function index(Request $request)
     {
         $roles=RoleModel::whereNot('name','client')->get();
-        $user_query=User::with('roles')->whereNot('role','client');
-        if($request->role){
-            $user_query->whereHas('roles',function($query) use($request){
-                $query->where('name',$request->role);
-            });
-        }
-
-        if($request->keyword){
-            $user_query->where('name','LIKE','%'.$request->keyword.'%');
-        }
-
-        if($request->sortBy && in_array($request->sortBy,['id','firstName','lastName','created_at'])){
-            $sortBy=$request->sortBy;
-        }
-        else{
-            $sortBy='id'; 
-        }
-
-        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
-            $sortOrder=$request->sortOrder;
-        }
-        else{
-            $sortOrder='asc'; 
-        }
-
-        if($request->perPage){
-            $perPage=$request->perPage;
-        }
-        else{
-            $perPage=8;
-        }
-        if($request->paginate){
-            $users=$user_query->orderBy($sortBy,$sortOrder)->paginate($perPage);
-        }
-        else{
-            $users=$user_query->orderBy($sortBy,$sortOrder)->get();
-        }
-        $users=$user_query->get();
-       // return $users;
+        $users=User::with('roles')->whereNot('role','client')->get();
         return view('management.static.users')->with('users',$users)->with('roles',$roles);
+    }
+    public function clients(Request $request)
+    {
+        $roles=RoleModel::where('name','client')->get();
+        $users=User::with('roles')->where('role','client')->get();
+        return view('management.static.clients')->with('users',$users);
     }
     public function create()
     {

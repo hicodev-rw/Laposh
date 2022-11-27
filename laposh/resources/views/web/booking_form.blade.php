@@ -16,11 +16,11 @@
                                     <input type="number" value="{{$id}}" name="room_id" class="form-control" hidden>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Check in date</h5>
-										<input type="date" value="" name="check_in_date" id="cindate" class="form-control" readonly>
+										<input type="datetime-local" value="" name="check_in_date" id="cindate" class="form-control" readonly>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Check out date</h5>
-										<input type="date" value=""name="check_out_date" id="coutdate" class="form-control" readonly>
+										<input type="datetime-local" value=""name="check_out_date" id="coutdate" class="form-control" readonly>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Special information</h5>

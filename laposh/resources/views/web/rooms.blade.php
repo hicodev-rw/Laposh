@@ -61,7 +61,7 @@
       <!-- end banner -->
       <!-- our_room -->
       <div  class="our_room">
-         <div class="container">
+         <div class="room_container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
@@ -71,7 +71,7 @@
             </div>
             <div class="row">
                @foreach($rooms as $room)
-               <div class="col-md-4 col-sm-6">
+               <div class="col-md-3 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img" style="">
                         <figure><img src="{{$room->images[0]}}" alt="{{$room->name}}"/></figure>

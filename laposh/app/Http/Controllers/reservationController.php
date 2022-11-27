@@ -19,49 +19,39 @@ class reservationController extends Controller
 
     public function index(Request $request)
     {
-        $reservations_query=Reservation::with(['status','user']);
+        $reservations=Reservation::all();
 
-        if($request->keyword){
-            $reservations_query->where('reference','LIKE','%'.$request->keyword.'%');
-        }
-        if($request->status){
-            $reservations_query->whereHas('status',function($query) use($request){
-                $query->where('name',$request->status);
-            });
-        }
-        if($request->owner){
-            $reservations_query->whereHas('user',function($query) use($request){
-                $query->where('firstName',$request->owner);
-            });
-        }
-        if($request->sortBy && in_array($request->sortBy,['reference','created_at',])){
-            $sortBy=$request->sortBy;
-        }
-        else{
-            $sortBy='created_at'; 
-        }
-
-        if($request->sortOrder && in_array($request->sortOrder,['asc','desc'])){
-            $sortOrder=$request->sortOrder;
-        }
-        else{
-            $sortOrder='asc'; 
-        }
-
-        if($request->perPage){
-            $perPage=$request->perPage;
-        }
-        else{
-            $perPage=8;
-        }
-        if($request->paginate){
-            $reservations=$reservations_query->orderBy($sortBy,$sortOrder)->paginate($perPage);
-        }
-        else{
-            $reservations=$reservations_query->orderBy($sortBy,$sortOrder)->get();
-        }
-        //return $reservations;
         return view('management.static.bookings')->with('bookings',$reservations);
+    }
+    public function unpaid(Request $request)
+    {
+        $reservations=Reservation::where('status_id',5)->get();
+
+        return view('management.static.pendingpayment')->with('bookings',$reservations);
+    }
+    public function pending(Request $request)
+    {
+        $reservations=Reservation::where('status_id',1)->get();
+
+        return view('management.static.pending')->with('bookings',$reservations);
+    }
+    public function closed(Request $request)
+    {
+        $reservations=Reservation::where('status_id',3)->get();
+
+        return view('management.static.closed')->with('bookings',$reservations);
+    }
+    public function cancelled(Request $request)
+    {
+        $reservations=Reservation::where('status_id',4)->get();
+
+        return view('management.static.cancelled')->with('bookings',$reservations);
+    }
+    public function ongoing(Request $request)
+    {
+        $reservations=Reservation::where('status_id',2)->get();
+
+        return view('management.static.ongoing')->with('bookings',$reservations);
     }
 
     public function create()

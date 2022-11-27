@@ -68,37 +68,24 @@ class customerController extends Controller
 
     public function store(Request $request)
     {
-        $data = array('name'=>"Virat Gandhi");
-        Mail::send('mail', $data, function($message) {
-           $message->to('abc@gmail.com', 'Tutorials Point')->subject
-              ('Laravel HTML Testing Mail');
-           $message->from('xyz@gmail.com','Virat Gandhi');
-        });
-        echo "HTML Email Sent. Check your inbox.";
-    //     $input=$request->all();
-    //     $isUnique = count(User::where('email',$request->email)->get());
-    //     if($isUnique==0){
-    //     $password=$request->password;
-    //     $hashed = Hash::make($password, [
-    //         'rounds' => 12,
-    //     ]);
-    //     $new = array('password' => $hashed,'role'=>'client');
-    //     $merge = array_merge($input, $new);
-    //     $customer = User::create($merge);
-    //     $customer->assignRole('client');
-
-
-    //     $data = array('subject'=>"Virat Gandhi");
-    //     Mail::to('uwamahoroangel78@gmail.com')->send(new MailNotify($data));
-
-
-    //     return redirect('/login');
-    // }
-    // else{
-    //     return back()->withErrors([
-    //         'email' => 'incorrect username or password!',
-    //     ])->onlyInput('email');
-    // }
+        $input=$request->all();
+        $isUnique = count(User::where('email',$request->email)->get());
+        if($isUnique==0){
+        $password=$request->password;
+        $hashed = Hash::make($password, [
+            'rounds' => 12,
+        ]);
+        $new = array('password' => $hashed,'role'=>'client');
+        $merge = array_merge($input, $new);
+        $customer = User::create($merge);
+        $customer->assignRole('client');
+        return redirect('/login');
+    }
+    else{
+        return back()->withErrors([
+            'email' => 'account already exists!',
+        ])->onlyInput('email');
+    }
     }
 
     public function show($id)

@@ -50,7 +50,7 @@ Route::POST('/customer/bookings/{id}',[webController::class,'showReservation']);
 Route::get('/customer/profile',[customerController::class,'profile']);
 });
 
-Route::group(['middleware'=>['auth:sanctum','user','prevent-back-history']], function () {
+Route::group(['middleware'=>['auth:sanctum','user']], function () {
     //dashboard
     Route::get('/management/dashboard',[dashboard::class,'index']);
     //rooms
@@ -75,6 +75,14 @@ Route::group(['middleware'=>['auth:sanctum','user','prevent-back-history']], fun
 
     //bookings
     Route::resource('/management/bookings',reservationController::class);
+
+
+    Route::get('/management/booking/pending',[reservationController::class,'pending']);
+    Route::get('/management/booking/ongoing',[reservationController::class,'ongoing']);
+    Route::get('/management/booking/closed',[reservationController::class,'closed']);
+    Route::get('/management/booking/cancelled',[reservationController::class,'cancelled']);
+    Route::get('/management/booking/unpaid',[reservationController::class,'unpaid']);
+
     Route::patch('/management/reservations/cancel/{id}',[reservationController::class,'cancelBooking']);
     Route::get('/management/check-in-list',[reservationController::class,'readForCheckIn']);
     Route::get('/management/check-out-list',[reservationController::class,'readForCheckOut']);
@@ -85,6 +93,7 @@ Route::group(['middleware'=>['auth:sanctum','user','prevent-back-history']], fun
     Route::resource('/customers',customerController::class);
     //users
     Route::resource('/management/users',userController::class); 
+    Route::get('/management/clients',[userController::class,'clients']); 
     Route::get('/management/user/profile',[userController::class,'profile']);
     Route::post('/management/users/avatar/upload/{id}',[userController::class,'storeAvatar']);
 

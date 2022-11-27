@@ -269,7 +269,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-12 col-lg-8 col-xxl-9 d-flex" id="payments">
+						<div class="col-12 col-lg-7 col-xxl-9 d-flex" id="payments">
 							<div class="card flex-fill" style="padding:10px;">
 								<div class="card-header">
 									<h5 class="card-title mb-0">Payments</h5>
@@ -297,7 +297,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="col-12 col-lg-4 col-xxl-3 d-flex">
+						<div class="col-12 col-lg-5 col-xxl-3 d-flex">
 							<div class="card flex-fill w-100">
 								<div class="card-header">
 
@@ -305,13 +305,13 @@
 								</div>
 								<div class="card-body d-flex w-100">
 								<ul class="sidebar-nav">
-
+								@foreach($popular as $popular)
 <li class="sidebar-item">
-	<a class="sidebar-link" href="/management/dashboard">
-<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+	<a class="sidebar-link" href="/management/rooms/{{$popular['room']['id']}}">
+<i class="align-middle" data-feather="flag"></i> <span class="align-middle">{{$popular['room']['name']}}({{$popular['count']}})</span>
 </a>
 </li>
-</li>
+@endforeach
 </ul>
 								</div>
 							</div>

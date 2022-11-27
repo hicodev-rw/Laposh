@@ -128,7 +128,7 @@ class roomController extends Controller
     
     public function show($id)
     {
-        $room=Room::with('category')->find($id);
+        $room=Room::with(['category','reservation'])->find($id);
         // return $room;
         return view('management.static.viewroom')->with('room',$room);
     }

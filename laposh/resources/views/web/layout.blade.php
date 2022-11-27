@@ -13,8 +13,9 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-      <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet"><link rel="stylesheet" href="{{ URL::asset('css/error.css'); }}">
+      
+      <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
+      <link rel="stylesheet" href="{{ URL::asset('css/error.css'); }}">
       <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css');}}">
       <!-- style css -->
       <link rel="stylesheet" href="{{ URL::asset('css/style.css');}}">
@@ -27,6 +28,9 @@
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{{ URL::asset('css/nav.css');}}">
    </head>
    <!-- body -->
    <body class="main-layout">
@@ -36,85 +40,88 @@
       </div>
       <!-- end loader -->
       <!-- header -->
-      <header>
-         <!-- header inner -->
-         <div class="header">
-         <div class="container">  
-               <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                  </div>
-                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                     <nav class="navigation navbar">
-                           <ul class="row">
-                              @if(!auth()->user())
-                              <li class="nav-item">
-                                 <a href="/register">Register</a>
-                              </li>&nbsp;|&nbsp;
-                              <li class="nav-item">
-                                 <a href="/login">Login</a>
-                              </li>&nbsp;@endif
-                              
-                              @if(auth()->user())|&nbsp;
-                              <li class="nav-item">
-                                 <a href="/customer/dashboard">My Laposh</a>
-                              </li>
-                              @endif
-                           </ul>
-                     </nav>
-                  </div>
-                  
-               </div>
+      <section class="ftco-section">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" >
+      <div class="row">
+      <div class="col-xl-6 col-lg-5 col-md-6 col-sm-5" >
+      </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="padding-right:20px; padding-left:30px; align-items:right">
+                   <nav class="navigation navbar">
+                         <ul class="row">
+                            @if(!auth()->user()->role=='client')
+                            <li class="nav-item">
+                               <a href="/register">Register</a>
+                            </li>&nbsp;|&nbsp;
+                            <li class="nav-item">
+                               <a href="/login">Login</a>
+                            </li>&nbsp;@endif
+                            
+                            @if(auth()->user()->role=='client')|&nbsp;
+                            <li class="nav-item">
+                               <a href="/customer/dashboard">My Laposh</a>
+                            </li>
+                            @endif
+                         </ul>
+                   </nav>
+                </div>
             </div>
-            <div class="container">
+</div>
+		<div class="container-fluid px-md-5">
+			<div class="row justify-content-between">
+				<div class="col-md-8 order-md-last">
+					<div class="row">
+						<div class="col-md-6 text-center">
+							<a class="navbar-brand" href="index.html">Laposh Hotel <span>We serve you better</span></a>
+						</div>
+						<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+							<form action="#" class="searchform order-lg-last">
+			          <div class="form-group d-flex">
+			            <input type="text" class="form-control pl-3" placeholder="Search">
+			            <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
+			          </div>
+			        </form>
+						</div>
+					</div>
+				</div>
 
-               <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                           <h1><strong>
-                           La posh Hotel
-                              </strong></h1>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/">Home</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/rooms">Our rooms</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/about">About</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/gallery">Gallery</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/contact">Contact Us</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-                  
-               </div>
-            </div>
-         </div>
-      </header>
+				<div class="col-md-4 d-flex">
+					<div class="social-media">
+		    		<p class="mb-0 d-flex">
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-youtube"><i class="sr-only">Youtube</i></span></a>
+		    		</p>
+	        </div>
+				</div>
+			</div>
+		</div>
+          </div>
+		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container-fluid">
+	    
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav m-auto">
+	        	<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+	        	<li class="nav-item"><a href="/rooms" class="nav-link">Rooms</a></li>
+	        	<li class="nav-item"><a href="/gallery" class="nav-link">Gallery</a></li>
+              <li class="nav-item"><a href="/about" class="nav-link">about us</a></li>
+	          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+     </div></div></div></div>
+    <!-- END nav -->
+
+	</section>
       @yield('content')
       <!--  footer -->
       <footer>
          <div class="footer">
-            <div class="container">
                <div class="row">
                <div class=" col-md-3">
                      <h3>La posh Hotel</h3>
@@ -153,10 +160,10 @@
                   </div>
                </div>
             </div>
-         </div>
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
+      
       <script src="{{ URL::asset('js/jquery.min.js');}}"></script>
       <script src="{{ URL::asset('js/bootstrap.bundle.min.js');}}"></script>
       <script src="{{ URL::asset('js/jquery-3.0.0.min.js');}}"></script>
