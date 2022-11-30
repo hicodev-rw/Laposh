@@ -10,12 +10,17 @@
 						<div class="col-xl-6 col-xxl-5 d-flex">
 							<div class="w-100">
 								<div class="row">
-									
+								@if(session('message'))
+						<div class="success">
+							{{ session('message') }}
+						</div>
+					@endif
 									<div class="col-sm-6">
-									
+									<a href="/customer/bookings" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
+	
 													<div class="col mt-0">
 														<h5 class="card-title">Bookings</h5>
 													</div>
@@ -29,6 +34,8 @@
 												<h1 class="mt-1 mb-3">{{$bookings}}</h1>
 											</div>
 										</div>
+										</a>
+										<a href="/customer/bookings?status=ongoing" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -45,9 +52,11 @@
 												<h1 class="mt-1 mb-3">{{$ongoing}}</h1>
 											</div>
 										</div>
+										</a>
 									</div>
+									
 									<div class="col-sm-6">
-										
+									<a href="/customer/bookings?status=closed" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -63,7 +72,8 @@
 												</div>
 												<h1 class="mt-1 mb-3">{{$closed}}</h1>
 											</div>
-										</div>
+										</div></a>
+										<a href="/customer/bookings?status=cancelled" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -79,7 +89,7 @@
 												</div>
 												<h1 class="mt-1 mb-3">{{$canceled}}</h1>
 											</div>
-										</div>
+										</div></a>
 
 									</div>
 								</div>

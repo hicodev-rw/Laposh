@@ -46,7 +46,7 @@ Route::patch('/customer/bookings/cancel/{id}',[webController::class,'cancelBooki
 Route::patch('/customer/bookings/extension/{id}',[webController::class,'extenstionRequest']);
 Route::get('/stripe/payment/start',[paymentController::class,'create']);
 Route::POST('/stripe/payment',[paymentController::class,'store']);
-Route::POST('/customer/bookings/{id}',[webController::class,'showReservation']);
+Route::get('/customer/bookings/{id}',[webController::class,'showReservation']);
 Route::get('/customer/profile',[customerController::class,'profile']);
 });
 

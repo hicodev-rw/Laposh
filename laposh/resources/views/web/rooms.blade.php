@@ -40,12 +40,12 @@
                               <div class="col-md-12">
                                  <span>Arrival</span>
                                  <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="check_in_date">
+                                 <input class="online_book" placeholder="dd/mm/yyyy" type="datetime-local" name="check_in_date">
                               </div>
                               <div class="col-md-12">
                                  <span>Departure</span>
                                  <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="check_out_date">
+                                 <input class="online_book" placeholder="dd/mm/yyyy" type="datetime-local" name="check_out_date">
                               </div>
                               <div class="col-md-12">
                                  <button class="book_btn">Check Availability</button>
@@ -71,13 +71,13 @@
             </div>
             <div class="row">
                @foreach($rooms as $room)
-               <div class="col-md-3 col-sm-6">
+               <div class="col-md-4 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img" style="">
                         <figure><img src="{{$room->images[0]}}" alt="{{$room->name}}"/></figure>
                      </div>
                      <div class="bed_room">
-                     <h3>${{$room->price}} /day</h3>
+                     <h3 style="color:green;">${{$room->price}}/day</h3>
                         <h3>{{$room->name}}</h3>
                         <a class="read_more" href="/room/details/{{$room->id}}"> Read More</a>
                      </div>

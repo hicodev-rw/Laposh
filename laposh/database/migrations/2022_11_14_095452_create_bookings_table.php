@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('room_id');
             $table->DATETIME('check_in_date');
             $table->DATETIME('check_out_date');
-            $table->string('special_info');
+            $table->string('special_info')->nullable();
             $table->string('reference');
             $table->unsignedBigInteger('status_id')->default(1);
             $table->timestamps();

@@ -157,7 +157,7 @@
 												</div>
 											</div>
 										</div></a>
-										
+										<a href="/management/clients" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
@@ -177,7 +177,7 @@
 													<span class="text-muted">this week</span>
 												</div>
 											</div>
-										</div>
+										</div></a>
 										<a href="/management/users" style="text-decoration:none;">
 										<div class="card">
 											<div class="card-body">
@@ -308,7 +308,7 @@
 								@foreach($popular as $popular)
 <li class="sidebar-item">
 	<a class="sidebar-link" href="/management/rooms/{{$popular['room']['id']}}">
-<i class="align-middle" data-feather="flag"></i> <span class="align-middle">{{$popular['room']['name']}}({{$popular['count']}})</span>
+<i class="align-middle" data-feather="flag"></i> <span class="align-middle">{{$popular['room']['name']}}</span>
 </a>
 </li>
 @endforeach

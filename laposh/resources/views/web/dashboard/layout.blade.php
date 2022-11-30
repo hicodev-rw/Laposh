@@ -62,7 +62,7 @@
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="{{ auth()->user()->avatar }}" width="36" height="36" class="rounded-circle me-2" alt="" /> <span class="text-dark">{{ auth()->user()->lastName }}</span>
+                <span class="text-dark">{{ auth()->user()->lastName }}</span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="/customer/profile"><i class="align-middle me-1" data-feather="user"></i> Profile</a>

@@ -7,7 +7,12 @@
 					<div class="row">
 						<div class="col-xl-12 col-xxl-2 d-flex">
 							<div style="width: 100%;" class="col-12 col-lg-8 col-xxl-9 d-flex" >
-								<div style="width: 90%;"  class="card flex-fill">
+								<div style="width: 90%; padding:10px;"  class="card flex-fill">
+								@if(session('message'))
+						<div class="success">
+							{{ session('message') }}
+						</div>
+							@endif
 									<div class="card-header">
 	
 										<h5 class="card-title mb-0">Bookings</h5>

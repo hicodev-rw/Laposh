@@ -25,6 +25,9 @@
 <div>
 <h4><strong>Check out date:{{$booking->check_out_date}}</strong></h4>
 </div>
+<div>
+<h4><strong>Stay duration:{{$days}} days ({{$hours}} hours)</strong></h4>
+</div>
 
 Regards,
 <br><br><br>
@@ -72,7 +75,7 @@ Regards,
                         <div class='card-body'>
                             <div class='col-xs-12' style="background-color:#eef2fcf5; border:none;">
                                 <label style="font-size:16px;">Amount</label> 
-                                <input value="{{$booking->room->price}}" class='form-control' type='number' step="2" name="amount" readonly>
+                                <input value="{{$amount}}" class='form-control' type='Number' step="2" name="amount" readonly>
                             </div>
                         </div>
                         <div class='card-body'>

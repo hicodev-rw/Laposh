@@ -241,5 +241,27 @@ $(function() {
      
 });
 </script>
+<script>  
+function validateform(){  
+var name=document.getElementsByName('firstName').value;    
+var pw1 = document.getElementsByName('password');  
+var pw2 = document.getElementsByName('cpassword');
+    var regName = /^[a-zA-Z]+$/;
+
+    if(!regName.test(name)){
+        alert('Please enter a valid name.');
+        return false;
+    }
+  else if(pw1 != pw2)  
+  {   
+   document.getElementById('error').innerHTML="Password mismatch"  
+    return false;
+  } 
+  else {  
+    return true;
+  } 
+}
+</script>
+</script>
    </body>
 </html>

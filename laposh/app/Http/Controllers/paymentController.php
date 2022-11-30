@@ -7,6 +7,7 @@ use Session;
 use Stripe;
 use App\Models\Reservation;
 use App\Models\Payment;
+use DateTime;
 
 class paymentController extends Controller
 {
@@ -36,7 +37,16 @@ class paymentController extends Controller
     public function create()
     {
         $booking=Reservation::where('user_id',auth()->user()->id)->latest()->first();
-            return view('web.stripe')->with('booking',$booking);
+
+        $datetime_1 = $booking->check_in_date; 
+        $datetime_2 = $booking->check_out_date; 
+         
+        $start_datetime = new DateTime($datetime_1); 
+        $diff = $start_datetime->diff(new DateTime($datetime_2)); 
+        $total_hours = ($diff->days * 24); 
+
+        $amount=$booking->room->price*$total_hours;
+        return view('web.stripe')->with('booking',$booking)->with('amount',$amount)->with('days',$diff->days)->with('hours',$diff->days*24);        
     }
 
     /**
@@ -65,10 +75,8 @@ class paymentController extends Controller
     ]);
     $reservation=Reservation::find($request->booking_id);
     $reservation->update(['status_id'=>1]);
-
-        Session::flash('success', 'Payment successful!');
               
-        return back();
+        return redirect('/customer/bookings')->with('message','Your reservation was set successfully!');
     }
 
     /**

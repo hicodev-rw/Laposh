@@ -73,8 +73,8 @@
             </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="/management/booking/closed">
-              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Closed Bookings</span>
+						<a class="sidebar-link" href="/management/booking/cancelled">
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Cancelled Bookings</span>
             </a>
 					</li>
         </ul>
@@ -107,15 +107,15 @@
         <a class="sidebar-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#">
           <i class="align-middle" data-feather="users"></i><span>Users</span><i data-feather="chevron-down"></i>
         </a>
-        <ul id="components-nav3" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
+        <ul style="margin-left:20px;" id="components-nav3" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
 		<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/users">
-              <i class="align-middle"></i> <span class="align-middle">Management</span>
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Management</span>
             </a>
 					</li>
 		<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/clients">
-              <i class="align-middle"></i> <span class="align-middle">Clients</span>
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Clients</span>
             </a>
 		</li>
         </ul>
@@ -126,25 +126,25 @@
         <a class="sidebar-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
           <i class="align-middle" data-feather="edit"></i><span>Reports</span><i data-feather="chevron-down"></i>
         </a>
-        <ul id="components-nav2" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
+        <ul style="margin-left:20px;" id="components-nav2" class="sidebar-nav collapse " data-bs-parent="#sidebar-nav">
 		<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/reports/financial">
-              <i class="align-middle"></i> <span class="align-middle">Financial</span>
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Financial</span>
             </a>
 					</li>
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/reports/data/weekly">
-              <i class="align-middle"></i> <span class="align-middle">Data weekly</span>
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Data weekly</span>
             </a>
 		</li>
 		<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/reports/data/monthly">
-              <i class="align-middle"></i> <span class="align-middle">Data monthly</span>
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Data monthly</span>
             </a>
 		</li>
 		<li class="sidebar-item">
 						<a class="sidebar-link" href="/management/reports/data/annual">
-              <i class="align-middle"></i> <span class="align-middle">Data Annual</span>
+              <i class="align-middle" data-feather="maximize"></i> <span class="align-middle">Data Annual</span>
             </a>
 		</li>
         </ul>
