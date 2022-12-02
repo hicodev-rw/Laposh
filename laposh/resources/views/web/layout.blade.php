@@ -45,7 +45,7 @@
       <div class="row">
       <div class="col-xl-6 col-lg-5 col-md-6 col-sm-5" >
       </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="padding-right:20px; padding-left:30px; align-items:right">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6" style="padding-right:50px; padding-left:30px; align-items:right">
                    <nav class="navigation navbar">
                          <ul class="row">
                             @if(!auth()->user() || auth()->user()->role!='client')
@@ -92,6 +92,7 @@
 		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
 		    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-youtube"><i class="sr-only">Youtube</i></span></a>
 		    		</p>
+
 	        </div>
 				</div>
 			</div>
@@ -124,13 +125,8 @@
          <div class="footer">
                <div class="row">
                <div class=" col-md-3">
-                     <h3>La posh Hotel</h3>
-                     <ul class="social_icon">
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                     </ul>
+                     <h3>Map</h3>
+                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18967.84876683927!2d30.049295071682746!3d-1.9537172195575534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca425bcd3250b%3A0x76f9173cdae429a3!2sLa%20Posh%20Hotel!5e0!3m2!1sen!2srw!4v1670012494911!5m2!1sen!2srw" width="600" height="200" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
                   </div>
                   <div class=" col-md-3">
                      <h3>Contact US</h3>

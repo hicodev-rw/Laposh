@@ -77,7 +77,7 @@
                         <figure><img src="{{$room->images[0]}}" alt="{{$room->name}}"/></figure>
                      </div>
                      <div class="bed_room">
-                     <h3 style="color:green;">${{$room->price}}/day</h3>
+                     <h3 style="color:green;">${{$room->price}}/hour</h3>
                         <h3>{{$room->name}}</h3>
                         <a class="read_more" href="/room/details/{{$room->id}}"> Read More</a>
                      </div>

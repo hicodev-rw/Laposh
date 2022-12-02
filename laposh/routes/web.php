@@ -13,6 +13,7 @@ use App\Http\Controllers\reservationController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\webController;
+use App\Http\Controllers\messageController;
 use App\Http\Controllers\reports;
 use App\Http\Controllers\subscriptionController;
 use App\Http\Controllers\paymentController;
@@ -35,6 +36,8 @@ Route::GET('/room/bookable/details/{id}',[webController::class,'bookable']);
 Route::get('/list',[roomController::class,'list']);
 Route::get('/register',[customerController::class,'create']);
 Route::get('/about',[webController::class,'about']);
+Route::get('/contact',[messageController::class,'create']);
+Route::post('/contact',[messageController::class,'store']);
 Route::POST('/customer/register',[customerController::class,'store']);
 
 Route::group(['middleware'=>['client']], function () {
