@@ -238,7 +238,7 @@
                                         </p>
                                         <img width="300" height="200" border="0" style="display: block; width: 300px;" src="{{ $data['body']->images[0]}}" alt="" />
                                         <p style="line-height: 24px; margin-bottom:20px;">
-                                            You can access your account at any point using the to reserve your stay link below.
+                                            You can access your account at any point using the  link below to reserve your stay.
                                         </p>
                                         <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
 
