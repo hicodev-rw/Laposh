@@ -134,6 +134,7 @@ ol {
      margin: 0px;
      padding: 0px;
      list-style: none;
+     font-weight: 600;
 }
 
 p {
@@ -186,7 +187,7 @@ img {
 }
 
 .form-control:focus {
-     border-color: 2px solid blue !important;
+     border-color: 2px solid blue;
      box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
 }
 
@@ -248,7 +249,7 @@ button {
 }
 
 .loader img {
-     width: 280px;
+     width: 400px;
 }
 
 
@@ -308,6 +309,7 @@ button {
 
 .banner_main {
      position: relative;
+  
 }
 
 .banner .carousel-indicators li {
@@ -373,21 +375,21 @@ button {
 }
 
 .book_btn {
-     background-color: rgba(0, 0, 255, 0.39);
-     max-width: 189px;
+     background-color: white;
+     max-width: 250px;
      width: 100%;
      margin: 0 auto;
-     padding: 10px 0;
-     border-radius: 50px;
-     color: #fff;
-     font-size: 20px;
+     padding: 5px 0;
+     border-radius: 5px;
+     color: black;
+     font-size: 24px;
      transition: ease-in 0.5s;
      display: block;
 }
 
 .book_btn:hover {
-     background-color: #fff;
-     color: #fe0000;
+     background-color: #fe0000;
+     color:white;
      transition: ease-in 0.5s;
 }
 
@@ -517,7 +519,7 @@ button {
 
 .our_room {
      background-color: #eef2fc;
-     padding: 60px 0 30px 0;
+     padding: 10px 0 10px 0;
      margin-top: 5px;
 }
 
@@ -696,7 +698,7 @@ button {
 
 .contact {
      background: #fff;
-     margin-top: 90px;
+     margin-top: 0px;
 }
 
 .main_form .contactus {
@@ -713,18 +715,34 @@ button {
 }
 
 .form_register{
-     border: #fff solid 1px;
-     padding: 15px;
-     background-color: white;
+     border: grey solid 1px;
+     padding: 30px;
+     background-color: #eef2fc;
      margin-bottom: 25px;
      width: 100%;
      border-radius: 10px;
      height: max-content;
-     border: 2px solid grey;
      color: #000000;
      font-size: 20px;
      font-weight: normal;
 }
+input[type=text],input[type="email"], textarea {
+     -webkit-transition: all 0.30s ease-in-out;
+     -moz-transition: all 0.30s ease-in-out;
+     -ms-transition: all 0.30s ease-in-out;
+     -o-transition: all 0.30s ease-in-out;
+     outline: none;
+     padding: 3px 0px 3px 3px;
+     margin: 5px 1px 3px 0px;
+     border: 1px solid #969696;
+     border-radius: 5px;
+   }
+input[type=text]:focus,input[type="datetime-local"]:focus,input[type="number"]:focus,input[type="email"]:focus,input[type="password"]:focus, textarea:focus {
+     box-shadow: 0 0 10px rgba(81, 203, 238, 1);
+     padding: 3px 0px 3px 3px;
+     margin: 5px 1px 3px 0px;
+     border: 2px solid rgba(81, 203, 238, 1);
+   }
 
 .main_form .textarea {
      border: #fff solid 1px;
@@ -947,19 +965,17 @@ ul.social_icon li a:hover {
 
 
 /**  inner page css **/
-.back_re {
-     background-color: #0f1521;
-}
+
 .back_re .title {
      text-align: center;
 }
-.back_re .title h2 {
-color:#fff;
-font-size: 40px;
+.back_re .title h3 {
+color:black;
+font-size: 30px;
 padding: 40px 0;
 font-weight: 600;
 text-transform: uppercase;
-line-height: 35px;
+line-height: 25px;
 }
 .margin_0 {
      margin:0 !important;

@@ -106,6 +106,12 @@ Route::group(['middleware'=>['auth:sanctum','user']], function () {
     Route::get('/management/reports/data/weekly',[reports::class,'weekly_data']);
     Route::get('/management/reports/data/monthly',[reports::class,'monthly_data']);
     Route::get('/management/reports/data/annual',[reports::class,'annual_data']);
+
+    //messages and ads
+
+    Route::resource('/management/messages',messageController::class); 
+    Route::post('/management/messages/reply',[messageController::class,'reply']);
+    Route::post('/management/message/send',[messageController::class,'send']);
   });
 
 

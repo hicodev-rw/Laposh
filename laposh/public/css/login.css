@@ -1,5 +1,5 @@
 body {
-	background: #ABCDEF;
+	background: #eef2fc;
 	font-family: Assistant, sans-serif;
 	display: flex;
 	min-height: 90vh;
@@ -13,7 +13,7 @@ body {
   }
   .login {
 	color: white;
-	background:  #136a8a;
+	background-color: #eef2fc;
 	background: 
 	  -webkit-linear-gradient(to right, #267871, #136a8a);
 	background: 

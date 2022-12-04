@@ -467,8 +467,8 @@ pre {
 
 .container-fluid {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto; }
 
@@ -3457,7 +3457,7 @@ input[type="button"].btn-block {
   display: inline-block;
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
-  margin-right: 1rem;
+  margin-right: 0rem;
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap; }

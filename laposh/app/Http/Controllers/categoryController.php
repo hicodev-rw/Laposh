@@ -37,7 +37,7 @@ class categoryController extends Controller
             $categories=$cat_query->orderBy($sortBy,$sortOrder)->get();
         }
         //return $categories;
-        return view('management.static.categories')->with('categories',$categories);
+        return view('management.static.categories.categories')->with('categories',$categories);
     }
     public function create()
     {
@@ -56,7 +56,7 @@ class categoryController extends Controller
         $category=Category::find($id);
         $rooms=$category->rooms;
         // return $category;
-        return view('management.static.view_category')->with('category',$category)->with('rooms',$rooms);
+        return view('management.static.categories.view_category')->with('category',$category)->with('rooms',$rooms);
 
     }
 
@@ -65,7 +65,7 @@ class categoryController extends Controller
     {
         $categories=Category::all();
         $category=Category::find($id);
-        return view('management.static.edit_category')->with('category',$category)->with('categories',$categories);
+        return view('management.static.categories.edit_category')->with('category',$category)->with('categories',$categories);
     }
 
 

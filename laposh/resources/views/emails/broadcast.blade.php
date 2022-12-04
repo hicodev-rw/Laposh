@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel="stylesheet">
     <!--<![endif]-->
 
-    <title>Happy Birthday</title>
+    <title>Message to clients</title>
 
     <style type="text/css">
         body {
@@ -197,7 +197,7 @@
 
                             <div style="line-height: 35px">
 
-                               <span style="color: #5caad2;"> Merry christmas</span>
+                               Good <span style="color: #5caad2;"> news</span>
 
                             </div>
                         </td>
@@ -230,13 +230,11 @@
 
                                         <p style="line-height: 24px; margin-bottom:15px;">
 
-                                        <h2>Hey, Merry christmas {{ $user->name }}</h2> 
+                                            Hello,
 
                                         </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                        <p>On behalf of the entire company I wish you a very good moments in this holiday period and send you my best wishes for much happiness in your life.</p>
-    
-                                        Thank you
+                                            <p>{{ $data['body']}}</p>
                                         </p>
                                         <p style="line-height: 24px; margin-bottom:20px;">
                                             You can access your account at any point using the link below.

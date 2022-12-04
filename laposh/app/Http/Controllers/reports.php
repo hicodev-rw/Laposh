@@ -48,20 +48,20 @@ for ($i = 1; $i <= 12; $i++) {
     
 }
 $datum=array_values($dataArr);
-        return view('management.static.financial_report')->with('hotel_data',$hotel_data)->with('data',$datum)->with('payment_total',$payments_count);
+        return view('management.static.reports.financial_report')->with('hotel_data',$hotel_data)->with('data',$datum)->with('payment_total',$payments_count);
     }
 
 
     public function weekly_data(){
         $hotel_data=Hotel_info::first();
-        return view('management.static.weekly_report')->with('hotel_data',$hotel_data);
+        return view('management.static.reports.weekly_report')->with('hotel_data',$hotel_data);
     }
     public function monthly_data(){
         $hotel_data=Hotel_info::first();
-        return view('management.static.monthly_report')->with('hotel_data',$hotel_data);
+        return view('management.static.reports.monthly_report')->with('hotel_data',$hotel_data);
     }
     public function annual_data(){
         $hotel_data=Hotel_info::first();
-        return view('management.static.annual_report')->with('hotel_data',$hotel_data);
+        return view('management.static.reports.annual_report')->with('hotel_data',$hotel_data);
     }
 }

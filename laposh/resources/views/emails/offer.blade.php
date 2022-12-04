@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel="stylesheet">
     <!--<![endif]-->
 
-    <title>Happy Birthday</title>
+    <title>Message to clients</title>
 
     <style type="text/css">
         body {
@@ -140,7 +140,7 @@
 <body class="respond" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
     <!-- pre-header -->
     <!-- header -->
-    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
+    <table border="0" width="100%" style="padding:30px;" cellpadding="0" cellspacing="0" bgcolor="ffffff">
 
         <tr>
             <td align="center">
@@ -197,7 +197,7 @@
 
                             <div style="line-height: 35px">
 
-                               <span style="color: #5caad2;"> Merry christmas</span>
+                               Good <span style="color: #5caad2;"> news</span>
 
                             </div>
                         </td>
@@ -230,16 +230,15 @@
 
                                         <p style="line-height: 24px; margin-bottom:15px;">
 
-                                        <h2>Hey, Merry christmas {{ $user->name }}</h2> 
+                                            Hello,
 
                                         </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                        <p>On behalf of the entire company I wish you a very good moments in this holiday period and send you my best wishes for much happiness in your life.</p>
-    
-                                        Thank you
+                                            <p>Your best room, {{ $data['body']->name}} is now at ${{ $data['body']->price}}/hour</p>
                                         </p>
+                                        <img width="300" height="200" border="0" style="display: block; width: 300px;" src="{{ $data['body']->images[0]}}" alt="" />
                                         <p style="line-height: 24px; margin-bottom:20px;">
-                                            You can access your account at any point using the link below.
+                                            You can access your account at any point using the to reserve your stay link below.
                                         </p>
                                         <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
 
@@ -263,7 +262,7 @@
 
                                         </table>
                                         <p style="line-height: 24px">
-                                            Love,</br>
+                                        </br>
                                             The La posh hotel, team
                                         </p>
 

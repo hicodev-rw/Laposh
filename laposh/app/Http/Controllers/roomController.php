@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Reservation;
 use App\Models\Category;
+use App\Models\Subscription;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Offer;
 class roomController extends Controller
 {
 
@@ -50,7 +53,7 @@ class roomController extends Controller
             $rooms=$room_query->orderBy($sortBy,$sortOrder)->get();
         }
         //return $rooms;
-        return view('management.static.rooms')->with('rooms',$rooms)->with('category',$categories);
+        return view('management.static.rooms.rooms')->with('rooms',$rooms)->with('category',$categories);
     }
     public function list(Request $request){
         $from=date($request->check_in_date);
@@ -99,7 +102,7 @@ class roomController extends Controller
             $rooms=$room_query->whereNotIn('id', $keys)->orderBy($sortBy,$sortOrder)->get();
         }
             // return $rooms;
-            return view('web.list')->with('rooms',$rooms);
+            return view('web.main.list')->with('rooms',$rooms);
     }
 
     public function store(Request $request)
@@ -130,26 +133,43 @@ class roomController extends Controller
     {
         $room=Room::with(['category','reservation'])->find($id);
         // return $room;
-        return view('management.static.viewroom')->with('room',$room);
+        return view('management.static.rooms.viewroom')->with('room',$room);
     }
 
     public function edit($id)
     {
         $categories=Category::all();
         $room=Room::find($id);
-        return view('management.static.edit_room')->with('category',$categories)->with('room',$room);
+        return view('management.static.rooms.edit_room')->with('category',$categories)->with('room',$room);
     }
     public function editImages($id)
     {
         $room=Room::find($id);
-        return view('management.static.update_room_images')->with('room',$room);
+        return view('management.static.rooms.update_room_images')->with('room',$room);
     }
     public function update(Request $request, $id)
     {
         $room=Room::find($id);
+        $op=$room->price;
         $input =$request->all();
         $room->update($input);
-       // return $room;
+        $new=Room::find($id);
+        $diff=$new->price - $op ;
+
+        if( $diff!=0){
+         $data=[
+            'subject'=>"Good News",
+            'body'=>$new
+        ];
+        $users = Subscription::all();
+        if ($users->count() > 0) {
+            foreach ($users as $user) {
+                Mail::to($user)->send(new Offer($data));
+            }
+        }   
+        
+        }
+
        return redirect('/management/rooms')->with('message','room updated successfully');
     }
 

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\messages as Message;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailNotify;
+use App\Mail\MailToClients;
 class messageController extends Controller
 {
     /**
@@ -15,7 +17,8 @@ class messageController extends Controller
      */
     public function index()
     {
-        //
+        $messages=Message::all();
+        return view('management.static.messages.messages')->with('messages',$messages);
     }
 
     /**
@@ -47,6 +50,17 @@ class messageController extends Controller
 
         return redirect('/');
     }
+    public function reply(Request $request)
+    {
+
+        $data=[
+            'subject'=>$request->subject,
+            'body'=>$request->mail
+        ];
+        Mail::to($request->to)->send(new MailNotify($data));
+
+        return redirect('/management/messages')->with('message','message sent');
+    }
 
     /**
      * Display the specified resource.
@@ -56,7 +70,8 @@ class messageController extends Controller
      */
     public function show($id)
     {
-        //
+        $message=Message::find($id);
+        return view('management.static.messages.read')->with('message',$message);
     }
 
     /**
@@ -65,11 +80,13 @@ class messageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function edit($id)
     {
-        //
+        $message=Message::find($id);
+        return view('management.static.messages.reply')->with('message',$message);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -77,9 +94,19 @@ class messageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function send(Request $request)
     {
-        //
+        $data=[
+            'subject'=>$request->subject,
+            'body'=>$request->mail
+        ];
+        $users = User::all();
+        if ($users->count() > 0) {
+            foreach ($users as $user) {
+                Mail::to($user)->send(new MailToClients($data));
+            }
+        }
+        return redirect('/management/messages')->with('message','message sent');
     }
 
     /**

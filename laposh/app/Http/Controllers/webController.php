@@ -11,7 +11,7 @@ class webController extends Controller
 {
     public function index(Request $request)
     {
-        return view('web.home');
+        return view('web.main.home');
     }
     public function rooms(Request $request)
     {
@@ -54,13 +54,13 @@ class webController extends Controller
             $rooms=$room_query->orderBy($sortBy,$sortOrder)->get();
         }
         //return $rooms;
-        return view('web.rooms')->with('rooms',$rooms)->with('category',$categories);
+        return view('web.main.rooms')->with('rooms',$rooms)->with('category',$categories);
     }
     public function show($id)
     {
         $room=Room::with('category')->find($id);
         // return $room;
-        return view('web.room_details')->with('room',$room);
+        return view('web.main.room_details')->with('room',$room);
     }
     public function bookable($id)
     {
@@ -70,7 +70,7 @@ class webController extends Controller
     }
     public function bookingForm($id)
     {
-        return view('web.booking_form')->with('id',$id);
+        return view('web.main.booking_form')->with('id',$id);
     }
 
     public function dashboard()
@@ -100,12 +100,12 @@ class webController extends Controller
     public function about()
     {
         $info=Hotel_info::first();
-        return view('web.about')->with('info',$info);
+        return view('web.main.about')->with('info',$info);
     }
     public function gallery()
     {
         $rooms=Room::all();
-        return view('web.gallery')->with('rooms',$rooms);
+        return view('web.main.gallery')->with('rooms',$rooms);
 
     }
 }

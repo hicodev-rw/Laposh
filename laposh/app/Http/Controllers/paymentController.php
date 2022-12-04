@@ -46,7 +46,7 @@ class paymentController extends Controller
         $total_hours = ($diff->days * 24); 
 
         $amount=$booking->room->price*$total_hours;
-        return view('web.stripe')->with('booking',$booking)->with('amount',$amount)->with('days',$diff->days)->with('hours',$diff->days*24);        
+        return view('web.main.stripe')->with('booking',$booking)->with('amount',$amount)->with('days',$diff->days)->with('hours',$diff->days*24);        
     }
 
     /**

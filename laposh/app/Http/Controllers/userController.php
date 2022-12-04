@@ -19,13 +19,13 @@ class userController extends Controller
     {
         $roles=RoleModel::whereNot('name','client')->get();
         $users=User::with('roles')->whereNot('role','client')->get();
-        return view('management.static.users')->with('users',$users)->with('roles',$roles);
+        return view('management.static.users.users')->with('users',$users)->with('roles',$roles);
     }
     public function clients(Request $request)
     {
         $roles=RoleModel::where('name','client')->get();
         $users=User::with('roles')->where('role','client')->get();
-        return view('management.static.clients')->with('users',$users);
+        return view('management.static.users.clients')->with('users',$users);
     }
     public function create()
     {
@@ -61,14 +61,14 @@ class userController extends Controller
         $user=User::find($id);
         //$permissions=$user->roles->permissions;
         //return $user;
-        return view('management.static.view_user')->with('user',$user);
+        return view('management.static.users.view_user')->with('user',$user);
     }
 
     public function edit($id)
     {
         $user=User::find($id);
         $roles=RoleModel::whereNot('name','client')->get();
-        return view('management.static.edit_user')->with('user',$user)->with('roles',$roles);
+        return view('management.static.users.edit_user')->with('user',$user)->with('roles',$roles);
     }
 
     public function update(Request $request, $id)
@@ -115,7 +115,7 @@ class userController extends Controller
     }
 
     public function profile(){
-        return view('management.static.profile');
+        return view('management.static.users.profile');
     }
 
     public function login(Request $request)
@@ -135,7 +135,7 @@ class userController extends Controller
             }
       else{
         return back()->withErrors([
-            'email' => 'Account Already exists!',
+            'email' => 'Invalid credentials!',
         ])->onlyInput('email');
     
     }

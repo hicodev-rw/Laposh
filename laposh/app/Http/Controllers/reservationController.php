@@ -27,31 +27,31 @@ class reservationController extends Controller
     {
         $reservations=Reservation::where('status_id',5)->get();
 
-        return view('management.static.pendingpayment')->with('bookings',$reservations);
+        return view('management.static.bookings.pendingpayment')->with('bookings',$reservations);
     }
     public function pending(Request $request)
     {
         $reservations=Reservation::where('status_id',1)->get();
 
-        return view('management.static.pending')->with('bookings',$reservations);
+        return view('management.static.bookings.pending')->with('bookings',$reservations);
     }
     public function closed(Request $request)
     {
         $reservations=Reservation::where('status_id',3)->get();
 
-        return view('management.static.closed')->with('bookings',$reservations);
+        return view('management.static.bookings.closed')->with('bookings',$reservations);
     }
     public function cancelled(Request $request)
     {
         $reservations=Reservation::where('status_id',4)->get();
 
-        return view('management.static.cancelled')->with('bookings',$reservations);
+        return view('management.static.bookings.cancelled')->with('bookings',$reservations);
     }
     public function ongoing(Request $request)
     {
         $reservations=Reservation::where('status_id',2)->get();
 
-        return view('management.static.ongoing')->with('bookings',$reservations);
+        return view('management.static.bookings.ongoing')->with('bookings',$reservations);
     }
 
     public function create()
@@ -74,13 +74,13 @@ class reservationController extends Controller
     public function show($id)
     {
         $reservation=Reservation::find($id);
-        return view('management.static.view_booking')->with('booking',$reservation);
+        return view('management.static.bookings.view_booking')->with('booking',$reservation);
     }
 
     public function edit($id)
     {
         $reservation=Reservation::find($id);
-        return view('management.static.extend')->with('reservation',$reservation);
+        return view('management.static.bookings.extend')->with('reservation',$reservation);
     }
 
     public function update(Request $request, $id)
@@ -138,7 +138,7 @@ class reservationController extends Controller
             $reservations=$reservations_query->where('check_in_date',$date)->where('status_id',1)->orderBy($sortBy,$sortOrder)->get();
         }
         //return $reservations;
-        return view('management.static.checkinList')->with('bookings',$reservations);
+        return view('management.static.bookings.checkinList')->with('bookings',$reservations);
     }
 
     
@@ -180,7 +180,7 @@ class reservationController extends Controller
             $reservations=$reservations_query->where('status_id',2)->orderBy($sortBy,$sortOrder)->get();
         }
         // return $reservations;
-        return view('management.static.checkoutList')->with('bookings',$reservations);
+        return view('management.static.bookings.checkoutList')->with('bookings',$reservations);
     }
 
 

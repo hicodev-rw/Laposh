@@ -13,7 +13,7 @@ class roleController extends Controller
     {
         $users=User::whereNot('role','client')->get();
         $roles=Role::whereNot('name','client')->get();
-        return view('management.static.config')->with('users',$users)->with('roles',$roles);
+        return view('management.static.users.config')->with('users',$users)->with('roles',$roles);
         return $roles;
     }
 
@@ -40,7 +40,7 @@ class roleController extends Controller
         $user=User::find($id);
         $opermissions = $user->getAllPermissions();
         $permissions=Permission::all();
-        return view('management.static.manage_permissions')->with('user',$user)->with('permissions',$permissions)->with('opermissions',$opermissions);
+        return view('management.static.users.manage_permissions')->with('user',$user)->with('permissions',$permissions)->with('opermissions',$opermissions);
     }
 
 

@@ -10,7 +10,7 @@ class infoController extends Controller
     public function index()
     {
         $info=Hotel_info::first();
-        return view('management.static.settings')->with('info',$info);
+        return view('management.static.settings.settings')->with('info',$info);
     }
 
     public function store(Request $request)

@@ -10,6 +10,14 @@
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>La Posh Hotel</title>
+	<link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+
+
+
+
+
+
 	<link rel="stylesheet" href="{{ URL::asset('css/error.css'); }}">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
@@ -24,6 +32,11 @@
 </head>
 
 <body>
+<div class="loader_bg">
+         <div class="loader">
+			<img src="{{ URL::asset('images/loading.gif');}}" alt="#"/>
+		</div>
+      </div>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
@@ -104,6 +117,12 @@
 			</a>
 		</li>
 		<li class="sidebar-item">
+				<a class="sidebar-link" href="/management/messages">
+				<i class="align-middle" data-feather="mail"></i> <span class="align-middle">Messages</span>
+			</a>
+		</li>
+
+		<li class="sidebar-item">
         <a class="sidebar-link collapsed" data-bs-target="#components-nav3" data-bs-toggle="collapse" href="#">
           <i class="align-middle" data-feather="users"></i><span>Users</span><i data-feather="chevron-down"></i>
         </a>
@@ -122,6 +141,7 @@
       </li>
 
 @endif
+
 <li class="sidebar-item">
         <a class="sidebar-link collapsed" data-bs-target="#components-nav2" data-bs-toggle="collapse" href="#">
           <i class="align-middle" data-feather="edit"></i><span>Reports</span><i data-feather="chevron-down"></i>
@@ -187,17 +207,11 @@
 				</div>
 			</nav>
             @yield('content')
-
             <footer class="footer">
 				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							
-						</div>
-						<div class="col-6 text-end">
-							
-						</div>
-					</div>
+					
+						<center><h6>La posh hotel &#169; 2022</h6></center>
+
 				</div>
 			</footer>
 		</div>
@@ -223,5 +237,9 @@
 $('table').DataTable();  
 </script> 
 </script>
+
+
+
+      <script src="{{ URL::asset('js/custom.js');}}"></script>
 </body>
 </html>
