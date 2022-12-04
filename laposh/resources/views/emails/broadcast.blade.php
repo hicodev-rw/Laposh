@@ -197,7 +197,7 @@
 
                             <div style="line-height: 35px">
 
-                               Good <span style="color: #5caad2;"> news</span>
+                               <span style="color: #5caad2;"> updates!</span>
 
                             </div>
                         </td>

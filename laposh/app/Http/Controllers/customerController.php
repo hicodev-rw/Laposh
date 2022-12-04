@@ -19,7 +19,7 @@ class customerController extends Controller
 
     public function create()
     {
-        return view('web.mainregister');
+        return view('web.main.register');
     }
     public function myBookings(Request $request)
     {
