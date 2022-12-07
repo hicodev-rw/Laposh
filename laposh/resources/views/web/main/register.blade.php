@@ -14,6 +14,9 @@
 										@endif
 								<form name="register" action="{{url('/customer/register')}}"  method='POST' onsubmit="return validateform()">
 									{{csrf_field()}}
+									<div>
+                                    <h5 id="err" class="err"></h5>
+									</div>
 									<div class="row">
 									<div class="card-body">
 										<h5 class="card-title mb-0">First Name</h5>
@@ -45,17 +48,17 @@
 									</div>
 									<hr/>
 									<div>
-                                    <h5 id="error"></h5>
+                                    <h5 id="error" class="err"></h5>
 									</div>
 									<div class="row">
                                     <div class="card-body">
                                     <h5 class="card-title mb-0">Create Password</h5>
-										<input type="password" name="password" class="form-control" minlength=8 maxheight=16 required>
+										<input type="password" name="password" class="form-control" minlength=8  id="password" maxheight=16 required>
 									</div>
 
                                     <div class="card-body">
                                     <h5 class="card-title mb-0">Confirm Password</h5>
-										<input type="password" name="cpassword" class="form-control" minlength=8 maxheight=16 required>
+										<input type="password" name="cpassword" id="cpassword" class="form-control" minlength=8 maxheight=16 required>
 									</div>
 									</div>
                                     <div class="card-body">

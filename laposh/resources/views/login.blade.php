@@ -8,8 +8,8 @@
 </head>
 <body>
 <section class='login' id='login'>
-  <div class='head'>
-  <h1 class='company'>{{$info->name}}</h1>
+  <div class='head' style="padding:auto;">
+  <img width="150" border="0" src="https://res.cloudinary.com/dcwfma8py/image/upload/v1670142882/ceu73lxfqjubidlxjfju.png" alt="" />
   </div>
   <p class='msg'>Welcome back</p>
   @if ($errors->has('email'))
@@ -21,10 +21,13 @@
   <input type="text" placeholder='username' class='text' name='email' required><br>
   <input type="password" placeholder='password' class='password' name='password' required><br>
   <button type="submit" class='btn-login'>Login</button>
-  <a href="#" class='forgot'>Forgot?</a>
+
     </form>
 
   </div>
+  <hr/>
+  <a href="#" class='forgot'>Forgot password?</a>
+  
   <br><br>
 <a href="/register" class='forgot'>Register</a>
 <a href="/" class='forgot'>Home&nbsp;|&nbsp;</a>

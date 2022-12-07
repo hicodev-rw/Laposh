@@ -32,13 +32,23 @@
 												<td><form action=' {{url('/management/reservations/checkout/'.   $booking->id)}}' method="post">
 					@method('patch')
 					{{ csrf_field() }} 
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-sm-inline-block" href="#" data-bs-toggle="dropdown"><span class="text-dark">Actions</span></a>
+							 
+							<div class="dropdown-menu dropdown-menu-end">
 					@if(auth()->user()->can('view-reservation'))
-					<a href="{{ url('/management/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
+					<a href="{{ url('/management/bookings/'. $booking->id) }}" class="dropdown-item">View</a>
 					@endif
 					@if(auth()->user()->can('check-out'))
-                                                <button class="btn a btn-primary btn-sm">Check-out</button>
+                                                <button class="dropdown-item">Check-out</button>
 												@endif
-													</form>
+											
+													
+							</div>
+						</li>
+					</ul>
+				</form>
 </td>
 											</tr>
 											@endforeach

@@ -20,7 +20,7 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Username</th>
+												<th>Names</th>
 												<th class="d-none d-xl-table-cell">Registered</th>
 												<th>Actions</th>
 											</tr>
@@ -29,7 +29,7 @@
 		@foreach($users as $user)
 			<tr>
 				<td>{{$loop->iteration}}</td>
-					<td>{{$user->email}}</td>
+					<td>{{$user->firstName}} {{$user->lastName}}</td>
 					<td class="d-none d-xl-table-cell">{{$user->created_at}}</td>
 					<td>
 					<ul class="navbar-nav navbar-align">

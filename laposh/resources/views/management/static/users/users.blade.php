@@ -67,24 +67,27 @@
 								<div class="card-header">
 
 									<h5 class="card-title mb-0">Add New User</h5>
+									@if ($errors->has('name'))
+										<p class='error'>{{$errors->first('name')}}</p>
+										@endif
 								</div>
 								<form action="{{url('/management/users')}}"  method='post' enctype="multipart/form-data">
 									{{csrf_field()}}
 									<div class="card-body">
 										<h5 class="card-title mb-0">firstName</h5>
-										<input type="text" name="firstName" class="form-control">
+										<input type="text" name="firstName" class="form-control" required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">lastName</h5>
-										<input type="text" name="lastName" class="form-control">
+										<input type="text" name="lastName" class="form-control" required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Email</h5>
-										<input type="email" name="email" class="form-control">
+										<input type="email" name="email" class="form-control"required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Password</h5>
-										<input type="password" name="password" class="form-control">
+										<input type="password" name="password" class="form-control"required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Role</h5>
@@ -107,7 +110,9 @@
 										<input type="file" name="avatar" class="form-control">
 									</div>
 
-									<button type="submit"class="btn btn-primary btn-md">Save</button>
+									<div class="card-body">
+									<button type="submit"class="btn btn-primary btn-md" style="width:100%;">Save</button>
+									</div>
 								</form>
 							</div>
 						</div>

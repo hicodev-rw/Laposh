@@ -29,7 +29,7 @@
 									{{csrf_field()}}
                                     <div class="card-body">
 										<h5 class="card-title mb-0">Image (s)</h5>
-										<input type="file" name="images[]" class="form-control" multiple>
+										<input type="file" name="images[]" class="form-control" multiple required>
 									</div>
 									<button type="submit"class="btn btn-primary btn-md" style="width:100%">update</button>
 								</form>

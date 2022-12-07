@@ -21,7 +21,7 @@ class reservationController extends Controller
     {
         $reservations=Reservation::all();
 
-        return view('management.static.bookings')->with('bookings',$reservations);
+        return view('management.static.bookings.bookings')->with('bookings',$reservations);
     }
     public function unpaid(Request $request)
     {
@@ -103,9 +103,6 @@ class reservationController extends Controller
     {
         $date = date('Y-m-d');
         $reservations_query=Reservation::with('room','user');
-        if($request->keyword){
-            $reservations_query->where('reference','LIKE','%'.$request->keyword.'%')->where('check_in_date',$date);
-        }
         if($request->owner){
             $reservations_query->whereHas('user',function($query) use($request){
                 $query->where('firstName',$request->owner);
@@ -132,10 +129,10 @@ class reservationController extends Controller
             $perPage=8;
         }
         if($request->paginate){
-            $reservations=$reservations_query->where('check_in_date',$date)->where('status_id',1)->orderBy($sortBy,$sortOrder)->paginate($perPage);
+            $reservations=$reservations_query->where('status_id',1)->orderBy($sortBy,$sortOrder)->paginate($perPage);
         }
         else{
-            $reservations=$reservations_query->where('check_in_date',$date)->where('status_id',1)->orderBy($sortBy,$sortOrder)->get();
+            $reservations=$reservations_query->where('status_id',1)->orderBy($sortBy,$sortOrder)->get();
         }
         //return $reservations;
         return view('management.static.bookings.checkinList')->with('bookings',$reservations);

@@ -66,7 +66,7 @@ class webController extends Controller
     {
         $room=Room::with('category')->find($id);
         // return $room;
-        return view('web.bookable')->with('room',$room);
+        return view('web.main.bookable')->with('room',$room);
     }
     public function bookingForm($id)
     {

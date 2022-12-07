@@ -79,11 +79,11 @@
 									{{csrf_field()}}
 									<div class="card-body">
 										<h5 class="card-title mb-0">Name</h5>
-										<input type="text" name="name" class="form-control">
+										<input type="text" name="name" class="form-control" required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Category</h5>
-										<select name="category_id" class="form-control">
+										<select name="category_id" class="form-control" required>
 											@foreach($category as $cat)
 										<option value="{{$cat->id}}">{{$cat->name}}</option>
 										@endforeach
@@ -92,17 +92,17 @@
 									<div class="card-body">
 										<h5 class="card-title mb-0">Price ($)</h5>
 										<input type="number" name="price"
-										step=".01" class="form-control">
+										step=".01" class="form-control"required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Specifications</h5>
-										<textarea name="specifications" class="form-control">
+										<textarea name="specifications" class="form-control"required>
 										</textarea>
 									</div>
 
 									<div class="card-body">
 										<h5 class="card-title mb-0">Image (s)</h5>
-										<input type="file" name="images[]" class="form-control" multiple>
+										<input type="file" name="images[]" class="form-control" multiple required>
 									</div>
 									<div class="card-body">
 									<button type="submit"class="btn btn-primary btn-md" style="width:100%;">Save</button>

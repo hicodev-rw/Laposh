@@ -66,6 +66,9 @@
 								<div class="card-header">
 
 									<h5 class="card-title mb-0">Add New</h5>
+									@if ($errors->has('name'))
+										<p class='error'>{{$errors->first('name')}}</p>
+										@endif
 								</div>
 								<form action="{{ url('management/categories') }}" method='post'>
 									{{ csrf_field() }}

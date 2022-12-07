@@ -46,9 +46,18 @@ class categoryController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
-        $category=Category::create($input);
-       // return $category;
-        return redirect('management/categories')->with('message','category created successfully');
+        $isUnique=count(Category::where('name',$input['name'])->get());
+        if($isUnique==0){
+           
+            $category=Category::create($input);
+            return redirect('management/categories')->with('message','category created successfully');
+        }
+        else{
+            return back()->withErrors([
+                'name' => 'Category already exists!',
+            ])->onlyInput('name');
+        }
+       
     }
 
     public function show($id)

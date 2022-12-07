@@ -6,13 +6,13 @@
 					<div class="row">
 						<div class="col-xl-12 col-xxl-2 d-flex">
 							<div style="width: 60%;margin:auto" class="col-12 col-lg-8 col-xxl-9 d-flex" >
-								<div style="width: 90%;"  class="card flex-fill">
+								<div style="width: 90%; padding: 40px;"  class="card flex-fill">
 									<div class="card-header">
 	
 										<h5 class="card-title mb-0"></h5>
 									</div>
 									<table class="table table-hover my-0">
-										<thead>
+										<tbody>
 											<tr>
 												<th>Reference</th>
 												<th class="d-none d-xl-table-cell">{{$booking->reference}}</th>
@@ -41,8 +41,8 @@
 												<th>Status</th>
 												<th class="d-none d-xl-table-cell">{{$booking->status->name}}</th>
 											</tr>
-										</thead>
-									</table>
+										</tbody>
+</table>
 								</div>
 							</div>
 							</div>

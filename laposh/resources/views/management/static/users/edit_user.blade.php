@@ -13,7 +13,7 @@
 								</div>
 								<div class="card-body text-center">
 									<img src="{{$user->avatar}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-									<h5 class="card-title mb-0">{{$user->lastName}}</h5>
+									<h5 class="card-title mb-0">{{$user->title}} {{$user->lastName}}</h5>
 									<div class="text-muted mb-2">{{$user->role}}</div>
 								</div>
 
@@ -55,7 +55,12 @@
 										@endforeach
 										</select>
 									</div>
-									<button type="submit"class="btn btn-primary btn-md">Update</button>
+									<div class="card-body">
+										<h5 class="card-title mb-0">Password</h5>
+										<input type="password"  name="password" class="form-control">
+									</div>
+									<button type="submit"class="btn btn-primary btn-md" style="width:100%;">Update</button>
+									</div>
 								</form>
 							</div>
 						</div>

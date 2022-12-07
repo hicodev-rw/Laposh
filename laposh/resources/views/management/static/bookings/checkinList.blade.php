@@ -3,7 +3,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Bookings to check in today</strong></h1>
+					<h1 class="h3 mb-3"><strong>Bookings to check-in</strong></h1>
 
 					<div class="row">
 						<div class="col-xl-12 col-xxl-2 d-flex">
@@ -31,17 +31,29 @@
 												<td class="d-none d-xl-table-cell">{{$booking->room->name}}</td>
 												<td class="d-none d-xl-table-cell">{{$booking->status->name}}</td>
 												<td>
-												
 												<form action=' {{url('/management/reservations/checkin/'.   $booking->id)}}' method="post">
 												@method('patch')
 												{{ csrf_field() }} 
-												@if(auth()->user()->can('view-reservation'))
-												<a href="{{ url('/management/bookings/'. $booking->id) }}" class="btn a btn-primary btn-sm">View</a>
-												@endif
-												@if(auth()->user()->can('check-in'))
-                                                <button class="btn a btn-primary btn-sm">Check-in</button>
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-sm-inline-block" href="#" data-bs-toggle="dropdown"><span class="text-dark">Actions</span></a>
+							 
+							<div class="dropdown-menu dropdown-menu-end">
+							@if(auth()->user()->can('view-reservation'))
+							<a href="{{ url('/management/bookings/'. $booking->id) }}" class="dropdown-item">View</a>
+								@endif
+							
+								@if(auth()->user()->can('check-in'))
+                                                <button class="dropdown-item">Check-in</button>
 													</form>
-													@endif
+													@endif  
+							</div>
+						</li>
+					</ul>
+				</form>
+												
+												
+												
 													</td>
 											</tr>
 											@endforeach

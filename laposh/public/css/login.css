@@ -12,24 +12,20 @@ body {
 	width: 100%;
   }
   .login {
-	color: white;
+	color: black;
+	font-weight: 600;
 	background-color: #eef2fc;
-	background: 
-	  -webkit-linear-gradient(to right, #267871, #136a8a);
-	background: 
-	  linear-gradient(to right, #267871, #136a8a);
+	background: white;
 	margin: auto;
-	box-shadow: 
-	  0px 2px 10px rgba(0,0,0,0.2), 
-	  0px 10px 20px rgba(0,0,0,0.3), 
-	  0px 30px 60px 1px rgba(0,0,0,0.5);
-	border-radius: 8px;
-	padding: 50px;
+	border:1px solid grey;
+	border-radius: 3px;
+	padding: 70px;
   }
   .login .head {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-bottom: 50px;
   }
   .login .head .company {
 	font-size: 2.2em;
@@ -40,46 +36,49 @@ body {
   .login .form input[type=text].text {
 	border: none;
 	background: none;
-	box-shadow: 0px 2px 0px 0px white;
+	box-shadow: 0px 2px 0px 0px grey;
 	width: 100%;
-	color: white;
+	color: black;
 	font-size: 1em;
 	outline: none;
   }
   .login .form .text::placeholder {
-	color: #D3D3D3;
+	color: grey;
   }
   .login .form input[type=password].password {
 	border: none;
 	background: none;
-	box-shadow: 0px 2px 0px 0px white;
+	box-shadow: 0px 2px 0px 0px grey;
 	width: 100%;
-	color: white;
+	color: black;
 	font-size: 1em;
 	outline: none;
 	margin-bottom: 20px;
 	margin-top: 20px;
   }
   .login .form .password::placeholder {
-	color: #D3D3D3;
+	color: grey;
   }
   .login .form .btn-login {
 	background: none;
 	text-decoration: none;
 	color: white;
-	box-shadow: 0px 0px 0px 2px white;
+	margin-top: 40px;
+	width: 100%;
+	background: black;
 	border-radius: 3px;
 	padding: 5px 2em;
 	transition: 0.5s;
+	margin-bottom: 20px;
   }
   .login .form .btn-login:hover {
-	background: white;
-	color: dimgray;
+	background: blue;
+	color: white;
 	transition: 0.5s;
   }
   .login .forgot {
 	text-decoration: none;
-	color: white;
+	color: blue;
 	float: right;
   }
   footer {

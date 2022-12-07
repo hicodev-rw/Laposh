@@ -7,25 +7,25 @@
             <div class="form_register" style="border:none;">
                     <h3 class="panel-title text-center"><strong>Reservation Details</strong></h3>
 
-                    Dear {{auth()->user()->lastName}}, your reservation has been received with the following details. You are required to pay for it to be active!
+                    Dear {{auth()->user()->lastName}}, you are about to submit reservation with the following details. You are required to pay for it to be active!
                     <hr/>
 <div>
-<h4><strong>Reference:{{$booking->reference}}</strong></h4>
+<h5><strong>Reference:{{$booking->reference}}</strong></h5>
 </div>
 <div>
-<h4><strong>Room:{{$booking->room->name}}</strong></h4>
+<h5><strong>Room:{{$booking->room->name}}</strong></h5>
 </div>
 <div>
-<h4><strong>Price: ${{$booking->room->price}}</strong></h4>
+<h5><strong>Price: ${{$booking->room->price}}</strong></h5>
 </div>
 <div>
-<h4><strong>Check in date:{{$booking->check_in_date}}</strong></h4>
+<h5><strong>Check in date:{{$booking->check_in_date}}</strong></h5>
 </div>
 <div>
-<h4><strong>Check out date:{{$booking->check_out_date}}</strong></h4>
+<h5><strong>Check out date:{{$booking->check_out_date}}</strong></h5>
 </div>
 <div>
-<h4><strong>Stay duration:{{$days}} days ({{$hours}} hours)</strong></h4>
+<h5><strong>Stay duration:{{$days}} days ({{$hours}} hours)</strong></h5>
 </div>
 
 Regards,
@@ -74,7 +74,7 @@ Regards,
     
                         <div class='card-body'style="padding-bottom:1px;">
                             <div class='col-xs-12' style="background-color:#eef2fcf5; border:none;">
-                                <label style="font-size:16px;"><strong>Amount</strong></label> 
+                                <label style="font-size:16px;"><strong>Amount ($)</strong></label> 
                                 <input value="{{$amount}}" class='form-control' type='Number' step="2" name="amount" readonly>
                             </div>
                         </div>

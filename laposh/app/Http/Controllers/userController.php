@@ -51,16 +51,15 @@ class userController extends Controller
         return redirect('/management/users')->with('message','user added successfully');
     }
     else{
-        $message='User is already registered';
-        return $message;
+        return back()->withErrors([
+            'name' => 'user already exists!',
+        ])->onlyInput('name');
     }
     }
 
     public function show($id)
     {
         $user=User::find($id);
-        //$permissions=$user->roles->permissions;
-        //return $user;
         return view('management.static.users.view_user')->with('user',$user);
     }
 

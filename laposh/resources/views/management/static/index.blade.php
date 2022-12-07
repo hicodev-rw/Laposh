@@ -335,7 +335,7 @@
 					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 					datasets: [{
 						label: "Last year",
-						backgroundColor: window.theme.primary,
+						backgroundColor: "#dee2e6",
 						borderColor: window.theme.primary,
 						hoverBackgroundColor: window.theme.primary,
 						hoverBorderColor: window.theme.primary,
@@ -356,7 +356,7 @@
 						categoryPercentage: .5
 					}, {
 						label: "This year",
-						backgroundColor: "#dee2e6",
+						backgroundColor: window.theme.primary,
 						borderColor: "#dee2e6",
 						hoverBackgroundColor: "#dee2e6",
 						hoverBorderColor: "#dee2e6",

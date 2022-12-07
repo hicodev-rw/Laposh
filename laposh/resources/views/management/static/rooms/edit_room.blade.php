@@ -32,11 +32,11 @@
 										<h5 class="card-title mb-0">Name</h5>
 										<input type="text" name="name" 
                                         value="{{$room->name}}"
-                                        class="form-control">
+                                        class="form-control" required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Category</h5>
-										<select name="category_id" class="form-control">
+										<select name="category_id" class="form-control" required>
 											@foreach($category as $cat)
 										<option value="{{$cat->id}}">{{$cat->name}}</option>
 										@endforeach
@@ -46,12 +46,12 @@
 										<h5 class="card-title mb-0">Price ($)</h5>
 										<input type="number" name="price" 
                                         value="{{$room->price}}"
-                                        class="form-control">
+                                        class="form-control" required>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title mb-0">Specifications</h5>
 										<textarea type="text" name="specifications"
-                                        class="form-control">
+                                        class="form-control"required>
 										{{$room->specifications}}
 										</textarea>
 									</div>

@@ -5,8 +5,8 @@
 					<div class="mb-3">
 						<h1 class="h3 d-inline align-middle">Annual Financial Report</h1>
 					</div>
-					<div class="card">
-					<div class="row">
+					<div class="card" style="margin:auto; width: 70%;">
+					<div class="row" >
 
 						<div class="col-md-4 col-xl-5">
 								<div class="card-body h-100">
